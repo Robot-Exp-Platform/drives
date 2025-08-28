@@ -1,0 +1,12 @@
+[submodule "robot_behavior"]
+	path = robot_behavior
+	url = git@github.com:Robot-Exp-Platform/robot_behavior.git
+[submodule "libjaka-rs"]
+	path = libjaka-rs
+	url = git@github.com:Robot-Exp-Platform/libjaka-rs.git
+[submodule "franka-rust"]
+	path = franka-rust
+	url = git@github.com:Robot-Exp-Platform/franka-rust.git
+[submodule "libhans-rs"]
+	path = libhans-rs
+	url = git@github.com:Robot-Exp-Platform/libhans-rs.git
