@@ -1,0 +1,4 @@
+[workspace]
+members = ["franka-rust", "libhans-rs", "libjaka-rs", "roplat_exrobot"]
+exclude = ["./robot_behaviors"]
+resolver = "3"

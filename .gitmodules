@@ -10,3 +10,6 @@
 [submodule "libhans-rs"]
 	path = libhans-rs
 	url = git@github.com:Robot-Exp-Platform/libhans-rs.git
+[submodule "roplat_exrobot"]
+	path = roplat_exrobot
+	url = git@github.com:Robot-Exp-Platform/roplat_exrobot.git
