@@ -2,3 +2,6 @@
 members = ["franka-rust", "libhans-rs", "libjaka-rs", "roplat_exrobot"]
 exclude = ["./robot_behaviors"]
 resolver = "3"
+
+[patch.crates-io]
+robot_behavior = { path = "./robot_behavior" }
