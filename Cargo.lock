@@ -632,6 +632,7 @@ dependencies = [
  "robot_behavior",
  "serde",
  "serde-big-array",
+ "serde_json",
  "serde_repr",
  "strum",
  "strum_macros",
