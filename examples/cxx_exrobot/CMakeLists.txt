@@ -35,16 +35,16 @@ target_include_directories(streaming_motion PRIVATE
 find_package(Threads REQUIRED)
 target_link_libraries(main PRIVATE
   ${RUST_CRATE_NAME}
-  # Threads::Threads
-  # dl
-  # m
+  Threads::Threads
+  dl
+  m
 )
 
 target_link_libraries(streaming_motion PRIVATE
   ${RUST_CRATE_NAME}
-  # Threads::Threads
-  # dl
-  # m
+  Threads::Threads
+  dl
+  m
 )
 
 # 如果你是用 clang 并需要 libc++，可按需启用（通常不必）
