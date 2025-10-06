@@ -1,5 +1,5 @@
 [workspace]
-members = ["examples/jaka_dual","franka-rust", "libhans-rs", "libjaka-rs", "roplat_exrobot"]
+members = ["examples/jaka_dual","franka-rust", "libaubo-rs", "libhans-rs", "libjaka-rs", "roplat_exrobot"]
 exclude = ["./robot_behavior"]
 resolver = "3"
 
