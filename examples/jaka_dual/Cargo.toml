@@ -6,3 +6,5 @@ edition = "2024"
 [dependencies]
 robot_behavior = { path = "../../robot_behavior" }
 libjaka = { path = "../../libjaka-rs" }
+rsbullet = { path = "../../rsbullet/rsbullet" }
+nalgebra = "0.34"

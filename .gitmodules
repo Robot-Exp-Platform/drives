@@ -16,3 +16,6 @@
 [submodule "libaubo-rs"]
 	path = libaubo-rs
 	url = git@github.com:Robot-Exp-Platform/libaubo-rs.git
+[submodule "rsbullet"]
+	path = rsbullet
+	url = git@github.com:Robot-Exp-Platform/rsbullet.git

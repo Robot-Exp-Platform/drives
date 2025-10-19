@@ -153,6 +153,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b94f61472cee1439c0b966b47e3aca9ae07e45d070759512cd390ea2bebc6675"
 
 [[package]]
+name = "cmake"
+version = "0.1.54"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e7caa3f9de89ddbe2c607f4101924c5abec803763ae9534e4f4d7d8f84aa81f0"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "codespan-reporting"
 version = "0.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -899,7 +908,9 @@ name = "jaka_dual"
 version = "0.1.0"
 dependencies = [
  "libjaka",
+ "nalgebra",
  "robot_behavior",
+ "rsbullet",
 ]
 
 [[package]]
@@ -1101,9 +1112,9 @@ dependencies = [
 
 [[package]]
 name = "nalgebra"
-version = "0.34.0"
+version = "0.34.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9cd59afb6639828b33677758314a4a1a745c15c02bc597095b851c8fd915cf49"
+checksum = "c4d5b3eff5cd580f93da45e64715e8c20a3996342f1e466599cf7a267a0c2f5f"
 dependencies = [
  "approx",
  "glam 0.14.0",
@@ -1508,6 +1519,34 @@ dependencies = [
  "nalgebra",
  "pyo3",
  "robot_behavior",
+]
+
+[[package]]
+name = "rsbullet"
+version = "0.2.1"
+dependencies = [
+ "nalgebra",
+ "robot_behavior",
+ "roplat_exrobot",
+ "rsbullet-core",
+ "rsbullet_sys",
+]
+
+[[package]]
+name = "rsbullet-core"
+version = "0.2.1"
+dependencies = [
+ "bitflags 2.9.4",
+ "nalgebra",
+ "robot_behavior",
+ "rsbullet_sys",
+]
+
+[[package]]
+name = "rsbullet_sys"
+version = "0.2.1"
+dependencies = [
+ "cmake",
 ]
 
 [[package]]

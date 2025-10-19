@@ -1,7 +1,18 @@
 [workspace]
-members = ["examples/jaka_dual","franka-rust", "libaubo-rs", "libhans-rs", "libjaka-rs", "roplat_exrobot"]
+members = [
+    "examples/jaka_dual",
+    "franka-rust",
+    "libaubo-rs",
+    "libhans-rs",
+    "libjaka-rs",
+    "roplat_exrobot",
+    "rsbullet/rsbullet",
+    "rsbullet/rsbullet-core",
+]
 exclude = ["./robot_behavior"]
 resolver = "3"
 
 [patch.crates-io]
 robot_behavior = { path = "./robot_behavior" }
+roplat_exrobot = { path = "./roplat_exrobot" }
+rsbullet_sys = { path = "./rsbullet/rsbullet-sys" }
