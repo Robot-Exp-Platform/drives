@@ -4,8 +4,9 @@ members = [
     "franka-rust",
     "libaubo-rs",
     "libhans-rs",
-    "libjaka-rs",
+    "libjaka-rs", "rerun_urdf",
     "roplat_exrobot",
+    "roplat_rerun",
     "rsbullet/rsbullet",
     "rsbullet/rsbullet-core",
 ]

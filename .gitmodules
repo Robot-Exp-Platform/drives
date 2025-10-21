@@ -19,3 +19,9 @@
 [submodule "rsbullet"]
 	path = rsbullet
 	url = git@github.com:Robot-Exp-Platform/rsbullet.git
+[submodule "roplat_rerun"]
+	path = roplat_rerun
+	url = git@github.com:Robot-Exp-Platform/roplat_rerun.git
+[submodule "rerun_urdf"]
+	path = rerun_urdf
+	url = git@github.com:Robot-Exp-Platform/rerun_urdf.git

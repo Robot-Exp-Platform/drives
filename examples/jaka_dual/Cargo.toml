@@ -8,3 +8,5 @@ robot_behavior = { path = "../../robot_behavior" }
 libjaka = { path = "../../libjaka-rs" }
 rsbullet = { path = "../../rsbullet/rsbullet" }
 nalgebra = "0.34"
+anyhow = "1.0.100"
+roplat_rerun = { path = "../../roplat_rerun" }
