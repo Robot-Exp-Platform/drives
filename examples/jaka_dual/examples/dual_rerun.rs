@@ -1,4 +1,4 @@
-use std::{f64::consts::FRAC_PI_2, f64::consts::FRAC_PI_4, thread::sleep, time::Duration};
+use std::{f64::consts::FRAC_PI_2, f64::consts::FRAC_PI_4, time::Duration};
 
 use libjaka::JakaMini2;
 use robot_behavior::behavior::*;

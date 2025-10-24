@@ -4,9 +4,9 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-robot_behavior = { path = "../../robot_behavior" }
-libjaka = { path = "../../libjaka-rs" }
-rsbullet = { path = "../../rsbullet/rsbullet" }
+robot_behavior = { version = "0.5.0", path = "../../robot_behavior" }
+libjaka = { version = "0.1.9", path = "../../libjaka-rs" }
+rsbullet = { version = "0.3.0", path = "../../rsbullet/rsbullet" }
 nalgebra = "0.34"
 anyhow = "1.0.100"
-roplat_rerun = { path = "../../roplat_rerun" }
+roplat_rerun = { version = "0.1.0", path = "../../roplat_rerun" }

@@ -25,11 +25,16 @@ fn main() -> Result<()> {
     for _ in 0..100_000 {
         physics.step()?;
     }
-    robot_1.move_joint(&[0.; 6])?;
-    robot_2.move_joint(&[FRAC_PI_4; 6])?;
+    robot_1
+        .with_velocity(&[5.; 6])
+        .with_acceleration(&[2.; 6])
+        .move_joint(&[0.; 6])?;
+    robot_2
+        .with_velocity(&[5.; 6])
+        .move_joint(&[FRAC_PI_4; 6])?;
+
     loop {
         physics.step()?;
-
         sleep(Duration::from_secs_f64(0.01));
     }
 }
