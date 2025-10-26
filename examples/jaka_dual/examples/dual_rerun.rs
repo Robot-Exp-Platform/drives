@@ -10,10 +10,10 @@ fn main() -> anyhow::Result<()> {
     let mut physics_engine = RsBullet::new(rsbullet::Mode::Gui)?;
 
     physics_engine
-        .set_additional_search_path("E:\\yixing\\code\\Robot-Exp\\drives\\asserts")?
+        .add_search_path("E:\\yixing\\code\\Robot-Exp\\drives\\asserts")?
         .set_gravity([0., 0., -10.])?
         .set_step_time(Duration::from_secs_f64(1. / 240.))?;
-    renderer.set_additional_search_path("E:\\yixing\\code\\Robot-Exp\\drives\\asserts")?;
+    renderer.add_search_path("E:\\yixing\\code\\Robot-Exp\\drives\\asserts")?;
 
     let mut robot_1 = physics_engine
         .robot_builder::<JakaMini2>("robot_1")

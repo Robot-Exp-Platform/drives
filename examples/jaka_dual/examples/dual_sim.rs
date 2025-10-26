@@ -7,7 +7,7 @@ use std::{f64::consts::FRAC_PI_4, thread::sleep, time::Duration};
 fn main() -> Result<()> {
     let mut physics = RsBullet::new(Mode::Gui)?;
     physics
-        .set_additional_search_path("E:\\yixing\\code\\Robot-Exp\\drives\\asserts")?
+        .add_search_path("E:\\yixing\\code\\Robot-Exp\\drives\\asserts")?
         .set_gravity([0., 0., -10.])?
         .set_step_time(Duration::from_secs_f64(1. / 240.))?;
 

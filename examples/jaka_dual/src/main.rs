@@ -15,5 +15,5 @@ fn main() {
         })
         .unwrap();
     let tio = robot_1._get_tio_vout_param().unwrap();
-    println!("{:?}", tio);
+    println!("{tio:?}");
 }
