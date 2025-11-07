@@ -9,10 +9,7 @@ fn main() {
     // let _ = robot_1.disable();
     // robot_1.move_joint_rel(&[0.1; 6]).unwrap();
     robot_1
-        ._set_tio_vout_param(SetTioVoutParamData {
-            tio_vout_ena: 1,
-            tio_vout_vol: 0,
-        })
+        ._set_tio_vout_param(SetTioVoutParamData { tio_vout_ena: 1, tio_vout_vol: 0 })
         .unwrap();
     let tio = robot_1._get_tio_vout_param().unwrap();
     println!("{tio:?}");
