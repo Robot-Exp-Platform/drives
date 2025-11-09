@@ -4,13 +4,15 @@ members = [
     "franka-rust",
     "libaubo-rs",
     "libhans-rs",
-    "libjaka-rs", "rerun_urdf",
+    "libjaka-rs",
+    "rerun_urdf",
     "roplat_exrobot",
     "roplat_rerun",
     "rsbullet/rsbullet",
     "rsbullet/rsbullet-core",
+    "./robot_behavior",
 ]
-exclude = ["./robot_behavior"]
+exclude = []
 resolver = "3"
 
 [patch.crates-io]
