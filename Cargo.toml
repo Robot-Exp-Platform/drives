@@ -5,17 +5,15 @@ members = [
     "libaubo-rs",
     "libhans-rs",
     "libjaka-rs",
-    "rerun_urdf",
     "roplat_exrobot",
     "roplat_rerun",
     "rsbullet/rsbullet",
     "rsbullet/rsbullet-core",
-    "./robot_behavior",
 ]
-exclude = []
+exclude = ["./robot_behavior", "rerun_urdf", "rsbullet_sys", "libhans_derive"]
 resolver = "3"
 
 [patch.crates-io]
-robot_behavior = { path = "./robot_behavior" }
-roplat_exrobot = { path = "./roplat_exrobot" }
-rsbullet_sys = { path = "./rsbullet/rsbullet-sys" }
+# robot_behavior = { path = "./robot_behavior" }
+# roplat_exrobot = { path = "./roplat_exrobot" }
+# rsbullet_sys = { path = "./rsbullet/rsbullet-sys" }
