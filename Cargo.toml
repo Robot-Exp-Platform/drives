@@ -9,8 +9,10 @@ members = [
     "roplat_rerun",
     "rsbullet/rsbullet",
     "rsbullet/rsbullet-core",
+    "rerun_urdf",
+
 ]
-exclude = ["./robot_behavior", "rerun_urdf", "rsbullet_sys", "libhans_derive"]
+exclude = ["libhans_derive", "rsbullet_sys", "./robot_behavior"]
 resolver = "3"
 
 [patch.crates-io]

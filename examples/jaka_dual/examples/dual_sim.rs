@@ -1,4 +1,5 @@
 use anyhow::Result;
+use franka_rust::FrankaEmika;
 use libjaka::JakaMini2;
 use robot_behavior::behavior::*;
 use rsbullet::{Mode, RsBullet};
@@ -17,7 +18,7 @@ fn main() -> Result<()> {
         .base_fixed(true)
         .load()?;
     let mut robot_2 = physics
-        .robot_builder::<JakaMini2>("robot_2")
+        .robot_builder::<FrankaEmika>("robot_2")
         .base([0.0, -0.2, 0.0])
         .base_fixed(true)
         .load()?;
@@ -29,9 +30,7 @@ fn main() -> Result<()> {
         .with_velocity(&[5.; 6])
         .with_acceleration(&[2.; 6])
         .move_joint(&[0.; 6])?;
-    robot_2
-        .with_velocity(&[5.; 6])
-        .move_joint(&[FRAC_PI_4; 6])?;
+    robot_2.move_joint(&[FRAC_PI_4; 7])?;
 
     loop {
         physics.step()?;

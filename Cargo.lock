@@ -280,7 +280,7 @@ dependencies = [
  "objc2-foundation 0.3.2",
  "parking_lot",
  "percent-encoding",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
  "x11rb",
 ]
 
@@ -1411,7 +1411,7 @@ checksum = "fe6d2e5af09e8c8ad56c969f2157a3d4238cebc7c55f0a517728c38f7b200f81"
 dependencies = [
  "serde",
  "termcolor",
- "unicode-width 0.1.14",
+ "unicode-width 0.2.1",
 ]
 
 [[package]]
@@ -1422,7 +1422,7 @@ checksum = "af491d569909a7e4dee0ad7db7f5341fef5c614d5b8ec8cf765732aba3cff681"
 dependencies = [
  "serde",
  "termcolor",
- "unicode-width 0.1.14",
+ "unicode-width 0.2.1",
 ]
 
 [[package]]
@@ -2610,7 +2610,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -3109,7 +3109,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "778e2ac28f6c47af28e4907f13ffd1e1ddbd400980a9abd7c8df189bf578a5ad"
 dependencies = [
  "libc",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -3354,7 +3354,7 @@ checksum = "795cbfc56d419a7ce47ccbb7504dd9a5b7c484c083c356e797de08bd988d9629"
 
 [[package]]
 name = "franka_rust"
-version = "0.1.10"
+version = "0.1.11"
 dependencies = [
  "bincode",
  "bitflags 2.9.4",
@@ -3364,7 +3364,7 @@ dependencies = [
  "cxx-build",
  "libc",
  "libloading",
- "nalgebra",
+ "nalgebra 0.34.1",
  "num-derive",
  "num-traits",
  "pyo3",
@@ -4198,7 +4198,7 @@ dependencies = [
  "js-sys",
  "log",
  "wasm-bindgen",
- "windows-core 0.58.0",
+ "windows-core 0.61.2",
 ]
 
 [[package]]
@@ -4507,11 +4507,13 @@ name = "jaka_dual"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "franka_rust",
  "libjaka",
- "nalgebra",
+ "nalgebra 0.34.1",
  "robot_behavior",
  "roplat_rerun",
  "rsbullet",
+ "serde_json",
 ]
 
 [[package]]
@@ -4616,6 +4618,19 @@ dependencies = [
  "ring",
  "serde",
  "serde_json",
+]
+
+[[package]]
+name = "k"
+version = "0.32.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5dce11312d00e40c13f5c5fac13056a134f77944ab87086460ef386eed68ca08"
+dependencies = [
+ "nalgebra 0.30.1",
+ "simba 0.7.3",
+ "thiserror 1.0.69",
+ "tracing",
+ "urdf-rs",
 ]
 
 [[package]]
@@ -4734,7 +4749,7 @@ name = "libaubo"
 version = "0.1.1"
 dependencies = [
  "cxx",
- "nalgebra",
+ "nalgebra 0.34.1",
  "pyo3",
  "robot_behavior",
  "serde",
@@ -4761,7 +4776,7 @@ dependencies = [
  "cxx",
  "inventory",
  "libhans_derive",
- "nalgebra",
+ "nalgebra 0.34.1",
  "num-derive",
  "num-traits",
  "paste",
@@ -4785,15 +4800,16 @@ dependencies = [
 
 [[package]]
 name = "libjaka"
-version = "0.1.9"
+version = "0.1.10"
 dependencies = [
  "bincode",
  "cxx",
  "cxx-build",
- "nalgebra",
+ "nalgebra 0.34.1",
  "paste",
  "pyo3",
  "robot_behavior",
+ "rsruckig",
  "serde",
  "serde_json",
  "serde_repr",
@@ -4807,7 +4823,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "07033963ba89ebaf1584d767badaa2e8fcec21aedea6b8c0346d487d49c28667"
 dependencies = [
  "cfg-if",
- "windows-targets 0.52.6",
+ "windows-targets 0.53.3",
 ]
 
 [[package]]
@@ -5174,6 +5190,22 @@ dependencies = [
 
 [[package]]
 name = "nalgebra"
+version = "0.30.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4fb2d0de08694bed883320212c18ee3008576bfe8c306f4c3c4a58b4876998be"
+dependencies = [
+ "approx",
+ "matrixmultiply",
+ "nalgebra-macros 0.1.0",
+ "num-complex",
+ "num-rational",
+ "num-traits",
+ "simba 0.7.3",
+ "typenum",
+]
+
+[[package]]
+name = "nalgebra"
 version = "0.34.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c4d5b3eff5cd580f93da45e64715e8c20a3996342f1e466599cf7a267a0c2f5f"
@@ -5196,13 +5228,24 @@ dependencies = [
  "glam 0.29.3",
  "glam 0.30.8",
  "matrixmultiply",
- "nalgebra-macros",
+ "nalgebra-macros 0.3.0",
  "num-complex",
  "num-rational",
  "num-traits",
  "serde",
- "simba",
+ "simba 0.9.0",
  "typenum",
+]
+
+[[package]]
+name = "nalgebra-macros"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "01fcc0b8149b4632adc89ac3b7b31a12fb6099a0317a4eb2ebff574ef7de7218"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
 ]
 
 [[package]]
@@ -6648,7 +6691,7 @@ dependencies = [
  "once_cell",
  "socket2",
  "tracing",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -8832,7 +8875,9 @@ name = "rerun_urdf"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "nalgebra",
+ "k",
+ "nalgebra 0.30.1",
+ "nalgebra 0.34.1",
  "rerun",
  "urdf-rs",
 ]
@@ -8924,7 +8969,7 @@ dependencies = [
  "cxx",
  "cxx-build",
  "libc",
- "nalgebra",
+ "nalgebra 0.34.1",
  "paste",
  "pipe-trait",
  "plotters",
@@ -8970,7 +9015,7 @@ dependencies = [
  "anyhow",
  "cxx",
  "cxx-build",
- "nalgebra",
+ "nalgebra 0.34.1",
  "pyo3",
  "robot_behavior",
 ]
@@ -8980,7 +9025,7 @@ name = "roplat_rerun"
 version = "0.1.1"
 dependencies = [
  "anyhow",
- "nalgebra",
+ "nalgebra 0.34.1",
  "rerun",
  "rerun_urdf",
  "robot_behavior",
@@ -8995,10 +9040,10 @@ checksum = "6c20b6793b5c2fa6553b250154b78d6d0db37e72700ae35fad9387a46f487c97"
 
 [[package]]
 name = "rsbullet"
-version = "0.3.1"
+version = "0.3.2"
 dependencies = [
  "anyhow",
- "nalgebra",
+ "nalgebra 0.34.1",
  "robot_behavior",
  "roplat_exrobot",
  "rsbullet-core",
@@ -9010,7 +9055,7 @@ name = "rsbullet-core"
 version = "0.3.1"
 dependencies = [
  "bitflags 2.9.4",
- "nalgebra",
+ "nalgebra 0.34.1",
  "robot_behavior",
  "rsbullet_sys",
 ]
@@ -9020,6 +9065,17 @@ name = "rsbullet_sys"
 version = "0.3.0"
 dependencies = [
  "cmake",
+]
+
+[[package]]
+name = "rsruckig"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e3a22f87d91e7f8f3041f437572536ae6c9487709fa43c3526728792ac2b171d"
+dependencies = [
+ "arrayvec",
+ "num-traits",
+ "thiserror 2.0.17",
 ]
 
 [[package]]
@@ -9072,7 +9128,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.9.4",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -9464,6 +9520,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b2a4719bff48cee6b39d12c020eeb490953ad2443b7055bd0b21fca26bd8c28b"
 dependencies = [
  "libc",
+]
+
+[[package]]
+name = "simba"
+version = "0.7.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2f3fd720c48c53cace224ae62bef1bbff363a70c68c4802a78b5cc6159618176"
+dependencies = [
+ "approx",
+ "num-complex",
+ "num-traits",
+ "paste",
+ "wide",
 ]
 
 [[package]]
@@ -9866,7 +9935,7 @@ dependencies = [
  "getrandom 0.3.4",
  "once_cell",
  "rustix 1.0.8",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -11087,7 +11156,7 @@ version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0978bf7171b3d90bac376700cb56d606feb40f251a475a5d6634613564460b22"
 dependencies = [
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]

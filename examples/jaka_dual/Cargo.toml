@@ -10,3 +10,5 @@ rsbullet = { path = "../../rsbullet/rsbullet" }
 nalgebra = "0.34"
 anyhow = "1.0.100"
 roplat_rerun = { path = "../../roplat_rerun" }
+serde_json = "1.0"
+franka_rust = { path = "../../franka-rust" }
