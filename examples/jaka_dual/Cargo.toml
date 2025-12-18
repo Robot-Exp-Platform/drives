@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-robot_behavior = { version = "0.5.1" }
+robot_behavior = { version = "0.5.2" }
 libjaka = { path = "../../libjaka-rs" }
 rsbullet = { path = "../../rsbullet/rsbullet" }
 nalgebra = "0.34"
