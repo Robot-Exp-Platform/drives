@@ -1,13 +1,11 @@
 use std::{
     f64::consts::{FRAC_PI_2, PI},
-    thread,
     time::Duration,
 };
 
 use franka_rust::FrankaEmika;
-use libjaka::JakaMini2;
 use nalgebra as na;
-use robot_behavior::{MotionType, Pose, behavior::*};
+use robot_behavior::{Pose, behavior::*};
 use roplat_rerun::RerunHost;
 use rsbullet::RsBullet; // 引入 nalgebra 处理数学计算
 
