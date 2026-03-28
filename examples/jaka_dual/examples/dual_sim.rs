@@ -2,7 +2,7 @@ use anyhow::Result;
 use franka_rust::FrankaEmika;
 use libjaka::JakaMini2;
 use robot_behavior::behavior::*;
-use rsbullet::{Mode, RsBullet};
+use rsbullet::{Mode, RsBullet, RsBulletRobot};
 use std::{f64::consts::FRAC_PI_4, thread::sleep, time::Duration};
 
 fn main() -> Result<()> {
@@ -12,7 +12,7 @@ fn main() -> Result<()> {
         .set_gravity([0., 0., -10.])?
         .set_step_time(Duration::from_secs_f64(1. / 240.))?;
 
-    let mut robot_1 = physics
+    let mut robot_1: RsBulletRobot<JakaMini2> = physics
         .robot_builder::<JakaMini2>("robot_1")
         .base([0.0, 0.2, 0.0])
         .base_fixed(true)
@@ -23,9 +23,6 @@ fn main() -> Result<()> {
         .base_fixed(true)
         .load()?;
 
-    for _ in 0..100_000 {
-        physics.step()?;
-    }
     robot_1
         .with_velocity(&[5.; 6])
         .with_acceleration(&[2.; 6])

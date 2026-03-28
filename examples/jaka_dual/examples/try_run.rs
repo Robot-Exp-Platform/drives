@@ -7,8 +7,8 @@ use robot_behavior::{RobotResult, behavior::*};
 fn main() -> RobotResult<()> {
     let mut robot = JakaMini2::new("10.5.5.100");
 
-    robot._power_on()?;
-    robot._enable()?;
+    robot.robot_impl._power_on()?;
+    robot.robot_impl._enable()?;
 
     robot.move_joint(&[
         1.3237359251204017,

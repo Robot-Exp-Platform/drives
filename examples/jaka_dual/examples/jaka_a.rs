@@ -3,7 +3,7 @@ use robot_behavior::{Pose, behavior::*};
 
 fn main() -> anyhow::Result<()> {
     let mut robot = JakaA5::new("10.5.5.100");
-    robot._power_on()?;
+    robot.robot_impl._power_on()?;
     robot.enable()?;
     robot.move_joint(&JakaA5::JOINT_DEFAULT)?;
     robot.move_joint(&JakaA5::JOINT_PACKED)?;
