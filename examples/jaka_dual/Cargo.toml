@@ -6,6 +6,7 @@ edition = "2024"
 [dependencies]
 robot_behavior = { version = "0.5.2" }
 libjaka = { path = "../../libjaka-rs" }
+libunitree = { path = "../../libunitree-rs" }
 rsbullet = { path = "../../rsbullet/rsbullet" }
 nalgebra = "0.34"
 anyhow = "1.0.100"

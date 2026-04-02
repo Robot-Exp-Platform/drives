@@ -4517,6 +4517,7 @@ dependencies = [
  "anyhow",
  "franka_rust",
  "libjaka",
+ "libunitree",
  "nalgebra 0.34.1",
  "robot_behavior",
  "roplat_rerun",
@@ -4849,6 +4850,15 @@ dependencies = [
  "bitflags 2.10.0",
  "libc",
  "redox_syscall 0.6.0",
+]
+
+[[package]]
+name = "libunitree"
+version = "0.1.0"
+dependencies = [
+ "cxx",
+ "pyo3",
+ "robot_behavior",
 ]
 
 [[package]]
