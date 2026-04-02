@@ -25,3 +25,6 @@
 [submodule "rerun_urdf"]
 	path = rerun_urdf
 	url = git@github.com:Robot-Exp-Platform/rerun_urdf.git
+[submodule "libunitree-rs"]
+	path = libunitree-rs
+	url = git@github.com:yixing312/libunitree-rs.git
