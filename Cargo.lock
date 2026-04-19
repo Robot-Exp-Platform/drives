@@ -4517,7 +4517,6 @@ dependencies = [
  "anyhow",
  "franka_rust",
  "libjaka",
- "libunitree",
  "nalgebra 0.34.1",
  "robot_behavior",
  "roplat_rerun",
@@ -4850,15 +4849,6 @@ dependencies = [
  "bitflags 2.10.0",
  "libc",
  "redox_syscall 0.6.0",
-]
-
-[[package]]
-name = "libunitree"
-version = "0.1.0"
-dependencies = [
- "cxx",
- "pyo3",
- "robot_behavior",
 ]
 
 [[package]]
@@ -9005,6 +8995,7 @@ dependencies = [
  "serde_json",
  "serde_with",
  "thiserror 2.0.17",
+ "tokio",
  "typenum",
  "winapi",
 ]
@@ -9038,14 +9029,18 @@ dependencies = [
 [[package]]
 name = "roplat"
 version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "75d179552a6517d77a355c9224e9f32f17f2fc8b6cf1aa7ceb73807dde3bde83"
 dependencies = [
  "async-trait",
+ "bincode",
  "futures",
+ "num-derive",
+ "num-traits",
+ "pyo3",
+ "roplat_launch",
  "roplat_macros",
  "serde",
  "serde_json",
+ "serde_yaml",
  "thiserror 2.0.17",
  "tokio",
 ]
@@ -9063,13 +9058,27 @@ dependencies = [
 ]
 
 [[package]]
-name = "roplat_macros"
+name = "roplat_launch"
 version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1cddbf302ef165d1a220ad099bebffecc14a5163539f74b358ed873d6826a9bf"
 dependencies = [
  "proc-macro2",
  "quote",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "syn 2.0.111",
+ "thiserror 2.0.17",
+]
+
+[[package]]
+name = "roplat_macros"
+version = "0.1.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "roplat_launch",
+ "roplat_system",
+ "serde_json",
  "syn 2.0.111",
 ]
 
@@ -9086,6 +9095,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "roplat_system"
+version = "0.1.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "roplat_launch",
+ "serde_json",
+ "syn 2.0.111",
+]
+
+[[package]]
 name = "roxmltree"
 version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -9096,10 +9116,13 @@ name = "rsbullet"
 version = "0.3.10"
 dependencies = [
  "anyhow",
+ "futures",
  "nalgebra 0.34.1",
  "robot_behavior",
+ "roplat",
  "rsbullet-core",
  "rsbullet_sys",
+ "tokio",
 ]
 
 [[package]]
@@ -9503,6 +9526,19 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.111",
+]
+
+[[package]]
+name = "serde_yaml"
+version = "0.9.34+deprecated"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6a8b1a1a2ebf674015cc02edccce75287f1a0130d394307b36743c2f5d504b47"
+dependencies = [
+ "indexmap 2.12.1",
+ "itoa",
+ "ryu",
+ "serde",
+ "unsafe-libyaml",
 ]
 
 [[package]]
@@ -10619,6 +10655,12 @@ name = "unindent"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7264e107f553ccae879d21fbea1d6724ac785e8c3bfc762137959b5802826ef3"
+
+[[package]]
+name = "unsafe-libyaml"
+version = "0.2.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "673aac59facbab8a9007c7f6108d11f63b603f7cabff99fabf650fea5c32b861"
 
 [[package]]
 name = "untrusted"

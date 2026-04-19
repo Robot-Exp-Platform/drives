@@ -9,13 +9,14 @@ members = [
     "roplat_rerun",
     "rsbullet/rsbullet",
     "rsbullet/rsbullet-core",
-    "rerun_urdf", "libunitree-rs",
+    "rerun_urdf",
 
 ]
 exclude = ["libhans_derive", "rsbullet_sys", "./robot_behavior"]
 resolver = "3"
 
 [patch.crates-io]
+roplat = { path = "../roplat/roplat" }
 robot_behavior = { path = "./robot_behavior" }
 # roplat_exrobot = { path = "./roplat_exrobot" }
 # rsbullet_sys = { path = "./rsbullet/rsbullet-sys" }
