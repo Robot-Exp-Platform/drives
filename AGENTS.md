@@ -12,11 +12,13 @@
 * **不在此仓库**：roplat 框架本身（在 [`roplat/`](../roplat)）、论文实验业务（在 [`roplat-exp/`](../roplat-exp)）。
 * **构建系统**：单 Cargo workspace，`resolver = "3"`。
 * **关键 patch**（[Cargo.toml](Cargo.toml)）：
+
   ```toml
   [patch.crates-io]
   roplat = { path = "../roplat/roplat" }
   robot_behavior = { path = "./robot_behavior" }
   ```
+
   这意味着 **修改 [`roplat/`](../roplat) 的公共 API 会立即影响本仓所有 crate**。
 
 ---
@@ -41,6 +43,7 @@
 | `examples/cxx_exrobot/` | 示例 | C++ 调用 roplat_exrobot（被 workspace `exclude`，独立构建） |
 
 `exclude = ["libhans_derive", "rsbullet_sys", "./robot_behavior"]` —— 这些不参与默认 `cargo build --workspace`：
+
 * `libhans_derive`：宏库，只在 `libhans-rs` 内部用
 * `rsbullet_sys`：sys 绑定，体积大
 * `robot_behavior/`：上游 crate（[github.com/...](robot_behavior/)），通过 patch 重定向用
@@ -75,6 +78,7 @@
 ## 5. 与 [`roplat-exp/`](../roplat-exp) 的关系 / Relation
 
 * 实验仓也用同款 patch：
+
   ```toml
   # roplat-exp/Cargo.toml
   [patch.crates-io]
@@ -83,6 +87,7 @@
   rsbullet = { path = "../drives/rsbullet/rsbullet" }
   franka_rust = { path = "../drives/franka-rust" }
   ```
+
 * 因此本仓 ↔ roplat-exp 是**双向影响**：
   * 实验需要的新驱动能力 → 加在本仓
   * 实验仓不会修改本仓代码（应保持只读消费）
