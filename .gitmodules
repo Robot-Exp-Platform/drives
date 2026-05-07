@@ -28,3 +28,6 @@
 [submodule "robot_behavior_page"]
 	path = robot_behavior_page
 	url = git@github.com:Robot-Exp-Platform/robot_behavior_page.git
+[submodule "robot_behavior-skills"]
+	path = .github/skills/robot_behavior-skills
+	url = git@github.com:Robot-Exp-Platform/robot_behavior-skills.git
