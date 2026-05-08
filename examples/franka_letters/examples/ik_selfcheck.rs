@@ -11,7 +11,7 @@
 use franka_rust::FrankaEmika;
 use nalgebra as na;
 use robot_behavior::{
-    CommonStop, IKMethod, Pose,
+    CommonStop, IKMethod,
     behavior::{ArmForwardKinematics, ArmInverseKinematics, ArmParam},
 };
 

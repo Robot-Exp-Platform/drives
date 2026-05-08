@@ -3,7 +3,7 @@
 //! resolved to joints via `ArmInverseKinematics::ik_solve` (DLS).
 
 use anyhow::Result;
-use franka_letters::{block_text_waypoints, cursive_s_closure, writing_seed};
+use franka_letters::{block_text_waypoints, cursive_s_closure};
 use franka_rust::FrankaEmika;
 use robot_behavior::{behavior::*, roplat_data_dir};
 use rsbullet::{Mode, RsBullet, RsBulletRobot};
@@ -21,7 +21,7 @@ fn main() -> Result<()> {
         .base_fixed(true)
         .load()?;
 
-    let seed = writing_seed();
+    let seed = FrankaEmika::JOINT_DEFAULT;
     robot.move_joint(&seed)?;
 
     let waypoints = block_text_waypoints("HELLO", &seed);

@@ -148,8 +148,3 @@ pub fn cursive_loop_closure(seed: [f64; 7]) -> impl Fn(f64) -> Option<MotionType
         Some(MotionType::Joint(q))
     }
 }
-
-/// Reasonable seed pose for IK warm-start.
-pub fn writing_seed() -> [f64; 7] {
-    FrankaEmika::JOINT_DEFAULT
-}
