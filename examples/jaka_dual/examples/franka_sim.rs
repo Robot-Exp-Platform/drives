@@ -1,5 +1,5 @@
 use anyhow::Result;
-use libjaka::{JakaA5, JakaMini2};
+use libjaka::JakaMini2;
 use robot_behavior::behavior::*;
 use rsbullet::{Mode, RsBullet, RsBulletRobot};
 use std::{thread::sleep, time::Duration};
