@@ -149,7 +149,7 @@ pub fn cursive_loop_closure(seed: [f64; 7]) -> impl Fn(f64) -> Option<MotionType
     }
 }
 
-pub const DEFAULT_LONG_JOINT_LISSAJOUS_RANGE_RATIO: f64 = 0.32;
+pub const DEFAULT_LONG_JOINT_LISSAJOUS_RANGE_RATIO: f64 = 0.40;
 
 /// Long joint-space Lissajous path for `move_path` demos.
 ///
@@ -185,8 +185,8 @@ pub fn long_joint_lissajous_at_with_range_ratio(
     s: f64,
     range_ratio: f64,
 ) -> [f64; 7] {
-    const MAIN_FREQ: [f64; 7] = [13.0, 17.0, 19.0, 11.0, 23.0, 29.0, 31.0];
-    const SIDE_FREQ: [f64; 7] = [5.0, 7.0, 11.0, 13.0, 17.0, 19.0, 23.0];
+    const MAIN_FREQ: [f64; 7] = [19.0, 25.0, 29.0, 17.0, 31.0, 37.0, 41.0];
+    const SIDE_FREQ: [f64; 7] = [7.0, 11.0, 13.0, 19.0, 23.0, 29.0, 31.0];
     const PHASE: [f64; 7] = [0.0, 0.7, 1.4, 2.1, 2.8, 3.5, 4.2];
     const LIMIT_MARGIN: f64 = 0.06;
 
