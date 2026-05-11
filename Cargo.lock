@@ -3511,7 +3511,6 @@ dependencies = [
  "franka_rust",
  "nalgebra 0.34.1",
  "robot_behavior",
- "rsbullet",
  "serde_json",
 ]
 

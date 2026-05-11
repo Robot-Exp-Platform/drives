@@ -6,7 +6,7 @@ edition = "2024"
 [dependencies]
 robot_behavior = { version = "0.5.3" }
 franka_rust = { path = "../../franka-rust" }
-rsbullet = { path = "../../rsbullet/rsbullet" }
+# rsbullet = { path = "../../rsbullet/rsbullet" }
 copp = { path = "../../utils/copp" }
 nalgebra = "0.34"
 anyhow = "1.0"
