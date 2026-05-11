@@ -148,3 +148,63 @@ pub fn cursive_loop_closure(seed: [f64; 7]) -> impl Fn(f64) -> Option<MotionType
         Some(MotionType::Joint(q))
     }
 }
+
+pub const DEFAULT_LONG_JOINT_LISSAJOUS_RANGE_RATIO: f64 = 0.32;
+
+/// Long joint-space Lissajous path for `move_path` demos.
+///
+/// Each joint draws a different rhythm in the `(s, q_i)` rectangle. The smooth
+/// envelope returns the arm to `center` at both ends, while per-joint amplitudes
+/// are clipped against Franka joint limits with a small margin.
+pub fn long_joint_lissajous_closure(center: [f64; 7]) -> impl Fn(f64) -> Option<MotionType<7>> {
+    long_joint_lissajous_closure_with_range_ratio(center, DEFAULT_LONG_JOINT_LISSAJOUS_RANGE_RATIO)
+}
+
+pub fn long_joint_lissajous_closure_with_range_ratio(
+    center: [f64; 7],
+    range_ratio: f64,
+) -> impl Fn(f64) -> Option<MotionType<7>> {
+    move |s| {
+        if !(0.0..=1.0).contains(&s) {
+            return None;
+        }
+        Some(MotionType::Joint(long_joint_lissajous_at_with_range_ratio(
+            center,
+            s,
+            range_ratio,
+        )))
+    }
+}
+
+pub fn long_joint_lissajous_at(center: [f64; 7], s: f64) -> [f64; 7] {
+    long_joint_lissajous_at_with_range_ratio(center, s, DEFAULT_LONG_JOINT_LISSAJOUS_RANGE_RATIO)
+}
+
+pub fn long_joint_lissajous_at_with_range_ratio(
+    center: [f64; 7],
+    s: f64,
+    range_ratio: f64,
+) -> [f64; 7] {
+    const MAIN_FREQ: [f64; 7] = [13.0, 17.0, 19.0, 11.0, 23.0, 29.0, 31.0];
+    const SIDE_FREQ: [f64; 7] = [5.0, 7.0, 11.0, 13.0, 17.0, 19.0, 23.0];
+    const PHASE: [f64; 7] = [0.0, 0.7, 1.4, 2.1, 2.8, 3.5, 4.2];
+    const LIMIT_MARGIN: f64 = 0.06;
+
+    let tau = std::f64::consts::TAU;
+    let envelope = (std::f64::consts::PI * s).sin().powi(2);
+    let range_ratio = range_ratio.clamp(0.0, 0.48);
+    let mut q = center;
+    for i in 0..7 {
+        let joint_range = FrankaEmika::JOINT_MAX[i] - FrankaEmika::JOINT_MIN[i];
+        let range_limited_amp = range_ratio * joint_range;
+        let lower_room = (center[i] - FrankaEmika::JOINT_MIN[i] - LIMIT_MARGIN).max(0.0);
+        let upper_room = (FrankaEmika::JOINT_MAX[i] - center[i] - LIMIT_MARGIN).max(0.0);
+        let amp = range_limited_amp.min(lower_room.min(upper_room));
+        let profile = envelope
+            * (0.68 * (tau * MAIN_FREQ[i] * s + PHASE[i]).sin()
+                + 0.22 * (tau * SIDE_FREQ[i] * s + 0.5 * PHASE[i]).sin()
+                + 0.10 * (tau * (MAIN_FREQ[i] - SIDE_FREQ[i]).abs() * 0.5 * s).sin());
+        q[i] += amp * profile;
+    }
+    q
+}
