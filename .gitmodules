@@ -34,3 +34,6 @@
 [submodule "utils/copp"]
 	path = utils/copp
 	url = git@github.com:TOPP-THU/copp.git
+[submodule "examples/franka_letters"]
+	path = examples/franka_letters
+	url = git@github.com:yixing312/franka_letter.git
