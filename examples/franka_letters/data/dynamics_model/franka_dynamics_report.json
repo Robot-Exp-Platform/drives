@@ -1,0 +1,76 @@
+{
+  "csv": "examples\\franka_letters\\data\\dynamics_calibration.csv",
+  "valid_samples": 46166,
+  "used_samples": 2500,
+  "train_samples": 2000,
+  "test_samples": 500,
+  "dh_convention": "modified",
+  "friction_model": [
+    "Coulomb",
+    "offset",
+    "viscous"
+  ],
+  "parameter_count": 91,
+  "ridge": 1e-08,
+  "kinematics_source": "savgol(q)",
+  "savgol_window_samples": 41,
+  "sample_time_s": 0.0009999999999998899,
+  "train_metrics": {
+    "rmse_nm": 0.44830952883152403,
+    "mae_nm": 0.2783356812672898,
+    "max_abs_nm": 13.325707865410505,
+    "nrmse": 0.05051277199076657
+  },
+  "test_metrics": {
+    "rmse_nm": 0.47086166153731623,
+    "mae_nm": 0.3138760911609623,
+    "max_abs_nm": 2.3559076862549526,
+    "nrmse": 0.04666391670132444
+  },
+  "test_metrics_by_joint": [
+    {
+      "joint": 0,
+      "rmse_nm": 0.814578107165949,
+      "mae_nm": 0.6696819447554963,
+      "max_abs_nm": 2.2483128826342824
+    },
+    {
+      "joint": 1,
+      "rmse_nm": 0.5040056138650532,
+      "mae_nm": 0.4001176490591371,
+      "max_abs_nm": 1.6116433785312907
+    },
+    {
+      "joint": 2,
+      "rmse_nm": 0.679357148650104,
+      "mae_nm": 0.5354882994897712,
+      "max_abs_nm": 2.3559076862549526
+    },
+    {
+      "joint": 3,
+      "rmse_nm": 0.33741220296358254,
+      "mae_nm": 0.2674403561091286,
+      "max_abs_nm": 1.0528680932667207
+    },
+    {
+      "joint": 4,
+      "rmse_nm": 0.15033127522111595,
+      "mae_nm": 0.12232753120633635,
+      "max_abs_nm": 0.6416555741412676
+    },
+    {
+      "joint": 5,
+      "rmse_nm": 0.16765467937289297,
+      "mae_nm": 0.12963069379781195,
+      "max_abs_nm": 0.5619229225669876
+    },
+    {
+      "joint": 6,
+      "rmse_nm": 0.09129657552314835,
+      "mae_nm": 0.07244616370905502,
+      "max_abs_nm": 0.34858722279472276
+    }
+  ],
+  "matrix_rank_train": 64,
+  "condition_number_train": Infinity
+}
