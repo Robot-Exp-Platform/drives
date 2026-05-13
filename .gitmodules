@@ -23,7 +23,7 @@
 	path = roplat_rerun
 	url = git@github.com:Robot-Exp-Platform/roplat_rerun.git
 [submodule "rerun_urdf"]
-	path = rerun_urdf
+	path = utils/rerun_urdf
 	url = git@github.com:Robot-Exp-Platform/rerun_urdf.git
 [submodule "robot_behavior_page"]
 	path = robot_behavior_page
@@ -37,3 +37,6 @@
 [submodule "examples/franka_letters"]
 	path = examples/franka_letters
 	url = git@github.com:yixing312/franka_letter.git
+[submodule "utils/topp"]
+	path = utils/topp
+	url = git@github.com:TOPP-THU/topp.git

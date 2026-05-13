@@ -10,7 +10,7 @@ members = [
     "roplat_rerun",
     "rsbullet/rsbullet",
     "rsbullet/rsbullet-core",
-    "rerun_urdf",
+    "utils/rerun_urdf",
     "utils/copp",
 ]
 exclude = ["libhans_derive", "rsbullet_sys", "./robot_behavior"]

@@ -37,7 +37,7 @@
 | `rsbullet/rsbullet/` | 仿真器 | PyBullet 的 Rust 包装（高层 API） |
 | `rsbullet/rsbullet-core/` | 仿真器 | 底层 FFI（核心） |
 | `rsbullet/rsbullet-sys/` | 仿真器 | 原始 sys 绑定（在 `exclude`，因为体积大且 ABI 易变） |
-| `rerun_urdf/` | 可视化 | URDF 加载 + Rerun 推送 |
+| `utils/rerun_urdf/` | 可视化 | URDF 加载 + Rerun 推送 |
 | `roplat_rerun/` | 可视化 | Rerun 与 roplat 节律对齐的发送适配 |
 | `examples/jaka_dual/` | 示例 | 双 JAKA 协作 |
 | `examples/cxx_exrobot/` | 示例 | C++ 调用 roplat_exrobot（被 workspace `exclude`，独立构建） |
@@ -59,7 +59,7 @@
 * `jaka/` — JAKA URDF
 * `profile/` — 标定/参数样例
 
-> 这些是**测试/示例资源**，不是生产数据；改 URDF 时同步改 `rerun_urdf/examples/`。
+> 这些是**测试/示例资源**，不是生产数据；改 URDF 时同步改 `utils/rerun_urdf/examples/`。
 
 ---
 
