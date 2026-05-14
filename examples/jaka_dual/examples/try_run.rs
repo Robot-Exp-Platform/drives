@@ -60,8 +60,8 @@ mod test {
     #[test]
     fn read_state() -> RobotResult<()> {
         let mut robot = JakaMini2::new("10.5.5.100");
-        let q = robot.state()?.joint.unwrap();
-        let pose = robot.state()?.pose_o_to_ee.unwrap().euler();
+        let q = robot.state()?.measured.joint.unwrap();
+        let pose = robot.state()?.measured.pose_o_to_ee.unwrap().euler();
         println!("q:{q:?}\npose:{pose:?}");
         Ok(())
     }
