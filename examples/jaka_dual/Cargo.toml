@@ -2,9 +2,10 @@
 name = "jaka_dual"
 version = "0.1.0"
 edition = "2024"
+publish = false
 
 [dependencies]
-robot_behavior = { version = "0.5.2" }
+robot_behavior = { version = "0.5.4" }
 libjaka = { path = "../../libjaka-rs" }
 # libunitree = { path = "../../libunitree-rs" }
 rsbullet = { path = "../../rsbullet/rsbullet" }

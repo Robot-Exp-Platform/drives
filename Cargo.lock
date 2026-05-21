@@ -300,7 +300,7 @@ dependencies = [
  "objc2-foundation 0.3.2",
  "parking_lot",
  "percent-encoding",
- "windows-sys 0.60.2",
+ "windows-sys 0.52.0",
  "x11rb",
 ]
 
@@ -1521,7 +1521,7 @@ checksum = "fe6d2e5af09e8c8ad56c969f2157a3d4238cebc7c55f0a517728c38f7b200f81"
 dependencies = [
  "serde",
  "termcolor",
- "unicode-width 0.2.2",
+ "unicode-width 0.1.14",
 ]
 
 [[package]]
@@ -1532,7 +1532,7 @@ checksum = "af491d569909a7e4dee0ad7db7f5341fef5c614d5b8ec8cf765732aba3cff681"
 dependencies = [
  "serde",
  "termcolor",
- "unicode-width 0.2.2",
+ "unicode-width 0.1.14",
 ]
 
 [[package]]
@@ -2799,7 +2799,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -3325,7 +3325,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -3584,7 +3584,7 @@ dependencies = [
 
 [[package]]
 name = "franka_rust"
-version = "0.1.14"
+version = "0.1.15"
 dependencies = [
  "anyhow",
  "bincode",
@@ -3601,7 +3601,7 @@ dependencies = [
  "num-traits",
  "pyo3",
  "robot_behavior",
- "roplat",
+ "roplat 0.1.0",
  "serde",
  "serde-big-array",
  "serde_json",
@@ -4454,7 +4454,7 @@ dependencies = [
  "js-sys",
  "log",
  "wasm-bindgen",
- "windows-core 0.62.2",
+ "windows-core 0.58.0",
 ]
 
 [[package]]
@@ -4800,7 +4800,7 @@ dependencies = [
  "portable-atomic-util",
  "serde_core",
  "wasm-bindgen",
- "windows-sys 0.61.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -5076,7 +5076,7 @@ dependencies = [
 
 [[package]]
 name = "libjaka"
-version = "0.1.14"
+version = "0.1.15"
 dependencies = [
  "bincode",
  "cxx",
@@ -6742,7 +6742,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9120690fafc389a67ba3803df527d0ec9cbbc9cc45e4cc20b332996dfb672425"
 dependencies = [
  "anyhow",
- "itertools 0.14.0",
+ "itertools 0.10.5",
  "proc-macro2",
  "quote",
  "syn 2.0.111",
@@ -6987,7 +6987,7 @@ dependencies = [
  "once_cell",
  "socket2",
  "tracing",
- "windows-sys 0.60.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -9333,7 +9333,7 @@ dependencies = [
 
 [[package]]
 name = "robot_behavior"
-version = "0.5.3"
+version = "0.5.4"
 dependencies = [
  "anyhow",
  "copp",
@@ -9346,7 +9346,7 @@ dependencies = [
  "pipe-trait",
  "plotters",
  "pyo3",
- "roplat",
+ "roplat 0.2.0",
  "serde",
  "serde_json",
  "serde_with",
@@ -9391,6 +9391,21 @@ checksum = "082f11ffa03bbef6c2c6ea6bea1acafaade2fd9050ae0234ab44a2153742b058"
 [[package]]
 name = "roplat"
 version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "75d179552a6517d77a355c9224e9f32f17f2fc8b6cf1aa7ceb73807dde3bde83"
+dependencies = [
+ "async-trait",
+ "futures",
+ "roplat_macros 0.1.0",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+ "tokio",
+]
+
+[[package]]
+name = "roplat"
+version = "0.2.0"
 dependencies = [
  "async-trait",
  "bincode",
@@ -9399,7 +9414,7 @@ dependencies = [
  "num-traits",
  "pyo3",
  "roplat_launch",
- "roplat_macros",
+ "roplat_macros 0.2.0",
  "serde",
  "serde_json",
  "serde_yaml",
@@ -9421,7 +9436,7 @@ dependencies = [
 
 [[package]]
 name = "roplat_launch"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -9435,6 +9450,17 @@ dependencies = [
 [[package]]
 name = "roplat_macros"
 version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1cddbf302ef165d1a220ad099bebffecc14a5163539f74b358ed873d6826a9bf"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.111",
+]
+
+[[package]]
+name = "roplat_macros"
+version = "0.2.0"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -9458,7 +9484,7 @@ dependencies = [
 
 [[package]]
 name = "roplat_system"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -9481,7 +9507,7 @@ dependencies = [
  "futures",
  "nalgebra 0.34.1",
  "robot_behavior",
- "roplat",
+ "roplat 0.2.0",
  "rsbullet-core",
  "rsbullet_sys",
  "tokio",
@@ -9565,7 +9591,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.11.0",
- "windows-sys 0.61.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -10424,7 +10450,7 @@ dependencies = [
  "getrandom 0.3.4",
  "once_cell",
  "rustix 1.1.2",
- "windows-sys 0.61.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -11732,7 +11758,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.61.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
