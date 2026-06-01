@@ -38,8 +38,10 @@
 | `rsbullet/rsbullet-core/` | 仿真器 | 底层 FFI（核心） |
 | `rsbullet/rsbullet-sys/` | 仿真器 | 原始 sys 绑定（在 `exclude`，因为体积大且 ABI 易变） |
 | `utils/rerun_urdf/` | 可视化 | URDF 加载 + Rerun 推送 |
+| `utils/topp/` | 轨迹工具 | 轨迹在线参数化工具 |
 | `roplat_rerun/` | 可视化 | Rerun 与 roplat 节律对齐的发送适配 |
 | `examples/jaka_dual/` | 示例 | 双 JAKA 协作 |
+| `examples/franka_letters/` | 示例 | Franka 字母轨迹示例；Git submodule，完整 workspace 构建前需初始化 |
 | `examples/cxx_exrobot/` | 示例 | C++ 调用 roplat_exrobot（被 workspace `exclude`，独立构建） |
 
 `exclude = ["libhans_derive", "rsbullet_sys", "./robot_behavior"]` —— 这些不参与默认 `cargo build --workspace`：
@@ -60,6 +62,31 @@
 * `profile/` — 标定/参数样例
 
 > 这些是**测试/示例资源**，不是生产数据；改 URDF 时同步改 `utils/rerun_urdf/examples/`。
+
+### 3.1 RsBullet 上游源码 / RsBullet Upstream Source
+
+`rsbullet/rsbullet-sys/bullet3/` 是 RsBullet 使用的 Bullet3 子模块。新机器首次构建
+RsBullet 前必须初始化它：
+
+```bash
+git -C rsbullet submodule update --init --recursive rsbullet-sys/bullet3
+```
+
+若要构建整个 `drives` workspace，应先在仓库根初始化全部受管 submodule，
+包括 `examples/franka_letters/` 与 `utils/topp/`：
+
+```bash
+git submodule update --init --recursive
+```
+
+Ubuntu 主机还需准备 C++、CMake、OpenGL 和 X11 开发包：
+
+```bash
+sudo apt-get install build-essential cmake libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxi-dev
+```
+
+即使业务只使用 Bullet DIRECT 模式，当前 `rsbullet-sys/build.rs` 仍会构建
+Bullet OpenGL demo 支撑库，因此无头 Ubuntu 主机也需要上述开发包。
 
 ---
 
