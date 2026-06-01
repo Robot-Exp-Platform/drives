@@ -40,3 +40,6 @@
 [submodule "utils/topp"]
 	path = utils/topp
 	url = git@github.com:TOPP-THU/topp.git
+[submodule "unitree-go2-rs"]
+	path = unitree-go2-rs
+	url = git@github.com:Robot-Exp-Platform/unitree-go2-rs.git

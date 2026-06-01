@@ -6,6 +6,20 @@ This workspace uses Git submodules for several external projects. Most submodule
 git submodule update --init --recursive
 ```
 
+## `unitree-go2-rs` and the official Go2 model
+
+`unitree-go2-rs/` is the managed Rust driver submodule. Its SDK2 reference
+bundle is tracked by that repository, while the official Unitree ROS model is
+an intentionally ignored local clone. Initialize the model only when Go2
+Bullet simulation or the real-sim observation mirror is needed:
+
+```bash
+git clone https://github.com/unitreerobotics/unitree_ros.git \
+  unitree-go2-rs/references/go2-rs/unitree_ros
+```
+
+Do not add that nested `unitree_ros/` checkout as a gitlink.
+
 ## `utils/topp` and Git LFS data
 
 `utils/topp` points to `git@github.com:TOPP-THU/topp.git`. That repository tracks many test CSV files with Git LFS, including large CNC test data. For normal development in this workspace, those full CSV payloads are not required.
