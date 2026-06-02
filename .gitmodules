@@ -43,3 +43,6 @@
 [submodule "unitree-go2-rs"]
 	path = unitree-go2-rs
 	url = git@github.com:Robot-Exp-Platform/unitree-go2-rs.git
+[submodule "libk1"]
+	path = libk1
+	url = git@github.com:Robot-Exp-Platform/libk1.git

@@ -6,6 +6,7 @@ members = [
     "libaubo-rs",
     "libhans-rs",
     "libjaka-rs",
+    "libk1",
     "unitree-go2-rs",
     "roplat_exrobot",
     "roplat_rerun",

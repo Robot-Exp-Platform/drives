@@ -33,6 +33,7 @@
 | `libaubo-rs/` | 真机驱动 | 遨博机械臂 SDK 绑定 |
 | `libhans-rs/` | 真机驱动 | Hans/翰森 机械臂 SDK 绑定（注意 `libhans_derive` 在 workspace 的 `exclude` 列表里） |
 | `libjaka-rs/` | 真机驱动 | JAKA 节卡机械臂 SDK 绑定 |
+| `libk1/` | 真机驱动 | Booster K1 原生 Rust 驱动；Git submodule，crate 名为 `libk1`，通过官方 SDK FastDDS 直接接入，不依赖 ROS2 |
 | `unitree-go2-rs/` | 真机驱动 | Unitree Go2 原生 Rust 驱动；Git submodule，crate 名为 `libgo2`，含 SDK2 DDS / Sport API 与可选 roplat bridge |
 | `roplat_exrobot/` | 适配层 | 把上述驱动统一封装为 roplat 节点；含 Python `.pyi` |
 | `rsbullet/rsbullet/` | 仿真器 | PyBullet 的 Rust 包装（高层 API） |
@@ -101,6 +102,19 @@ git clone https://github.com/unitreerobotics/unitree_ros.git \
   unitree-go2-rs/references/go2-rs/unitree_ros
 ```
 
+### 3.3 Booster K1 官方 SDK 与模型 / Booster K1 Official SDK and Assets
+
+`libk1/` 是受管 submodule。它内部通过脚本拉取固定 commit 的 Booster 官方
+SDK 与模型仓，本地参考 clone 由 `libk1/.gitignore` 排除，不作为嵌套 gitlink
+提交。首次构建 K1 FastDDS bridge 前初始化：
+
+```bash
+./libk1/scripts/fetch_official_references.sh
+```
+
+默认 `cargo test -p libk1` 不依赖厂商 SDK；Ubuntu 真机主机上按 staged
+bring-up 顺序开启 `fastdds` 与 `real-robot` feature。
+
 ---
 
 ## 4. 与 [`roplat/`](../roplat) 的耦合 / Coupling
@@ -153,6 +167,7 @@ cargo build --workspace
 cargo build -p franka-rust
 cargo build -p rsbullet
 cargo build -p libgo2
+cargo build -p libk1
 
 # 跑示例
 cargo run -p jaka_dual
