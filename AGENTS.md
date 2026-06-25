@@ -33,13 +33,17 @@
 | `libaubo-rs/` | 真机驱动 | 遨博机械臂 SDK 绑定 |
 | `libhans-rs/` | 真机驱动 | Hans/翰森 机械臂 SDK 绑定（注意 `libhans_derive` 在 workspace 的 `exclude` 列表里） |
 | `libjaka-rs/` | 真机驱动 | JAKA 节卡机械臂 SDK 绑定 |
+| `libk1/` | 真机驱动 | Booster K1 原生 Rust 驱动；Git submodule，crate 名为 `libk1`，通过官方 SDK FastDDS 直接接入，不依赖 ROS2 |
+| `unitree-go2-rs/` | 真机驱动 | Unitree Go2 原生 Rust 驱动；Git submodule，crate 名为 `libgo2`，含 SDK2 DDS / Sport API 与可选 roplat bridge |
 | `roplat_exrobot/` | 适配层 | 把上述驱动统一封装为 roplat 节点；含 Python `.pyi` |
 | `rsbullet/rsbullet/` | 仿真器 | PyBullet 的 Rust 包装（高层 API） |
 | `rsbullet/rsbullet-core/` | 仿真器 | 底层 FFI（核心） |
 | `rsbullet/rsbullet-sys/` | 仿真器 | 原始 sys 绑定（在 `exclude`，因为体积大且 ABI 易变） |
 | `utils/rerun_urdf/` | 可视化 | URDF 加载 + Rerun 推送 |
+| `utils/topp/` | 轨迹工具 | 轨迹在线参数化工具 |
 | `roplat_rerun/` | 可视化 | Rerun 与 roplat 节律对齐的发送适配 |
 | `examples/jaka_dual/` | 示例 | 双 JAKA 协作 |
+| `examples/franka_letters/` | 示例 | Franka 字母轨迹示例；Git submodule，完整 workspace 构建前需初始化 |
 | `examples/cxx_exrobot/` | 示例 | C++ 调用 roplat_exrobot（被 workspace `exclude`，独立构建） |
 
 `exclude = ["libhans_derive", "rsbullet_sys", "./robot_behavior"]` —— 这些不参与默认 `cargo build --workspace`：
@@ -60,6 +64,56 @@
 * `profile/` — 标定/参数样例
 
 > 这些是**测试/示例资源**，不是生产数据；改 URDF 时同步改 `utils/rerun_urdf/examples/`。
+
+### 3.1 RsBullet 上游源码 / RsBullet Upstream Source
+
+`rsbullet/rsbullet-sys/bullet3/` 是 RsBullet 使用的 Bullet3 子模块。新机器首次构建
+RsBullet 前必须初始化它：
+
+```bash
+git -C rsbullet submodule update --init --recursive rsbullet-sys/bullet3
+```
+
+若要构建整个 `drives` workspace，应先在仓库根初始化全部受管 submodule，
+包括 `examples/franka_letters/`、`unitree-go2-rs/` 与 `utils/topp/`：
+
+```bash
+git submodule update --init --recursive
+```
+
+Ubuntu 主机还需准备 C++、CMake、OpenGL 和 X11 开发包：
+
+```bash
+sudo apt-get install build-essential cmake libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxi-dev
+```
+
+即使业务只使用 Bullet DIRECT 模式，当前 `rsbullet-sys/build.rs` 仍会构建
+Bullet OpenGL demo 支撑库，因此无头 Ubuntu 主机也需要上述开发包。
+
+### 3.2 Go2 官方模型 / Go2 Official Model
+
+`unitree-go2-rs/` 是受管 submodule。它内部的
+`references/go2-rs/unitree_ros/` 是 Unitree 官方模型仓的本地参考 clone，
+由 Go2 子仓 `.gitignore` 排除，不作为嵌套 gitlink 提交。新机器运行 Go2
+Bullet 实验前初始化：
+
+```bash
+git clone https://github.com/unitreerobotics/unitree_ros.git \
+  unitree-go2-rs/references/go2-rs/unitree_ros
+```
+
+### 3.3 Booster K1 官方 SDK 与模型 / Booster K1 Official SDK and Assets
+
+`libk1/` 是受管 submodule。它内部通过脚本拉取固定 commit 的 Booster 官方
+SDK 与模型仓，本地参考 clone 由 `libk1/.gitignore` 排除，不作为嵌套 gitlink
+提交。首次构建 K1 FastDDS bridge 前初始化：
+
+```bash
+./libk1/scripts/fetch_official_references.sh
+```
+
+默认 `cargo test -p libk1` 不依赖厂商 SDK；Ubuntu 真机主机上按 staged
+bring-up 顺序开启 `fastdds` 与 `real-robot` feature。
 
 ---
 
@@ -112,6 +166,8 @@ cargo build --workspace
 # 仅构建一个驱动
 cargo build -p franka-rust
 cargo build -p rsbullet
+cargo build -p libgo2
+cargo build -p libk1
 
 # 跑示例
 cargo run -p jaka_dual

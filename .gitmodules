@@ -46,3 +46,9 @@
 [submodule "ref/libfranka"]
 	path = ref/libfranka
 	url = git@github.com:frankarobotics/libfranka.git
+[submodule "unitree-go2-rs"]
+	path = unitree-go2-rs
+	url = git@github.com:Robot-Exp-Platform/unitree-go2-rs.git
+[submodule "libk1"]
+	path = libk1
+	url = git@github.com:Robot-Exp-Platform/libk1.git
