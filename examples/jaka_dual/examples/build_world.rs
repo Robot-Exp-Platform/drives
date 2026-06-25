@@ -54,8 +54,8 @@ fn main() -> anyhow::Result<()> {
     for _ in 0..100 {
         physics_engine.step()?;
     }
-    robot_1.move_joint(&[0.; 6])?;
-    robot_2.move_joint(&[0.; 6])?;
+    robot_1.move_to::<JointSpace<6>>([0.; 6])?;
+    robot_2.move_to::<JointSpace<6>>([0.; 6])?;
     loop {
         physics_engine.step()?;
     }

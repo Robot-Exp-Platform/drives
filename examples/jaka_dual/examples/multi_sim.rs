@@ -1,6 +1,6 @@
-use anyhow::Result;
+﻿use anyhow::Result;
 use franka_rust::FrankaEmika;
-use robot_behavior::{MotionType, behavior::*};
+use robot_behavior::behavior::*;
 use rsbullet::{Mode, RsBullet};
 use std::{thread::sleep, time::Duration};
 
@@ -30,12 +30,12 @@ fn main() -> Result<()> {
             let mut t = 0.0_f64;
             let dt = 1.0_f64 / 240.0_f64;
 
-            robot.move_with_closure(move |_, _| {
+            robot.control_with::<JointPositionControl<7>, _>(move |_, _| {
                 t += dt;
-                (MotionType::Joint([t.sin(); 7]), false)
+                ([t.sin(); 7], false)
             })?;
 
-            // robot.move_joint(&FrankaEmika::JOINT_DEFAULT)?;
+            // robot.move_to::<JointSpace<7>>(FrankaEmika::JOINT_DEFAULT)?;
         }
     }
 

@@ -30,7 +30,7 @@ mod tests {
     fn move_to_packed() -> anyhow::Result<()> {
         let mut robot = JakaA5::new("10.5.5.100");
 
-        robot.move_joint(&JakaA5::JOINT_PACKED)?;
+        robot.move_to::<JointSpace<6>>(JakaA5::JOINT_PACKED)?;
 
         Ok(())
     }
@@ -38,7 +38,8 @@ mod tests {
     #[test]
     fn move_joint() -> anyhow::Result<()> {
         let mut robot = JakaA5::new("10.5.5.100");
-        robot.with_coord(Coord::Relative).move_joint(&[-0.1; 6])?;
+        robot.with_coord(Coord::Relative);
+        robot.move_to::<JointSpace<6>>([-0.1; 6])?;
         Ok(())
     }
 
@@ -46,9 +47,8 @@ mod tests {
     fn move_cartesian() -> anyhow::Result<()> {
         let mut robot = JakaA5::new("10.5.5.100");
 
-        robot
-            .with_coord(Coord::Relative)
-            .move_cartesian(&Pose::Position([0., 0., 0.05]))?;
+        robot.with_coord(Coord::Relative);
+        robot.move_to::<FlangeSpace>(Pose::Position([0., 0., 0.05]))?;
 
         Ok(())
     }
@@ -60,8 +60,9 @@ mod tests {
         robot
             .with_cartesian_acceleration(0.05)
             .with_cartesian_velocity(0.02)
-            .with_coord(Coord::Relative)
-            .move_cartesian(&Pose::Euler([0., 0., 1.], [0.; 3]))
+            .with_coord(Coord::Relative);
+        robot
+            .move_to::<FlangeSpace>(Pose::Euler([0., 0., 1.], [0.; 3]))
             .unwrap();
 
         Ok(())

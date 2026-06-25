@@ -7,26 +7,38 @@ fn main() {
 mod tests {
     use std::fs;
 
-    use robot_behavior::{MotionType, Pose};
+    use robot_behavior::behavior::{FlangeSpace, JointSpace, Joints, MotionSpace, Pose};
+
+    struct DemoRobot;
+
+    impl Joints<3> for DemoRobot {
+        const JOINT_MIN: [f64; 3] = [-1.0; 3];
+        const JOINT_MAX: [f64; 3] = [1.0; 3];
+    }
 
     #[test]
-    fn serialize_motion_types_to_json() {
-        const N: usize = 3;
-        let motions: [MotionType<N>; 6] = [
-            MotionType::Joint([1.0, 2.0, 3.0]),
-            MotionType::JointVel([0.1, 0.2, 0.3]),
-            MotionType::Cartesian(Pose::from(([0.0, 0.0, 0.5], [0.0, 0.0, 0.0]))),
-            MotionType::CartesianVel([0.0, 0.0, 0.0, 0.0, 0.0, 1.0]),
-            MotionType::Position([0.5, 0.5, 0.5]),
-            MotionType::Stop,
-        ];
+    fn serialize_typed_motion_targets_to_json() {
+        let joint_target: <JointSpace<3> as MotionSpace<DemoRobot>>::Target = [1.0, 0.0, -1.0];
+        let flange_target: <FlangeSpace as MotionSpace<DemoRobot>>::Target =
+            Pose::from(([0.0, 0.0, 0.5], [0.0, 0.0, 0.0]));
+        let motions = serde_json::json!([
+            {
+                "space": "JointSpace<3>",
+                "target": joint_target,
+            },
+            {
+                "space": "FlangeSpace",
+                "target_homo": flange_target.homo(),
+            },
+        ]);
+
         fs::write(
-            "motion_types.json",
+            "typed_motion_targets.json",
             serde_json::to_string_pretty(&motions).unwrap(),
         )
         .unwrap();
-        let written = fs::read_to_string("motion_types.json").unwrap();
-        assert!(written.contains("Joint"));
-        assert!(written.contains("Cartesian"));
+        let written = fs::read_to_string("typed_motion_targets.json").unwrap();
+        assert!(written.contains("JointSpace"));
+        assert!(written.contains("FlangeSpace"));
     }
 }

@@ -1,4 +1,4 @@
-use libjaka::{
+﻿use libjaka::{
     JakaMini2,
     types::{TioVout, TioVoutMode},
 };
@@ -10,7 +10,7 @@ fn main() -> RobotResult<()> {
     robot.robot_impl._power_on()?;
     robot.robot_impl._enable()?;
 
-    robot.move_joint(&[
+    robot.move_to::<JointSpace<6>>([
         1.3237359251204017,
         0.24551094556528436,
         2.020892599208774,
@@ -21,7 +21,7 @@ fn main() -> RobotResult<()> {
 
     robot.set_tio_vout(TioVout::Enable(TioVoutMode::V24V))?;
 
-    robot.move_joint(&[
+    robot.move_to::<JointSpace<6>>([
         1.3368226986771132,
         0.1831809920227407,
         2.0050015170327664,
@@ -30,7 +30,7 @@ fn main() -> RobotResult<()> {
         -0.00013982436826040205,
     ])?;
 
-    robot.move_joint(&[
+    robot.move_to::<JointSpace<6>>([
         1.5688852290362394,
         0.16482115952376425,
         2.0812691240977057,
@@ -52,7 +52,7 @@ mod test {
     #[test]
     fn move_to_default() -> RobotResult<()> {
         let mut robot = JakaMini2::new("10.5.5.100");
-        robot.move_joint(&[0.; _])?;
+        robot.move_to::<JointSpace<6>>([0.; 6])?;
 
         Ok(())
     }
@@ -60,8 +60,8 @@ mod test {
     #[test]
     fn read_state() -> RobotResult<()> {
         let mut robot = JakaMini2::new("10.5.5.100");
-        let q = robot.state()?.measured.joint.unwrap();
-        let pose = robot.state()?.measured.pose_o_to_ee.unwrap().euler();
+        let q = robot.state()?.joint.meas.q.unwrap();
+        let pose = robot.state()?.flange.meas.pose.unwrap().euler();
         println!("q:{q:?}\npose:{pose:?}");
         Ok(())
     }

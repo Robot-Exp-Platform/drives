@@ -1,7 +1,8 @@
 [workspace]
 members = [
     "examples/jaka_dual",
-    "examples/franka_letters",
+    "examples/jaka_roplat_multilang",
+    # "examples/franka_letters",
     "franka-rust",
     "libaubo-rs",
     "libhans-rs",
@@ -11,10 +12,16 @@ members = [
     "rsbullet/rsbullet",
     "rsbullet/rsbullet-core",
     "utils/rerun_urdf",
+    "./robot_behavior",
+]
+exclude = [
+    "libhans_derive",
+    "rsbullet_sys",
+    # "./robot_behavior",
+    "./robot_behavior_new",
     "utils/topp",
     "utils/copp",
 ]
-exclude = ["libhans_derive", "rsbullet_sys", "./robot_behavior"]
 resolver = "3"
 
 [patch.crates-io]

@@ -1,6 +1,6 @@
-use anyhow::Result;
+﻿use anyhow::Result;
 use libjaka::JakaMini2;
-use robot_behavior::{MotionType, behavior::*};
+use robot_behavior::behavior::*;
 use roplat_rerun::RerunHost;
 use rsbullet::{Mode, RsBullet};
 use std::{thread::sleep, time::Duration};
@@ -19,22 +19,16 @@ fn main() -> Result<()> {
         .load()?
         .attach_from(&mut robot)?;
 
-    // 设计机器人具备的行为
-    //
-    // 样例：运动到某目标点
+    // Example: move to a target in an explicit motion space.
     // ```rust
-    // robot
-    //     .with_velocity(&[5.; 6])
-    //     .with_acceleration(&[2.; 6])
-    //     .move_joint(&[0.; 6])?;
+    // robot.move_to::<JointSpace<6>>([0.; 6])?;
     // ```
-    robot.move_cartesian(&nalgebra::Isometry3::identity().into())?;
-    robot.move_with_closure(|_state, _dt| {
-        // 设计实时规划逻辑，根据当前状态 state 计算下一步的运动指令
-        // let motion = MotionType::Joint([0.5; 6]);
-        let motion = MotionType::Cartesian(nalgebra::Isometry3::identity().into());
-        let done = false; // 是否结束该行为
-        (motion, done)
+    robot.move_to::<FlangeSpace>(nalgebra::Isometry3::identity().into())?;
+    robot.control_with::<JointPositionControl<6>, _>(|_state, _dt| {
+        // Compute the next command from the current state.
+        let joint = [0.5; 6];
+        let done = false;
+        (joint, done)
     })?;
 
     loop {

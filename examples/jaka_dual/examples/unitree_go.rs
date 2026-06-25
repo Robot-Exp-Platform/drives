@@ -18,7 +18,7 @@ fn main() -> Result<()> {
     //     .base_fixed(true)
     //     .load()?;
 
-    // // robot_1.move_joint(&JakaA5::JOINT_DEFAULT)?;
+    // // robot_1.move_to::<JointSpace<6>>(JakaA5::JOINT_DEFAULT)?;
 
     // loop {
     //     physics.step()?;

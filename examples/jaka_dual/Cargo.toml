@@ -5,7 +5,7 @@ edition = "2024"
 publish = false
 
 [dependencies]
-robot_behavior = { version = "0.5.4" }
+robot_behavior = "0.6.0"
 libjaka = { path = "../../libjaka-rs" }
 # libunitree = { path = "../../libunitree-rs" }
 rsbullet = { path = "../../rsbullet/rsbullet" }

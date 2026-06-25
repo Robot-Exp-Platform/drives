@@ -1,0 +1,42 @@
+name: ffi
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  check:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: dtolnay/rust-toolchain@nightly
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Check workspace
+        run: cargo check --workspace
+
+      - name: Check robot_behavior FFI features
+        run: |
+          cargo check --manifest-path robot_behavior/Cargo.toml --features to_c
+          cargo check --manifest-path robot_behavior/Cargo.toml --features to_py
+          cargo check --manifest-path robot_behavior/Cargo.toml --features to_cxx
+
+      - name: Check downstream Python FFI
+        run: |
+          cargo check -p franka_rust --features to_py
+          cargo check -p libjaka --features to_py
+          cargo check -p libhans --features to_py
+          cargo check -p roplat_exrobot --features to_py
+
+      - name: Check downstream CXX FFI
+        run: |
+          cargo check -p franka_rust --features to_cxx
+          cargo check -p libjaka --features to_cxx
+          cargo check -p roplat_exrobot --features to_cxx

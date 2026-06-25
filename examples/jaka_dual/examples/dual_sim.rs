@@ -23,11 +23,9 @@ fn main() -> Result<()> {
         .base_fixed(true)
         .load()?;
 
-    robot_1
-        .with_velocity(&[5.; 6])
-        .with_acceleration(&[2.; 6])
-        .move_joint(&[0.; 6])?;
-    robot_2.move_joint(&[FRAC_PI_4; 7])?;
+    robot_1 = robot_1.with_joint_vel([5.; 6]).with_joint_acc([2.; 6]);
+    robot_1.move_to::<JointSpace<6>>([0.; 6])?;
+    robot_2.move_to::<JointSpace<7>>([FRAC_PI_4; 7])?;
 
     loop {
         physics.step()?;

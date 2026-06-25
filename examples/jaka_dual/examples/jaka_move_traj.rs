@@ -1,8 +1,6 @@
 use anyhow::Result;
 use libjaka::JakaMini2;
 use robot_behavior::behavior::*;
-use rsbullet::{Mode, RsBullet, RsBulletRobot};
-use std::{thread::sleep, time::Duration};
 
 fn main() -> Result<()> {
     // let mut physics = RsBullet::new(Mode::Gui)?;
@@ -15,7 +13,7 @@ fn main() -> Result<()> {
 
     let mut robot = JakaMini2::new("10.5.5.100");
 
-    robot.move_joint(&[
+    robot.move_to::<JointSpace<6>>([
         0.43642145501756757,
         0.043303908409149966,
         -1.9405468867228346,
@@ -24,7 +22,8 @@ fn main() -> Result<()> {
         0.4364556645834642,
     ])?;
 
-    robot.move_traj_from_file("E:\\yixing\\code\\Robot-Exp\\drives\\examples\\jaka_dual\\data\\step08_optimized_trajectory_rust.json")?;
+    robot.move_traj_from_file::<JointSpace<6>>("E:\\yixing\\code\\Robot-Exp\\drives\\examples\\jaka_dual\\data\\step08_optimized_trajectory_rust.json",
+    )?;
 
     // loop {
     //     physics.step()?;

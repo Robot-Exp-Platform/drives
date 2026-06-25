@@ -16,7 +16,7 @@ fn main() -> Result<()> {
         .base_fixed(true)
         .load()?;
 
-    robot_1.move_joint(&JakaMini2::JOINT_DEFAULT)?;
+    robot_1.move_to::<JointSpace<6>>(JakaMini2::JOINT_DEFAULT)?;
 
     loop {
         physics.step()?;
