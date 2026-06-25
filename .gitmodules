@@ -52,3 +52,6 @@
 [submodule "libk1"]
 	path = libk1
 	url = git@github.com:Robot-Exp-Platform/libk1.git
+[submodule "ref/libfranka-rs"]
+	path = ref/libfranka-rs
+	url = git@github.com:marcbone/libfranka-rs.git
