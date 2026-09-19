@@ -9233,7 +9233,6 @@ dependencies = [
  "async-trait",
  "bincode",
  "futures",
- "num-derive",
  "num-traits",
  "roplat_launch",
  "roplat_macros",
