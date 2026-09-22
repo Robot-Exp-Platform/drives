@@ -1,0 +1,62 @@
+[
+  {
+    "repository": "robot_behavior",
+    "commit": "79a3820af143a3ab75dfd3b308469482aac534c0",
+    "branch": "codex/native-async-control"
+  },
+  {
+    "repository": "franka-rust",
+    "commit": "c198cba427ad90734d51bca1f6aab7711afa6025",
+    "branch": "codex/native-async-control"
+  },
+  {
+    "repository": "rsbullet",
+    "commit": "804518bacad7fec80e065e5f95e1c34524cf8fdc",
+    "branch": "codex/native-async-control"
+  },
+  {
+    "repository": "libjaka-rs",
+    "commit": "9ff806e441acbaa43ae91789b13c7b05f444c597",
+    "branch": "codex/native-async-control"
+  },
+  {
+    "repository": "libhans-rs",
+    "commit": "18c9b2baa42468df07404ccbbb6dce482b3cf98b",
+    "branch": "codex/native-async-control"
+  },
+  {
+    "repository": "libaubo-rs",
+    "commit": "62f235239c333fd3c1be4ea5891a265d92a9d239",
+    "branch": "codex/native-async-control"
+  },
+  {
+    "repository": "roplat_exrobot",
+    "commit": "c953ff3e32c6647c2f8b7aa4ffd1d448be5f4281",
+    "branch": "codex/native-async-control"
+  },
+  {
+    "repository": "unitree-go2-rs",
+    "commit": "22a2d462e16c41bf46770d0efeba74e1469de319",
+    "branch": "codex/native-async-control"
+  },
+  {
+    "repository": "roplat_rerun",
+    "commit": "e593ff2a30b37564be66ff0bf8dd9f4131d791a2",
+    "branch": "codex/native-async-control"
+  },
+  {
+    "repository": "robot_behavior_page",
+    "commit": "c343b229c3651ff619ac6a8f6ac0290def46ffda",
+    "branch": "codex/native-async-control"
+  },
+  {
+    "repository": ".github/skills/robot_behavior-skills",
+    "commit": "32faa6f3687f33bb797a77d7af13b3b39eea664e",
+    "branch": "codex/native-async-control"
+  },
+  {
+    "repository": "examples/jaka_roplat_multilang",
+    "commit": "9037e5896545738d5c552cbc3c6f60f8764cc84c",
+    "branch": "codex/control-flow-alignment"
+  }
+]

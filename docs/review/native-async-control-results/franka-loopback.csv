@@ -1,0 +1,11 @@
+version,backend,cycles,sessions,median_session_us,median_session_cycle_p50_us,median_session_cycle_p99_us
+before,blocking_async,1,33,75.625,28.334,
+before,blocking_async,1000,33,14147.916,12.167,26.666
+before,std,1,33,66.291,25.667,
+before,std,1000,33,14591.041,11.167,25.75
+after,blocking_async,1,33,76.792,28.792,
+after,blocking_async,1000,33,15168.583,12.167,27.208
+after,native_async,1,33,73.666,27.375,
+after,native_async,1000,33,15016.625,11.917,27.084
+after,std,1,33,63.458,23.584,
+after,std,1000,33,15781.0,11.333,26.083

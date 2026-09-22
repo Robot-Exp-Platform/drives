@@ -3551,6 +3551,7 @@ dependencies = [
  "num-traits",
  "pyo3",
  "robot_behavior",
+ "roplat",
  "serde",
  "serde-big-array",
  "serde_json",

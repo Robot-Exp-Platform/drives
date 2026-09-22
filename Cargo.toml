@@ -29,3 +29,15 @@ resolver = "3"
 [patch.crates-io]
 roplat = { path = "../roplat/roplat" }
 robot_behavior = { path = "./robot_behavior" }
+rerun_urdf = { path = "utils/rerun_urdf" }
+
+# The independently cloned drivers use pinned Git dependencies. At this
+# integration root the exact same source is replaced by the local core checkout.
+[patch."ssh://git@github.com/Robot-Exp-Platform/roplat.git"]
+roplat = { path = "../roplat/roplat" }
+
+[patch."ssh://git@github.com/Robot-Exp-Platform/robot_behavior.git"]
+robot_behavior = { path = "./robot_behavior" }
+
+[patch."ssh://git@github.com/Robot-Exp-Platform/rsbullet.git"]
+rsbullet = { path = "rsbullet/rsbullet" }

@@ -75,8 +75,8 @@ configure a personal global Git excludes file.
 
 Commit changed managed submodules first, then their parent gitlinks. A parent
 commit referencing unpublished child commits is a local checkpoint, not a
-portable GitHub release. This task is explicitly local-only; a later push must
-publish child commits before the parent. Do not push custom commits to third-party
+portable GitHub release. The current task authorizes GitHub publication;
+publish child commits in dependency order before the parent. Do not push custom commits to third-party
 upstream remotes or initialize large LFS test data merely to make a checkout tidy.
 
 For code validation without installing Bullet data, set
