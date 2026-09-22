@@ -2,8 +2,8 @@
 
 This workspace uses Git submodules for several external projects. Most submodules can be initialized with the usual command:
 
-```powershell
-git submodule update --init --recursive
+```bash
+GIT_LFS_SKIP_SMUDGE=1 git submodule update --init --recursive
 ```
 
 ## `unitree-go2-rs` and the official Go2 model
@@ -58,3 +58,27 @@ If an interrupted checkout already downloaded large LFS objects, they can be rem
 $lfsObjects = ".git/modules/utils/topp/lfs/objects"
 if (Test-Path $lfsObjects) { Remove-Item -Recurse -Force "$lfsObjects\*" }
 ```
+
+## Current inventory and local housekeeping
+
+There are 18 direct registered submodules and three nested declarations:
+Bullet3, libfranka/common and robot_behavior_page/mkdocs-material. The latter
+two were not initialized for this no-device code review. `examples/franka_letters`
+was an obsolete `.gitmodules` declaration without an indexed gitlink; it has
+been removed rather than inventing an unpinned checkout.
+
+The reference repositories `ref/libfranka`, `ref/libfranka-rs`, `utils/copp`
+and `utils/topp` keep their original upstream commits. Machine-only `.DS_Store`
+exclusions live in each repository's Git `info/exclude`; they are not distributed
+by the parent repository. On another device, add the same local exclusion or
+configure a personal global Git excludes file.
+
+Commit changed managed submodules first, then their parent gitlinks. A parent
+commit referencing unpublished child commits is a local checkpoint, not a
+portable GitHub release. This task is explicitly local-only; a later push must
+publish child commits before the parent. Do not push custom commits to third-party
+upstream remotes or initialize large LFS test data merely to make a checkout tidy.
+
+For code validation without installing Bullet data, set
+`BULLET_SKIP_ASSET_EXPORT=1`. Existing Bullet resource paths are preserved by
+the build script; model installation and GUI tests are separate operations.

@@ -1,0 +1,66 @@
+{
+  "date": "2026-09-21",
+  "drives_head": "9248354fa4ae6c718c7885b8ef2f1e10a269d222",
+  "drives_branch": "codex/core-alignment-audit",
+  "core_head": "c595393df441056a25b2af8bedfcbd0f598b3fec",
+  "cargo_lock_sha256_before": "af981eeb6f1bc9e316ea7e109508264706014655707944ba9776a9815d9ab1db",
+  "cargo_lock_sha256_after": "af981eeb6f1bc9e316ea7e109508264706014655707944ba9776a9815d9ab1db",
+  "cargo_lock_unchanged": true,
+  "preexisting_dirty": [
+    "Cargo.lock",
+    "ref/libfranka",
+    "ref/libfranka-rs",
+    "utils/copp",
+    "utils/topp"
+  ],
+  "subrepos": {
+    "robot_behavior": {
+      "head": "be5974bf81cdd513e6228689825cce7439fa396d",
+      "branch": "main"
+    },
+    "franka-rust": {
+      "head": "47d22543411789ecff90657916296dfa48912d0d",
+      "branch": "main"
+    },
+    "libaubo-rs": {
+      "head": "f4e4d93869c5c3a947f8fc75ddebf13437c3b01b",
+      "branch": "main"
+    },
+    "libhans-rs": {
+      "head": "b68c7da79193e5bf46795e8c843bee9cfef3c26c",
+      "branch": "codex/core-alignment-audit"
+    },
+    "libjaka-rs": {
+      "head": "bda271ba7907d1f63ec2d67710b18b4486abc5de",
+      "branch": "codex/core-alignment-audit"
+    },
+    "libk1": {
+      "head": "de2bfc75a5af15f28a97a863a8b97006924f806d",
+      "branch": "main"
+    },
+    "unitree-go2-rs": {
+      "head": "f05d61ac2ccd8f32e1dc3547d6eef7d6c7f29bd2",
+      "branch": "codex/core-alignment-audit"
+    },
+    "roplat_exrobot": {
+      "head": "cd877e2cedd094d8ff14dc17bf2086f23edb0e4c",
+      "branch": "main"
+    },
+    "roplat_rerun": {
+      "head": "7dad10c215b9d330230cc24ae691c9fea3188476",
+      "branch": "main"
+    },
+    "rsbullet": {
+      "head": "0e342d8ad9719fc255bf6991733698b793976521",
+      "branch": "codex/core-alignment-audit"
+    }
+  },
+  "modified_product_files_sha256": {
+    "libjaka-rs/src/types/robot_type.rs": "54ddfcef81f5feeb024015160028f0595d26be191528b8bd636ad9a4d32aaf13",
+    "libhans-rs/src/robot.rs": "e72d5c2a7fa6e627a6c801c764c5010a4977d7bb244bd8673915c2296d28b336",
+    "rsbullet/rsbullet/src/rsbullet.rs": "6090abe430cbb8e5d2cf7501b9f96a4683d4170bd5e0491c97e8ff466187667d",
+    "unitree-go2-rs/src/types/messages.rs": "917d1db8e7f34ba850d3aec59d12ab0efe6201be2f926aaf147a10377d37705c"
+  },
+  "committed_or_pushed_this_review": false,
+  "vendor_audit": "Public APIs, bridges, build entrypoints and selected references; not every vendor file was reviewed."
+}

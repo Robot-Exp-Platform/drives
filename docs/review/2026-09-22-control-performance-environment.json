@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-22",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "machine": "arm64",
+  "cpu": "Apple M5",
+  "rustc": "rustc 1.100.0-nightly (67eda617e 2026-09-10)\nbinary: rustc\ncommit-hash: 67eda617e6a8f8ecec01e1ba7fafe2072a64adcc\ncommit-date: 2026-09-10\nhost: aarch64-apple-darwin\nrelease: 1.100.0-nightly\nLLVM version: 23.1.1",
+  "core_commit": "c595393df441056a25b2af8bedfcbd0f598b3fec",
+  "legacy_robot_behavior_commit": "be5974bf81cdd513e6228689825cce7439fa396d",
+  "benchmark": "robot_behavior/benches/control_flow.rs",
+  "command": "CONTROL_BENCH_CYCLES=1000000 cargo bench -p robot_behavior --features roplat --bench control_flow --locked",
+  "sizes_bytes": [
+    48,
+    56,
+    1024
+  ],
+  "cycles_per_sample": 1000000,
+  "pairs_per_run": 21,
+  "warmup_invocations": 4,
+  "runs": 2,
+  "statistic": "median/max of batch elapsed-time per cycle; NOT single-cycle latency percentiles",
+  "baseline": "Reconstructed old generic callback/drive code with current compiler; old workspace is incompatible with current roplat",
+  "limits": [
+    "CPU-only successful paths, immediate futures, synthetic observation/command work",
+    "No hardware/network/Python/GIL or outer-executor fairness measurements",
+    "No CPU affinity or power/frequency locking",
+    "Only aggregate CSV results retained; exploratory runs with simplified baseline excluded"
+  ]
+}

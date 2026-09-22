@@ -3551,7 +3551,6 @@ dependencies = [
  "num-traits",
  "pyo3",
  "robot_behavior",
- "roplat",
  "serde",
  "serde-big-array",
  "serde_json",
@@ -6426,12 +6425,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8b870d8c151b6f2fb93e84a13146138f05d02ed11c7e7c54f8826aaaf7c9f184"
 
 [[package]]
-name = "pipe-trait"
-version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c1be1ec9e59f0360aefe84efa6f699198b685ab0d5718081e9f72aa2344289e2"
-
-[[package]]
 name = "piper"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -9182,21 +9175,17 @@ dependencies = [
  "anyhow",
  "copp",
  "cxx",
- "cxx-build",
  "futures",
  "libc",
  "nalgebra 0.34.1",
  "paste",
- "pipe-trait",
  "plotters",
  "pyo3",
  "roplat",
  "serde",
  "serde_json",
- "serde_with",
  "thiserror 2.0.18",
  "tokio",
- "typenum",
  "winapi",
 ]
 
@@ -9245,9 +9234,7 @@ dependencies = [
 
 [[package]]
 name = "roplat_build"
-version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ff1b5e668ab2463f41c5e81889cfae3a5f9c70a8674c86a0abe0805c76568e64"
+version = "0.2.2"
 dependencies = [
  "cc",
  "cmake",
@@ -9298,6 +9285,7 @@ name = "roplat_py"
 version = "0.2.2"
 dependencies = [
  "pyo3",
+ "roplat",
 ]
 
 [[package]]

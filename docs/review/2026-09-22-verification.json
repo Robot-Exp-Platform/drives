@@ -1,0 +1,267 @@
+{
+  "completed": "2026-09-22",
+  "scope": "local commits only; no hardware/no GUI/no deployment",
+  "core_commit": "c595393df441056a25b2af8bedfcbd0f598b3fec",
+  "children": [
+    {
+      "repository": "robot_behavior",
+      "branch": "codex/control-flow-alignment",
+      "commit": "38094b239f9d03a9b0977ed98e2d2969ed60808b",
+      "subject": "Add command-free control exits and optional roplat execution adapters"
+    },
+    {
+      "repository": "franka-rust",
+      "branch": "codex/control-flow-alignment",
+      "commit": "e15e8fc9b7c5ace18fcf3ad9a30cc18b8c13d8ae",
+      "subject": "Support ControlFlow sessions with bounded cancellation and response matching"
+    },
+    {
+      "repository": "franka-rust",
+      "branch": "codex/control-flow-alignment",
+      "commit": "70e0e022f9d85ce02021d672501ff8d0bf309560",
+      "subject": "Correct combined load inertia at the center of mass"
+    },
+    {
+      "repository": "libjaka-rs",
+      "branch": "codex/control-flow-alignment",
+      "commit": "98c95db41b5886c28cce2b971be195b9ef73ba73",
+      "subject": "Propagate transport failures and support command-free servo exit"
+    },
+    {
+      "repository": "libhans-rs",
+      "branch": "codex/core-alignment-audit",
+      "commit": "019a25bfb09e85b531915d6fbec4558249d3f0b4",
+      "subject": "Return controller-state read errors instead of panicking"
+    },
+    {
+      "repository": "roplat_exrobot",
+      "branch": "codex/control-flow-alignment",
+      "commit": "68f919b62791cb817360e396c7a40a221c0a6b8f",
+      "subject": "Align example control channels with ControlFlow sessions"
+    },
+    {
+      "repository": "unitree-go2-rs",
+      "branch": "codex/core-alignment-audit",
+      "commit": "61745ebcb274c43252d752d9aa3451a62fd8a6f0",
+      "subject": "Align optional rhythms with cooperative execution and node return"
+    },
+    {
+      "repository": "rsbullet",
+      "branch": "codex/core-alignment-audit",
+      "commit": "af98c17c15bd274ecaf62d8df9416711cdcbaa95",
+      "subject": "Align simulation rhythm and preserve existing user assets during builds"
+    },
+    {
+      "repository": "examples/jaka_roplat_multilang",
+      "branch": "codex/control-flow-alignment",
+      "commit": "9037e5896545738d5c552cbc3c6f60f8764cc84c",
+      "subject": "Compose finite multilingual planning with System and current lifecycle"
+    },
+    {
+      "repository": "robot_behavior_page",
+      "branch": "codex/control-flow-alignment",
+      "commit": "007d3dc6f0d694b131dba97aeb0ba7fdcfe50a19",
+      "subject": "Document control flow, optional roplat integration and runtime boundaries"
+    },
+    {
+      "repository": ".github/skills/robot_behavior-skills",
+      "branch": "codex/control-flow-alignment",
+      "commit": "407652839b206ff296bad5a7c388b3dbe15e3268",
+      "subject": "Teach current control sessions and System integration boundaries"
+    }
+  ],
+  "tests": [
+    {
+      "name": "robot_behavior",
+      "command": "cargo test -p robot_behavior --features roplat --lib --tests --locked --offline",
+      "result": "passed",
+      "passed": 20,
+      "test_result_lines": [
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          13,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "local_log": "/tmp/robot-control-tests-final.log"
+    },
+    {
+      "name": "franka default",
+      "command": "cargo test -p franka_rust --lib --locked --offline",
+      "result": "passed",
+      "passed": 27,
+      "test_result_lines": [
+        [
+          27,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "local_log": "/tmp/drives-flow-franka-integrated-default-tests.log"
+    },
+    {
+      "name": "franka FCI v8",
+      "command": "cargo test -p franka_rust --features fci_v8 --lib --locked --offline",
+      "result": "passed",
+      "passed": 27,
+      "test_result_lines": [
+        [
+          27,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "local_log": "/tmp/drives-flow-franka-integrated-v8-tests.log"
+    },
+    {
+      "name": "jaka multilingual System",
+      "command": "cargo test -p jaka_roplat_multilang --lib --locked --offline",
+      "result": "passed",
+      "passed": 5,
+      "test_result_lines": [
+        [
+          5,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "local_log": "/tmp/drives-jaka-system-final.log"
+    },
+    {
+      "name": "Hans",
+      "command": "cargo test -p libhans --lib --locked --offline",
+      "result": "passed",
+      "passed": 8,
+      "test_result_lines": [
+        [
+          8,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "local_log": "/tmp/drives-hans-final-test.log"
+    },
+    {
+      "name": "K1",
+      "command": "cargo test -p libk1 --test safety --locked --offline",
+      "result": "passed",
+      "passed": 12,
+      "test_result_lines": [
+        [
+          12,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "local_log": "/tmp/drives-k1-final-test.log"
+    },
+    {
+      "name": "Jaka",
+      "command": "cargo test -p libjaka --lib --locked --offline",
+      "result": "passed",
+      "passed": 10,
+      "evidence": "compiled test binary executed with loopback permission; agent verified 10/10",
+      "compile_log": "/tmp/drives-flow-jaka-tests.log"
+    },
+    {
+      "name": "ExRobot",
+      "command": "cargo test -p roplat_exrobot --test control_flow --locked --offline",
+      "result": "passed",
+      "passed": 4,
+      "evidence": "downstream agent test run"
+    },
+    {
+      "name": "Go2 routing + Execution",
+      "command": "cargo test -p libgo2 --features roplat --test command_routing --test roplat_execution --locked --offline",
+      "result": "passed",
+      "passed": 39,
+      "evidence": "32 routing + 7 execution; downstream agent independent runs",
+      "local_log": "/tmp/drives-downstream-go2.log"
+    }
+  ],
+  "checks": [
+    {
+      "name": "workspace check",
+      "command": "cargo check --workspace --all-targets --locked --offline",
+      "result": "passed",
+      "warnings_present": true,
+      "local_log": "/tmp/drives-workspace-check-final.log"
+    },
+    {
+      "name": "workspace clippy",
+      "command": "cargo clippy --workspace --all-targets --locked --offline",
+      "result": "passed",
+      "warnings_present": true,
+      "local_log": "/tmp/drives-workspace-clippy.log"
+    },
+    {
+      "name": "robot_behavior strict clippy",
+      "command": "cargo clippy -p robot_behavior --all-features --all-targets --locked --offline -- -D warnings",
+      "result": "passed",
+      "warnings_present": true,
+      "local_log": "/tmp/robot-clippy-final.log"
+    },
+    {
+      "name": "base no-feature check",
+      "command": "cargo check -p robot_behavior --no-default-features --lib --offline",
+      "result": "passed",
+      "warnings_present": true,
+      "local_log": "/tmp/robot-base-check.log"
+    },
+    {
+      "name": "full MkDocs after child commit",
+      "command": "/opt/miniconda3/bin/mkdocs build --strict --site-dir /tmp/drives-robot-behavior-pages-preview",
+      "result": "passed",
+      "warnings_present": true,
+      "local_log": "/tmp/drives-pages-final.log"
+    }
+  ],
+  "test_executions_total": 152,
+  "normal_dependency_tree_excludes": [
+    "roplat",
+    "tokio"
+  ],
+  "skills": "Both skill-creator quick_validate checks passed",
+  "benchmark": "two repeated runs; only aggregate ns/cycle statistics; see performance environment JSON",
+  "environment": {
+    "asset_export_env": {
+      "ROPLAT_SKIP_ASSET_EXPORT": "1",
+      "BULLET_SKIP_ASSET_EXPORT": "1"
+    },
+    "python_runtime": "local temporary dylib-only directory required for macOS multilingual execution",
+    "loopback": "Franka/Jaka tests require permission to bind 127.0.0.1"
+  },
+  "not_validated": [
+    "physical robots and physical stopping time",
+    "Linux/Windows native SDK features",
+    "arbitrary Tokio context for Franka ControlRhythm",
+    "GUI/model deployment",
+    "real-time p99/CDF or server benchmark"
+  ]
+}

@@ -1,3 +1,16 @@
+# 当前工作入口（2026-09-21）
+
+先阅读 [README](README.md) 与 [本轮接口对齐记录](docs/review/2026-09-21-control-flow-alignment.md)。此前[审阅快照](docs/review/2026-09-21-core-alignment.md)记录修改前状态，不能继续作为已修问题的当前结论。
+
+- 对齐同级 roplat main `c595393df441056a25b2af8bedfcbd0f598b3fec`。应用用 `#[roplat::system]`，不要用手写 process 链绕过生命周期与合作退出。
+- `robot_behavior` 默认不依赖 roplat，显式 feature `roplat` 启用 Node / ControlRhythm。节点/节律由创建层启用与关闭；传入子域不重置状态。合作退出归还 N；设备 Input 不在 N 内时，失败不承诺返回该设备。
+- `control_with_async` 延续 0.6 的**阻塞设备会话 + async 周期闭包**；不要擅自改为异步会话、spawn 或跨线程调度。规范入口 `control_with_flow` / `control_with_flow_async` 返回 `ControlFlow<(), (Command, bool)>`：Continue 发送有效命令，done 后正常结束；Break 不发送本周期算法命令，执行设备协议收尾。收尾不是对象 on_shutdown，更不是统一零命令或急停。
+- 执行错误、状态有效性/新鲜度、跨 runtime 与仿真语义仍有边界，参见本轮记录。不要因编译或 mock 通过就宣称真机验证通过。仿真器另行校订，以实物机器人为优先设计语义。
+- 构建/测试设置 `BULLET_SKIP_ASSET_EXPORT=1` 和 `ROPLAT_SKIP_ASSET_EXPORT=1` 避免模型资源写入；不要无人值守运行 GUI 或连接设备的测试。先按包有限验证，再 check workspace；不要直接运行整个 workspace 的全部测试。
+- 本轮用户授权**本地提交，不推送**。受管子仓先提交，再提交父仓 gitlink。第三方 ref/copp/topp 维持可获取的上游提交；.DS_Store 规则放本地 Git exclude，不创建无法从上游下载的 gitlink。
+
+---
+
 # AGENTS.md — drives（机器人驱动 / Hardware Drivers）
 
 > **TL;DR / 一句话**
@@ -31,7 +44,7 @@
 |---|---|---|
 | `franka-rust/` | 真机驱动 | Franka Emika Panda 的 Rust SDK。含 `build.rs`、`pyproject.toml`、`*.pyi`、`*.hpp` —— 多语言友好。 |
 | `libaubo-rs/` | 真机驱动 | 遨博机械臂 SDK 绑定 |
-| `libhans-rs/` | 真机驱动 | Hans/翰森 机械臂 SDK 绑定（注意 `libhans_derive` 在 workspace 的 `exclude` 列表里） |
+| `libhans-rs/` | 真机驱动 | Hans/翰森 机械臂 SDK 绑定（宏包 `libhans_derive` 也是实际 workspace 成员） |
 | `libjaka-rs/` | 真机驱动 | JAKA 节卡机械臂 SDK 绑定 |
 | `libk1/` | 真机驱动 | Booster K1 原生 Rust 驱动；Git submodule，crate 名为 `libk1`，通过官方 SDK FastDDS 直接接入，不依赖 ROS2 |
 | `unitree-go2-rs/` | 真机驱动 | Unitree Go2 原生 Rust 驱动；Git submodule，crate 名为 `libgo2`，含 SDK2 DDS / Sport API 与可选 roplat bridge |
@@ -43,14 +56,9 @@
 | `utils/topp/` | 轨迹工具 | 轨迹在线参数化工具 |
 | `roplat_rerun/` | 可视化 | Rerun 与 roplat 节律对齐的发送适配 |
 | `examples/jaka_dual/` | 示例 | 双 JAKA 协作 |
-| `examples/franka_letters/` | 示例 | Franka 字母轨迹示例；Git submodule，完整 workspace 构建前需初始化 |
 | `examples/cxx_exrobot/` | 示例 | C++ 调用 roplat_exrobot（被 workspace `exclude`，独立构建） |
 
-`exclude = ["libhans_derive", "rsbullet_sys", "./robot_behavior"]` —— 这些不参与默认 `cargo build --workspace`：
-
-* `libhans_derive`：宏库，只在 `libhans-rs` 内部用
-* `rsbullet_sys`：sys 绑定，体积大
-* `robot_behavior/`：上游 crate（[github.com/...](robot_behavior/)），通过 patch 重定向用
+实际成员以 `cargo metadata --no-deps` 为准（目前 16 个），包括 `robot_behavior`、`libhans_derive` 和 `rsbullet_sys`。根 manifest 的部分 exclude 名称没有指向实际子目录，不能据此宣称这些包被排除。`utils/topp` 和 `utils/copp` 是独立工具仓。
 
 ---
 
@@ -75,10 +83,10 @@ git -C rsbullet submodule update --init --recursive rsbullet-sys/bullet3
 ```
 
 若要构建整个 `drives` workspace，应先在仓库根初始化全部受管 submodule，
-包括 `examples/franka_letters/`、`unitree-go2-rs/` 与 `utils/topp/`：
+包括 `unitree-go2-rs/` 与 `utils/topp/`（默认跳过大型 LFS 数据；参见 SUBMODULES）：
 
 ```bash
-git submodule update --init --recursive
+GIT_LFS_SKIP_SMUDGE=1 git submodule update --init --recursive
 ```
 
 Ubuntu 主机还需准备 C++、CMake、OpenGL 和 X11 开发包：
@@ -119,9 +127,9 @@ bring-up 顺序开启 `fastdds` 与 `real-robot` feature。
 
 ## 4. 与 [`roplat/`](../roplat) 的耦合 / Coupling
 
-* `[patch.crates-io] roplat = { path = "../roplat/roplat" }` —— 任何对 `roplat::Node` / `roplat::Rhythm` / `roplat::system!` 的破坏性改动，会让本仓所有 crate 编译失败。
+* `[patch.crates-io] roplat = { path = "../roplat/roplat" }` —— 任何对 `roplat::Node` / `roplat::Rhythm` / `#[roplat::system]` 的破坏性改动，会让本仓所有 crate 编译失败。
 * 当 [`roplat/TODO.md`](../roplat/TODO.md) 标 ✓ 的功能（如 IPC、replay）想在本仓用：
-  * 直接 `use roplat::comm::ipc::*;` —— 因为 patch 是源码引入，无版本号问题。
+  * 按当前核心文档的模块、feature 和能力边界接入；本地 patch 不会自动消除 API 或版本要求。
 * 当上游 [`roplat/`](../roplat) 改了 `Node::process` 签名：
   1. 在 [`roplat/`](../roplat) 改完
   2. 在本仓跑 `cargo check --workspace` 看哪些驱动炸
@@ -153,7 +161,7 @@ bring-up 顺序开启 `fastdds` 与 `real-robot` feature。
 * **Python 绑定**：`franka-rust` / `roplat_exrobot` 都有 `pyproject.toml` + `*.pyi`，使用 PyO3。
   * 构建：`maturin develop`（在各 crate 目录下）
 * **C++ 头**：`franka-rust/robot_behavior.hpp` —— 给 C++ 工程接入用。
-* **Cmake 整合**：通过 [`roplat/cmake-gen/`](../roplat/cmake-gen/) 生成顶层 CMake；本仓不写 CMakeLists。
+* **C++ 节点生成**：示例的 build.rs 使用同级 `roplat_build`；生成目录不是独立的语义来源，实际手写节点与 System 图仍需一起验证。
 
 ---
 
@@ -164,13 +172,13 @@ bring-up 顺序开启 `fastdds` 与 `real-robot` feature。
 cargo build --workspace
 
 # 仅构建一个驱动
-cargo build -p franka-rust
+cargo build -p franka_rust
 cargo build -p rsbullet
 cargo build -p libgo2
 cargo build -p libk1
 
-# 跑示例
-cargo run -p jaka_dual
+# 只编译真机示例；运行前必须有设备操作授权
+cargo check -p jaka_dual
 
 # Python 绑定本地安装
 cd franka-rust ; maturin develop --release
@@ -186,16 +194,13 @@ cargo clippy --workspace --all-targets
 
 ## 8. 设计决策与注意事项 / Design Notes
 
-### 8.1 为何用 `[patch.crates-io]` 而非 `path = "..."` 直接依赖
+### 8.1 本地依赖与 feature
 
-* 各驱动 crate 的 `Cargo.toml` 写 `roplat = "0.1"`（看似 crates.io 版本），实际 workspace 顶层 patch 把它替换为本地路径。
-* 好处：单个 crate 可以**脱离 workspace 单独发布**到 crates.io，不需要改源；workspace 内通过 patch 自动转向本地。
+根 `[patch.crates-io]` 将 roplat / robot_behavior 指向本地实现；部分成员还直接使用 path。不能假设每个子仓能独立发布或独立 checkout 构建，需按实际 manifest 验证。`robot_behavior` 的 roplat 适配是可选 feature；直接使用行为接口不应启用它。
 
-### 8.2 `robot_behavior` 既在 `[patch]` 里又在 `exclude` 里
+### 8.2 Workspace 成员与 patch 是不同概念
 
-* `exclude` 排除的是把 `./robot_behavior` 当作 workspace 成员（避免它被双重编译）。
-* `[patch]` 把 `crates.io` 上的 `robot_behavior` 替换为本地源。
-* 这两件事**不冲突**：crate 仍参与编译，只是不作为 workspace member 被默认 build。
+`robot_behavior` 同时是显式 workspace 成员和 patch 目标，不会因此被编译两份。sys/derive 包也在实际成员列表中。默认检查含原生依赖；先选择有限包/feature，不用错误的 exclude 描述推断构建边界。
 
 ### 8.3 真机驱动的安全 / Safety
 
@@ -220,6 +225,6 @@ cargo clippy --workspace --all-targets
 1. **改 `Node` / `Rhythm` 公共 API 时**：先在 [`roplat/`](../roplat) 跑测试，再 `cd ../drives ; cargo check --workspace` 验证下游不破。
 2. **新增驱动**：放新文件夹（如 `libxxx-rs/`）→ 加到根 `Cargo.toml::members` → 在 `roplat_exrobot/` 加适配。
 3. **不要 commit 大型二进制资产**（标定数据、轨迹日志）—— 走 `.gitignore` + 外部存储。
-4. **`robot_behavior/` 是上游开源项目**（[github.com/StarrySky16/robot_behavior](robot_behavior/) 之类），通过 git submodule 或子树管理；改它要走上游 PR，不要本地改完忘了 push。
+4. **`robot_behavior/` 是独立子仓**（Robot-Exp-Platform/robot_behavior）。先提交子仓，再更新父 gitlink；推送/PR 遵守当轮用户授权，不能把未推送引用声称为其他设备已可获取。
 5. **PyBullet 版本敏感** —— `rsbullet-sys` 锁定特定 PyBullet 版本，升级要重新跑 `bindgen` 并测试 ABI。
 6. **`visualShapeBench.json_0.json`**（仓库根有一份）是 PyBullet 的运行时副产物，可以删但不该 commit。

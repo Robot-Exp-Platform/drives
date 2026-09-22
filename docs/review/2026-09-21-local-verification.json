@@ -1,0 +1,83 @@
+{
+  "date": "2026-09-21",
+  "core_commit": "c595393df441056a25b2af8bedfcbd0f598b3fec",
+  "rustc": "1.100.0-nightly (67eda617e 2026-09-10)",
+  "target_dir_example": "/tmp/drives-review-target",
+  "checks": [
+    {
+      "command": "cargo test -p libjaka --lib types::robot_type::tests --locked --offline",
+      "exit_code": 101,
+      "result": "blocked by robot_behavior old Node/Lifecycle/Rhythm contracts",
+      "diagnostic_codes": [
+        "E0050",
+        "E0277",
+        "E0437"
+      ],
+      "upstream_errors": 13,
+      "log_sha256": "0c374b4a0fc22a5eb47c413ae3ad2a296d4dbf21aa9fdb18bf3ecd33334b9c6e",
+      "supplemental_local_log": "/tmp/drives-jaka-parser-test.log"
+    },
+    {
+      "command": "cargo check -p libhans --lib --locked --offline",
+      "exit_code": 101,
+      "result": "blocked by robot_behavior old Node/Lifecycle/Rhythm contracts",
+      "diagnostic_codes": [
+        "E0050",
+        "E0277",
+        "E0437"
+      ],
+      "upstream_errors": 13,
+      "log_sha256": "7c7d90231647a4fd9016d4bc87df55702582f30df21b401bcc330d8b5e1697e6",
+      "supplemental_local_log": "/tmp/drives-hans-check.log"
+    },
+    {
+      "command": "cargo check -p rsbullet --lib --tests --locked --offline",
+      "exit_code": 101,
+      "result": "blocked by robot_behavior old Node/Lifecycle/Rhythm contracts",
+      "diagnostic_codes": [
+        "E0050",
+        "E0277",
+        "E0437"
+      ],
+      "upstream_errors": 13,
+      "log_sha256": "ac0f7554017af03177b63f16dd2852a9b676573c069873ff786b84d04df6e05c",
+      "supplemental_local_log": "/tmp/drives-rsbullet-check.log"
+    }
+  ],
+  "isolated_parser": {
+    "scope": "Exact source spans of production CommandSerde, Request/Response types and impls; current four tests. Error type is included from production exception.rs. Does not compile libjaka crate, robot_behavior traits or hardware.",
+    "source": "libjaka-rs/src/types/robot_type.rs",
+    "fixed_sha256": "54ddfcef81f5feeb024015160028f0595d26be191528b8bd636ad9a4d32aaf13",
+    "baseline_commit": "bda271ba7907d1f63ec2d67710b18b4486abc5de",
+    "baseline_sha256": "f566a7f6ac4b939a4a56b226ca1cbcd06b680867e76cd2dee0d2c3ae21d22a0c",
+    "exception_path": "robot_behavior/src/exception.rs",
+    "tests_source": "Current uncommitted libjaka src/types/robot_type.rs tests module; identical tests compiled against baseline/fixed method spans.",
+    "fixed_harness_sha256": "1ab0adf17b4295c3739cb7927e23f88bc97828084d13034fac6229921ee8edaa",
+    "fixed_lock_sha256": "278eada66aae1277fc861964be081b529f9a8746c2ccbbed67a9d1e96823e466",
+    "baseline_harness_sha256": "e20e0f0d8c8791fb26b2288786fca0c8d61439cecf6b80de601b3257b7c51903",
+    "baseline_lock_sha256": "427f7ee4a0db38ce49621febb129c3f509ce2e5ee26cb9989d3331f4293cf8e0",
+    "fixed_test_result": {
+      "passed": 4,
+      "failed": 0,
+      "ignored": 0
+    },
+    "baseline_test_result": {
+      "passed": 2,
+      "failed": 2,
+      "failure": "old deserialization unwrap panics on empty JSON"
+    },
+    "production_crate_verification": "libjaka narrow tests and libhans lib check blocked by robot_behavior old Node/Lifecycle/Rhythm traits (13 errors)"
+  },
+  "isolated_logs": {
+    "fixed": {
+      "sha256": "e0792e2d210049616615b5bfe4c0cce86c0228306639025e0e68c3c21c4462d8",
+      "supplemental_local_log": "/tmp/drives-jaka-parser-isolated-fixed.log"
+    },
+    "baseline": {
+      "sha256": "a380513796c470e27e71339535943da4ccb0f5d3d9c25f72f7c43285964ee424",
+      "supplemental_local_log": "/tmp/drives-jaka-parser-isolated-baseline.log"
+    }
+  },
+  "rsbullet_asset_export": "Attempted user Application Support/bullet export denied by sandbox; no write escalation or GUI execution.",
+  "scope": "No hardware, GUI, workspace-wide build, SDK feature, performance or ROS2 experiment. Isolated parser success is not whole-crate success."
+}
