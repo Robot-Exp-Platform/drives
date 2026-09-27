@@ -96,8 +96,14 @@ def main():
         parser.error("Keep generated baselines outside the drives checkout")
     if output.exists():
         parser.error("Refuse to overwrite an existing output directory")
-    if not (core / "roplat/Cargo.toml").is_file():
+    core_manifest = core / "roplat/Cargo.toml"
+    if not core_manifest.is_file():
         parser.error("--roplat-root must contain roplat/Cargo.toml")
+    core_manifest_bytes = core_manifest.read_bytes()
+    core_package = tomllib.loads(core_manifest_bytes.decode()).get("package", {})
+    core_version = core_package.get("version")
+    if core_package.get("name") != "roplat" or not isinstance(core_version, str):
+        parser.error("roplat/Cargo.toml must declare package roplat with an explicit version")
     seed = seed_path.read_bytes()
     tomllib.loads(seed.decode())
     for repo, revision in [("franka-rust", FRANKA), ("robot_behavior", BEHAVIOR)]:
@@ -112,9 +118,17 @@ def main():
     old_path = 'path = "../../roplat/roplat"'
     if original_behavior.count(old_path) != 1:
         raise ValueError("Unexpected behavior core dependency spelling")
+    old_dependency = next(line for line in original_behavior.splitlines(True) if old_path in line)
+    old_core_version = tomllib.loads(original_behavior)["dependencies"]["roplat"]["version"]
+    old_version = "version = " + json.dumps(old_core_version)
+    if old_dependency.count(old_version) != 1:
+        raise ValueError("Unexpected behavior core version spelling")
+    new_dependency = old_dependency.replace(
+        old_path, "path = " + json.dumps(str(core / "roplat"))).replace(
+            old_version, "version = " + json.dumps(core_version))
     behavior_manifest.write_text(original_behavior.replace(
-        old_path, "path = " + json.dumps(str(core / "roplat"))))
-    # Only relocate the already-optional core dependency; do not enable it.
+        old_dependency, new_dependency))
+    # Match the selected core's path and version; keep the dependency optional.
     (workspace / "Cargo.toml").write_text('''[workspace]
 members = ["robot_behavior", "franka-rust"]
 resolver = "3"
@@ -136,7 +150,8 @@ robot_behavior = { path = "robot_behavior" }
         '\n# Test-only parity with the current Franka protocol-test build.\n'
         '[dev-dependencies]\n'
         'robot_behavior = { version = "0.6.0", features = ["roplat"] }\n'
-        'roplat = { version = "0.2.2", path = ' + json.dumps(str(core / "roplat")) + ' }\n'
+        'roplat = { version = ' + json.dumps(core_version) + ', path = '
+        + json.dumps(str(core / "roplat")) + ' }\n'
         'tokio = { version = "1.48.0", features = ["io-util"] }\n'
     ))
     factory = (FILES / "from_test_impl.rs").read_text()
@@ -167,6 +182,8 @@ robot_behavior = { path = "robot_behavior" }
         "franka_revision": FRANKA,
         "behavior_revision": BEHAVIOR,
         "core_checkout_head": git(core, "rev-parse", "HEAD").decode().strip(),
+        "core_package_version": core_version,
+        "core_manifest_sha256": digest(core_manifest_bytes),
         "factory_is_cfg_test_only": True,
         "production_code_equal_after_removing_test_graft": True,
         "franka_source_sha256": audit_sources(drives / "franka-rust", FRANKA, destination, {

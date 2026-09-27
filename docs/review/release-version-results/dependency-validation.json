@@ -1,0 +1,142 @@
+{
+  "host": "aarch64-apple-darwin",
+  "independent_git_feature_checks": {
+    "result": {
+      "command": [
+        "/opt/miniconda3/bin/python",
+        "scripts/check-dependency-boundaries.py",
+        "--independent",
+        "--offline",
+        "--seed-lockfile",
+        "Cargo.lock",
+        "--target-dir",
+        "/tmp/drives-independent-release-target",
+        "--command-timeout",
+        "600"
+      ],
+      "cwd": "/Users/yanjizhou/yixing/drives",
+      "exit": 0,
+      "timeout": false,
+      "seconds": 25.6,
+      "log": "/tmp/roplat-version-release-20260927/independent-boundaries.log"
+    },
+    "scope": "Unmodified standalone source snapshots outside drives, seeded lock, no parent patch; metadata, tree and cargo check --lib",
+    "configuration_count": 5,
+    "configurations": [
+      {
+        "package": "robot_behavior",
+        "feature": "default",
+        "unique_dependency_identities": true,
+        "roplat_in_normal_dependencies": false
+      },
+      {
+        "package": "robot_behavior",
+        "feature": "roplat",
+        "unique_dependency_identities": true,
+        "roplat_in_normal_dependencies": true
+      },
+      {
+        "package": "libgo2",
+        "feature": "default",
+        "unique_dependency_identities": true,
+        "roplat_in_normal_dependencies": false
+      },
+      {
+        "package": "libgo2",
+        "feature": "roplat",
+        "unique_dependency_identities": true,
+        "roplat_in_normal_dependencies": true
+      },
+      {
+        "package": "roplat_exrobot",
+        "feature": "default",
+        "unique_dependency_identities": true,
+        "roplat_in_normal_dependencies": false
+      }
+    ]
+  },
+  "root_feature_checks": {
+    "result": {
+      "command": [
+        "/opt/miniconda3/bin/python",
+        "scripts/check-dependency-boundaries.py",
+        "--skip-build",
+        "--offline",
+        "--command-timeout",
+        "90"
+      ],
+      "cwd": "/Users/yanjizhou/yixing/drives",
+      "exit": 0,
+      "timeout": false,
+      "seconds": 2.47,
+      "log": "/tmp/roplat-version-release-20260927/root-boundaries.log"
+    },
+    "scope": "Final drives workspace pins; metadata/tree with --locked; no repeated compilation",
+    "configuration_count": 6,
+    "configurations": [
+      {
+        "package": "robot_behavior",
+        "feature": "default",
+        "unique_dependency_identities": true,
+        "roplat_in_normal_dependencies": false
+      },
+      {
+        "package": "robot_behavior",
+        "feature": "roplat",
+        "unique_dependency_identities": true,
+        "roplat_in_normal_dependencies": true
+      },
+      {
+        "package": "libgo2",
+        "feature": "default",
+        "unique_dependency_identities": true,
+        "roplat_in_normal_dependencies": false
+      },
+      {
+        "package": "libgo2",
+        "feature": "roplat",
+        "unique_dependency_identities": true,
+        "roplat_in_normal_dependencies": true
+      },
+      {
+        "package": "rsbullet",
+        "feature": "default",
+        "unique_dependency_identities": true,
+        "roplat_in_normal_dependencies": false
+      },
+      {
+        "package": "rsbullet",
+        "feature": "roplat",
+        "unique_dependency_identities": true,
+        "roplat_in_normal_dependencies": true
+      }
+    ]
+  },
+  "git_prefetch_result": {
+    "command": [
+      "git",
+      "fetch",
+      "--no-tags",
+      "--force",
+      "--update-head-ok",
+      "ssh://git@github.com/Robot-Exp-Platform/rsbullet.git",
+      "+ed8dcd86d80426f0cc0e425e310e57be8194d43d:refs/commit/ed8dcd86d80426f0cc0e425e310e57be8194d43d"
+    ],
+    "cwd": "/Users/yanjizhou/.cargo/git/db/rsbullet-e49d676f61b2c1b2",
+    "exit": 0,
+    "timeout": false,
+    "seconds": 4.11,
+    "log": "/tmp/roplat-version-release-20260927/rsbullet-git-fetch.log"
+  },
+  "final_formal_drives_lock_sha256": "7f4ead5aa6d50f9bf2a24694c34e67ebe5d4e47974dc1879b8cdd7e8dea114ec",
+  "formal_rust_source_mismatches_after_build": [],
+  "bullet_archive_source_files_verified": 2328,
+  "toolchain": "rustc 1.100.0-nightly (67eda617e 2026-09-10)\nbinary: rustc\ncommit-hash: 67eda617e6a8f8ecec01e1ba7fafe2072a64adcc\ncommit-date: 2026-09-10\nhost: aarch64-apple-darwin\nrelease: 1.100.0-nightly\nLLVM version: 23.1.1",
+  "rust_files_byte_verified": 458,
+  "scope_limits": [
+    "Independent mode performs cargo check for five configurations; root mode checks metadata/tree for six configurations with --locked.",
+    "All standalone source snapshots retain original manifests; no parent workspace patches or path dependency rewrites.",
+    "Offline dependency resolution is seeded from the current drives lock; this does not demonstrate fresh unlocked resolution.",
+    "No hardware sessions, GUI, or actual publication performed."
+  ]
+}

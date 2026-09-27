@@ -4,6 +4,8 @@
 
 当前工作在 ControlFlow 与 Lifecycle / Execution 对齐基础上，新增原生异步控制与独立驱动依赖边界。见[本轮实现与验收](docs/review/2026-09-23-native-async-control.md)和[前轮记录](docs/review/2026-09-21-control-flow-alignment.md)。编译和 mock 通过不能代替真机、实时期限或平台 SDK 验收。
 
+当前待发布版本与依赖下限见[版本更新记录](docs/review/2026-09-27-release-versions.md)：核心为 0.3.0，行为库为 0.6.0，驱动与配套库按 API 兼容性分别选版。此前[发布预检](docs/review/2026-09-27-publish-preflight.md)保留旧版本的打包证据；本轮 GitHub 推送不代表 crates.io 已发布。Go2 的包体积阻塞仍未修改。
+
 ## 设备控制语义
 
 `ControlWith<S>` 由驱动实现。`control_with_flow` 和 `control_with_flow_async` 使用 `ControlFlow<(), (Command, bool)>`：Continue 发送有效指令；done=true 时先发送最后指令再结束；Break 不发送本周期算法指令，执行设备协议收尾。旧 tuple 闭包接口仍可使用。
@@ -33,7 +35,7 @@
 
 ```text
 yixing/
-├── roplat/      # 本轮对齐 main c595393df441056a25b2af8bedfcbd0f598b3fec
+├── roplat/      # 核心 0.3.0，固定提交见 docs/dependency-sources.md
 └── drives/      # 本仓及受管子仓
 ```
 
@@ -52,6 +54,6 @@ CONTROL_BENCH_CYCLES=1000000 cargo bench -p robot_behavior --features roplat --b
 
 脚本会设置 `ROPLAT_SKIP_ASSET_EXPORT=1` 与 `BULLET_SKIP_ASSET_EXPORT=1`，避免构建顺带写入用户模型目录。Franka/Jaka离线协议测试需要本机loopback监听权限；多语言运行测试还需配置Python动态库，见验收记录。不以无人值守 `cargo test --workspace` 起步；GUI、模型和真实设备单独授权。
 
-应用组图用 `#[roplat::system]`，参考[核心语法](https://github.com/Robot-Exp-Platform/roplat/blob/c595393df441056a25b2af8bedfcbd0f598b3fec/docs/system-syntax.md)及 [roplat-skills](https://github.com/Robot-Exp-Platform/roplat-skills)。Node作者实现process是正常扩展；应用层手写整条process链不能替代System的生命周期、停止和对象归还。
+应用组图用 `#[roplat::system]`，参考[核心语法](https://github.com/Robot-Exp-Platform/roplat/blob/9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be/docs/system-syntax.md)及 [roplat-skills](https://github.com/Robot-Exp-Platform/roplat-skills)。Node作者实现process是正常扩展；应用层手写整条process链不能替代System的生命周期、停止和对象归还。
 
-本轮已将通过验证的内部开发子仓分支推送 GitHub。先按依赖顺序提交和推送子仓，再更新父仓 gitlink；固定源码来源见[独立依赖说明](docs/dependency-sources.md)。第三方参考仓保持上游提交；没有改动的子仓不创建空提交。
+版本准备使用内部开发分支。先按依赖顺序提交和推送子仓，再更新父仓 gitlink；固定源码来源见[独立依赖说明](docs/dependency-sources.md)。第三方参考仓保持上游提交；没有改动的子仓不创建空提交。

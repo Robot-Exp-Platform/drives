@@ -1,0 +1,79 @@
+{
+  "verified_at_utc": "2026-09-27 09:23:59 UTC",
+  "branch": "codex/release-versions",
+  "scope": "Source repositories referenced by the drives release-version integration commit; crates.io upload not performed.",
+  "repositories": [
+    {
+      "repository": "roplat",
+      "head": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "github_head": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "worktree_clean": true
+    },
+    {
+      "repository": "drives/robot_behavior",
+      "head": "781245ca4d662a693cfb24955328a5a610859591",
+      "github_head": "781245ca4d662a693cfb24955328a5a610859591",
+      "worktree_clean": true
+    },
+    {
+      "repository": "drives/franka-rust",
+      "head": "c6e805fa1a8b4647be1c9680bd70ac96314c3af2",
+      "github_head": "c6e805fa1a8b4647be1c9680bd70ac96314c3af2",
+      "worktree_clean": true
+    },
+    {
+      "repository": "drives/libjaka-rs",
+      "head": "2e67594271dd2932936735b9e571c022339ab041",
+      "github_head": "2e67594271dd2932936735b9e571c022339ab041",
+      "worktree_clean": true
+    },
+    {
+      "repository": "drives/libhans-rs",
+      "head": "010a551a1decfd278ebf6abae57d395194a18d0d",
+      "github_head": "010a551a1decfd278ebf6abae57d395194a18d0d",
+      "worktree_clean": true
+    },
+    {
+      "repository": "drives/libaubo-rs",
+      "head": "a8c7a9f6c0b86f27a349485879b49664e6022778",
+      "github_head": "a8c7a9f6c0b86f27a349485879b49664e6022778",
+      "worktree_clean": true
+    },
+    {
+      "repository": "drives/roplat_exrobot",
+      "head": "6fe27cf77f5eef9736080831ff067f23591f555e",
+      "github_head": "6fe27cf77f5eef9736080831ff067f23591f555e",
+      "worktree_clean": true
+    },
+    {
+      "repository": "drives/unitree-go2-rs",
+      "head": "d0b4fa18215321c914334fd1091b88469d0a2bc7",
+      "github_head": "d0b4fa18215321c914334fd1091b88469d0a2bc7",
+      "worktree_clean": true
+    },
+    {
+      "repository": "drives/rsbullet",
+      "head": "ed8dcd86d80426f0cc0e425e310e57be8194d43d",
+      "github_head": "ed8dcd86d80426f0cc0e425e310e57be8194d43d",
+      "worktree_clean": true
+    },
+    {
+      "repository": "drives/roplat_rerun",
+      "head": "66baf2fa4da6382b7812ba62a3895e5a0b1d69ba",
+      "github_head": "66baf2fa4da6382b7812ba62a3895e5a0b1d69ba",
+      "worktree_clean": true
+    },
+    {
+      "repository": "drives/utils/rerun_urdf",
+      "head": "016e0964f9dd2463025b4140460af84259cad199",
+      "github_head": "016e0964f9dd2463025b4140460af84259cad199",
+      "worktree_clean": true
+    },
+    {
+      "repository": "drives/robot_behavior_page",
+      "head": "1b346242a0dd34a14d6b60d70e71045d03c6cff7",
+      "github_head": "1b346242a0dd34a14d6b60d70e71045d03c6cff7",
+      "worktree_clean": true
+    }
+  ]
+}

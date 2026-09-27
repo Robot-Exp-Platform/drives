@@ -1,13 +1,13 @@
-# 当前工作入口（2026-09-23）
+# 当前工作入口（2026-09-27）
 
-先阅读 [README](README.md)、[原生异步控制记录](docs/review/2026-09-23-native-async-control.md) 与 [前轮接口对齐记录](docs/review/2026-09-21-control-flow-alignment.md)。此前[审阅快照](docs/review/2026-09-21-core-alignment.md)记录修改前状态，不能继续作为已修问题的当前结论。
+先阅读 [README](README.md)、[版本更新记录](docs/review/2026-09-27-release-versions.md)、[原生异步控制记录](docs/review/2026-09-23-native-async-control.md) 与 [前轮接口对齐记录](docs/review/2026-09-21-control-flow-alignment.md)。此前[审阅快照](docs/review/2026-09-21-core-alignment.md)记录修改前状态，不能继续作为已修问题的当前结论。
 
-- 对齐同级 roplat 核心 `c595393df441056a25b2af8bedfcbd0f598b3fec`；独立 Git 依赖固定到仅修复失效 gitlink 的 `b47f7b6aa54a230417331e4b85cefcc8eff9e128`，Rust 源码一致。应用用 `#[roplat::system]`，不要用手写 process 链绕过生命周期与合作退出。
+- 当前核心为待发布 0.3.0，固定 Git 提交 `9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be`；其余上游来源见 [依赖说明](docs/dependency-sources.md)。尚未上传 crates.io，不能把 registry 0.2.2 当作当前核心。应用用 `#[roplat::system]`，不要用手写 process 链绕过生命周期与合作退出。
 - `robot_behavior` 默认不依赖 roplat，显式 feature `roplat` 启用 Node / ControlRhythm / AsyncControlRhythm。节点/节律由创建层启用与关闭；传入子域不重置状态。合作退出归还 N；设备 Input 不在 N 内时，失败不承诺返回该设备。
 - `control_with_async` 延续 0.6 的**阻塞设备会话 + async 周期闭包**；不要擅自改为异步会话、spawn 或跨线程调度。规范入口 `control_with_flow` / `control_with_flow_async` 返回 `ControlFlow<(), (Command, bool)>`：Continue 发送有效命令，done 后正常结束；Break 不发送本周期算法命令，执行设备协议收尾。收尾不是对象 on_shutdown，更不是统一零命令或急停。
 - 原生异步控制通过独立 AsyncControlWith / AsyncControlRhythm 接入，不改变同步 move_to 或旧 control_with_async。跨 runtime 限制仍适用于旧阻塞包装器；异步 System 使用原生路径。状态有效性/新鲜度与仿真语义仍有边界，参见本轮记录。不要因编译或 mock 通过就宣称真机验证通过。仿真器另行校订，以实物机器人为优先设计语义。
 - 构建/测试设置 `BULLET_SKIP_ASSET_EXPORT=1` 和 `ROPLAT_SKIP_ASSET_EXPORT=1` 避免模型资源写入；不要无人值守运行 GUI 或连接设备的测试。先按包有限验证，再 check workspace；不要直接运行整个 workspace 的全部测试。
-- 本轮用户授权实现、提交与 GitHub 推送。受管子仓按依赖顺序先提交并推送，再提交和推送父仓 gitlink。第三方 ref/copp/topp 维持可获取的上游提交；.DS_Store 规则放本地 Git exclude，不创建无法从上游下载的 gitlink。
+- 本轮用户授权待发布版本和依赖元数据更新、提交与 GitHub 推送，未要求上传 crates.io。Go2 只同步 roplat 依赖元数据，不修改 SDK/包装或解决体积超限。受管子仓按依赖顺序先提交并推送，再提交和推送父仓 gitlink。第三方 ref/copp/topp 维持可获取的上游提交；.DS_Store 规则放本地 Git exclude，不创建无法从上游下载的 gitlink。
 
 ---
 
@@ -196,7 +196,7 @@ cargo clippy --workspace --all-targets
 
 ### 8.1 本地依赖与 feature
 
-独立子仓保留完整依赖声明，不继承 drives 的 workspace.dependencies。内部基线固定 Git 来源和提交；集成根通过对应 source patch 指向本地实现。已发 roplat 0.2.2 与内部同版本 API 有差异，不能用版本号代替提交和来源校验。集成示例仍可依赖 drives 目录布局；各驱动独立构建须单独验证。`robot_behavior` 的 roplat 适配是可选 feature；直接使用行为接口不应启用它。
+独立子仓保留完整依赖声明，不继承 drives 的 workspace.dependencies。内部基线固定 Git 来源和提交；集成根通过对应 source patch 指向本地实现。当前声明 roplat 0.3.0，并固定包含当前 API 的 Git 提交；已发 registry 0.2.2 不兼容。待上游实际发布前，保留 Git 来源，版本号不能代替提交和来源校验。集成示例仍可依赖 drives 目录布局；各驱动独立构建须单独验证。`robot_behavior` 的 roplat 适配是可选 feature；直接使用行为接口不应启用它。
 
 ### 8.2 Workspace 成员与 patch 是不同概念
 

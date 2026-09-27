@@ -289,7 +289,7 @@ dependencies = [
  "objc2-foundation 0.3.2",
  "parking_lot",
  "percent-encoding",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
  "x11rb",
 ]
 
@@ -2755,7 +2755,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -3280,7 +3280,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -4722,7 +4722,7 @@ dependencies = [
  "portable-atomic-util",
  "serde_core",
  "wasm-bindgen",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -4938,7 +4938,7 @@ dependencies = [
 
 [[package]]
 name = "libaubo"
-version = "0.1.1"
+version = "0.2.0"
 dependencies = [
  "cxx",
  "nalgebra 0.34.1",
@@ -4968,7 +4968,7 @@ dependencies = [
 
 [[package]]
 name = "libhans"
-version = "0.1.11"
+version = "0.2.0"
 dependencies = [
  "bincode",
  "bitflags 2.10.0",
@@ -4993,7 +4993,7 @@ dependencies = [
 
 [[package]]
 name = "libhans_derive"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "quote",
  "syn 2.0.111",
@@ -6890,7 +6890,7 @@ dependencies = [
  "once_cell",
  "socket2",
  "tracing",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -9082,7 +9082,7 @@ dependencies = [
 
 [[package]]
 name = "rerun_urdf"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "k",
@@ -9218,7 +9218,7 @@ dependencies = [
 
 [[package]]
 name = "roplat"
-version = "0.2.2"
+version = "0.3.0"
 dependencies = [
  "async-trait",
  "bincode",
@@ -9235,7 +9235,7 @@ dependencies = [
 
 [[package]]
 name = "roplat_build"
-version = "0.2.2"
+version = "0.3.0"
 dependencies = [
  "cc",
  "cmake",
@@ -9246,7 +9246,7 @@ dependencies = [
 
 [[package]]
 name = "roplat_exrobot"
-version = "0.1.2"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "cxx",
@@ -9258,7 +9258,7 @@ dependencies = [
 
 [[package]]
 name = "roplat_launch"
-version = "0.2.2"
+version = "0.3.0"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -9271,7 +9271,7 @@ dependencies = [
 
 [[package]]
 name = "roplat_macros"
-version = "0.2.2"
+version = "0.3.0"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -9283,7 +9283,7 @@ dependencies = [
 
 [[package]]
 name = "roplat_py"
-version = "0.2.2"
+version = "0.3.0"
 dependencies = [
  "pyo3",
  "roplat",
@@ -9291,7 +9291,7 @@ dependencies = [
 
 [[package]]
 name = "roplat_rerun"
-version = "0.1.2"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "nalgebra 0.34.1",
@@ -9303,7 +9303,7 @@ dependencies = [
 
 [[package]]
 name = "roplat_system"
-version = "0.2.2"
+version = "0.3.0"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -9320,7 +9320,7 @@ checksum = "6c20b6793b5c2fa6553b250154b78d6d0db37e72700ae35fad9387a46f487c97"
 
 [[package]]
 name = "rsbullet"
-version = "0.3.11"
+version = "0.4.0"
 dependencies = [
  "anyhow",
  "futures",
@@ -9334,7 +9334,7 @@ dependencies = [
 
 [[package]]
 name = "rsbullet-core"
-version = "0.3.4"
+version = "0.4.0"
 dependencies = [
  "bitflags 2.10.0",
  "nalgebra 0.34.1",
@@ -9344,7 +9344,7 @@ dependencies = [
 
 [[package]]
 name = "rsbullet_sys"
-version = "0.3.1"
+version = "0.3.2"
 dependencies = [
  "cmake",
 ]
@@ -9410,7 +9410,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.11.0",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -10266,7 +10266,7 @@ dependencies = [
  "getrandom 0.3.4",
  "once_cell",
  "rustix 1.1.2",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -11516,7 +11516,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]

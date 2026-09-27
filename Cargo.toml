@@ -41,3 +41,6 @@ robot_behavior = { path = "./robot_behavior" }
 
 [patch."ssh://git@github.com/Robot-Exp-Platform/rsbullet.git"]
 rsbullet = { path = "rsbullet/rsbullet" }
+
+[patch."ssh://git@github.com/Robot-Exp-Platform/rerun_urdf.git"]
+rerun_urdf = { path = "utils/rerun_urdf" }

@@ -5,32 +5,39 @@ from `drives/Cargo.toml`, and cloning a driver does not require a sibling roplat
 checkout. Application examples inside drives may deliberately use integration
 paths; `examples/jaka_roplat_multilang` is one such example.
 
-## Source policy for this internal baseline
+## Source policy for this release preparation
 
-The published `roplat` 0.2.2 archive predates the current `Execution` /
-`ExecutionContext` API. The crates.io `robot_behavior` releases available during
-this audit end at 0.5.4. A matching version number alone therefore does not provide
-the APIs used by this work.
+The prepared core version is `roplat` 0.3.0; `robot_behavior` remains at the
+previously selected, unpublished 0.6.0. Neither has been uploaded to crates.io.
+The published core 0.2.2 lacks the current Execution / Lifecycle API, and the
+published behavior line ends at 0.5.4 as of the 2026-09-27 registry check. Current
+Git sources are therefore still necessary for independent driver builds.
 
-The manifests pin full Git commit hashes from these sources:
+The manifests retain full commit pins and declare the corresponding version
+requirement. The confirmed upstream revisions for this update are:
 
-- `ssh://git@github.com/Robot-Exp-Platform/roplat.git`, core revision
-  `b47f7b6aa54a230417331e4b85cefcc8eff9e128`;
-- `ssh://git@github.com/Robot-Exp-Platform/robot_behavior.git`, `79a3820af143a3ab75dfd3b308469482aac534c0`;
-- `roplat_rerun` also pins `ssh://git@github.com/Robot-Exp-Platform/rsbullet.git`
-  at `804518bacad7fec80e065e5f95e1c34524cf8fdc`. Its `rerun_urdf`
-  dependency uses the published 0.1.0 API, with Rerun 0.26 and nalgebra 0.34.
+| Source | Prepared package version | Git revision |
+| --- | --- | --- |
+| `ssh://git@github.com/Robot-Exp-Platform/roplat.git` | 0.3.0 | `9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be` |
+| `ssh://git@github.com/Robot-Exp-Platform/robot_behavior.git` | 0.6.0 | `781245ca4d662a693cfb24955328a5a610859591` |
+| `ssh://git@github.com/Robot-Exp-Platform/rsbullet.git` | rsbullet / rsbullet-core 0.4.0; rsbullet_sys 0.3.2 | `ed8dcd86d80426f0cc0e425e310e57be8194d43d` |
+| `ssh://git@github.com/Robot-Exp-Platform/rerun_urdf.git` | 0.1.1 | `016e0964f9dd2463025b4140460af84259cad199` |
 
-The core source baseline remains `c595393df441056a25b2af8bedfcbd0f598b3fec`.
-Revision `b47f7b6aa54a230417331e4b85cefcc8eff9e128` only removes the unused
-`cmake-gen` gitlink whose missing submodule URL prevented Cargo Git checkouts;
-it does not change core Rust source or execution semantics.
+`roplat_rerun` requires the prepared RsBullet 0.4.0 at the revision above. Its
+direct `rerun_urdf` dependency now uses a Git pin as well: a registry-only requirement
+for unpublished 0.1.1 would otherwise break the independent checkout. Rerun 0.26
+and nalgebra 0.34 remain unchanged.
 
-This is an internal Git baseline, not a new crates.io release. The `version` key
-on a Git dependency checks the package version; the full `rev` identifies the
-actual code. Do not replace these dependencies with `"0.2.2"` / `"0.6.0"` until a
-compatible registry release exists. Do not replace pinned revisions with moving
-branches merely to resolve a build failure.
+See the [version update record](review/2026-09-27-release-versions.md) for the
+complete package matrix. The earlier core packaging fix removed a broken unused
+`cmake-gen` gitlink; that fix remains included. Historical reports preserve the
+old version numbers, commit pins and measurements.
+
+This is Git release preparation, not a crates.io upload. The `version` key on a
+Git dependency checks the package version and becomes the registry requirement
+when packaging; the full `rev` identifies the actual source. Until matching
+registry packages are available, keep both. Do not replace pinned revisions with
+moving branches merely to resolve a build failure.
 
 GitHub repository access and an already configured SSH key/agent are required.
 The current libraries require a Rust nightly toolchain (`generic_const_exprs` /
@@ -50,8 +57,8 @@ an optional feature is disabled; optional means the crate is absent from that
 build graph, not that Cargo can always avoid inspecting its source manifest.
 
 The drives root patches the exact Git source URLs to the local integration
-checkouts. Root registry patches remain for compatible dependencies and local
-URDF integration. Those patches apply only when drives is the workspace root.
+checkouts. Root registry patches remain for compatible registry dependencies; the new
+URDF Git source also has an explicit local source patch. Those patches apply only when drives is the workspace root.
 An independent checkout fetches its declared revisions instead. Cargo.lock and
 `cargo metadata` checks prevent accidental multiple copies of the core traits.
 
@@ -129,12 +136,15 @@ CARGO_NET_GIT_FETCH_WITH_CLI=true BULLET_SKIP_ASSET_EXPORT=1 \
 
 ## Updating the baseline
 
-1. Validate and push the behavior revision whose APIs downstream drivers use.
-2. Update every direct behavior dependency to the same full revision, then verify
-   the dependency matrix. Commit and push the driver revisions.
-3. Pin the matching RsBullet revision in roplat_rerun and validate that adapter.
+1. Validate and push the core revision containing the required version and API.
+2. Update behavior's core version/pin; validate and push behavior. Then update all
+   direct behavior users to that same full revision.
+3. Validate and push independent prerequisites such as rerun_urdf, and validate
+   and push the matching RsBullet revision before pinning both in roplat_rerun.
 4. Update drives' lockfile and gitlinks only after all referenced commits are
    available remotely. Run the integration matrix and the independent checks.
+5. For an actual registry release, recheck availability and publish upstream
+   packages before their dependents. GitHub pushes do not satisfy registry edges.
 
 Do not introduce `workspace = true` into independently cloned submodules. If a
 submodule later chooses its own internal workspace dependencies, its own root

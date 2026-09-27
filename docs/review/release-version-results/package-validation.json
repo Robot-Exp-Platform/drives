@@ -1,0 +1,672 @@
+{
+  "purpose": "Final release-version publication-batch rehearsal; no actual crates.io upload",
+  "command": [
+    "cargo",
+    "package",
+    "--workspace",
+    "--offline",
+    "--features",
+    "robot_behavior/roplat,rsbullet/roplat,libgo2/roplat"
+  ],
+  "result": {
+    "command": [
+      "cargo",
+      "package",
+      "--workspace",
+      "--offline",
+      "--features",
+      "robot_behavior/roplat,rsbullet/roplat,libgo2/roplat"
+    ],
+    "cwd": "/tmp/roplat-version-release-20260927/batch",
+    "exit": 0,
+    "timeout": false,
+    "seconds": 518.89,
+    "log": "/tmp/roplat-version-release-20260927/batch-package.log"
+  },
+  "host": "aarch64-apple-darwin",
+  "environment": {
+    "ROPLAT_SKIP_ASSET_EXPORT": "1",
+    "BULLET_SKIP_ASSET_EXPORT": "1",
+    "PYO3_PYTHON": "/opt/miniconda3/bin/python"
+  },
+  "lock_seed": {
+    "source": "/Users/yanjizhou/yixing/drives/Cargo.lock",
+    "sha256": "7f4ead5aa6d50f9bf2a24694c34e67ebe5d4e47974dc1879b8cdd7e8dea114ec",
+    "destination": "/private/tmp/roplat-version-release-20260927/batch/Cargo.lock",
+    "scope": "Initial dependency-version seed; Cargo may resolve additional or changed package identities."
+  },
+  "resolved_lock_sha256": "594af3759934ec6f46980fab363aaae0d318dc5129ac95ea61e5b442dddc66f0",
+  "package_count": 23,
+  "verified_count": 23,
+  "temporary_manifest_dependency_rewrites": 15,
+  "rust_files_byte_verified": 458,
+  "rust_source_mismatches_after_build": [],
+  "source_states": [
+    {
+      "path": "/Users/yanjizhou/yixing/roplat/roplat_launch",
+      "head": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/roplat/roplat_system",
+      "head": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/roplat/roplat_macros",
+      "head": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/roplat/roplat",
+      "head": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/roplat/roplat_build",
+      "head": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/roplat/roplat_cpp",
+      "head": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/roplat/roplat_cpp_msg",
+      "head": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/roplat/roplat_py",
+      "head": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/roplat/cargo-roplat",
+      "head": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/robot_behavior",
+      "head": "781245ca4d662a693cfb24955328a5a610859591",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/franka-rust",
+      "head": "c6e805fa1a8b4647be1c9680bd70ac96314c3af2",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/libaubo-rs",
+      "head": "a8c7a9f6c0b86f27a349485879b49664e6022778",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/libhans-rs",
+      "head": "010a551a1decfd278ebf6abae57d395194a18d0d",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/libhans-rs/src/libhans_derive",
+      "head": "010a551a1decfd278ebf6abae57d395194a18d0d",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/libjaka-rs",
+      "head": "2e67594271dd2932936735b9e571c022339ab041",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/libk1",
+      "head": "de2bfc75a5af15f28a97a863a8b97006924f806d",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/unitree-go2-rs",
+      "head": "d0b4fa18215321c914334fd1091b88469d0a2bc7",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/roplat_exrobot",
+      "head": "6fe27cf77f5eef9736080831ff067f23591f555e",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/roplat_rerun",
+      "head": "66baf2fa4da6382b7812ba62a3895e5a0b1d69ba",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/rsbullet/rsbullet",
+      "head": "ed8dcd86d80426f0cc0e425e310e57be8194d43d",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/rsbullet/rsbullet-core",
+      "head": "ed8dcd86d80426f0cc0e425e310e57be8194d43d",
+      "status": ""
+    },
+    {
+      "path": "/Users/yanjizhou/yixing/drives/utils/rerun_urdf",
+      "head": "016e0964f9dd2463025b4140460af84259cad199",
+      "status": ""
+    }
+  ],
+  "packages": [
+    {
+      "name": "roplat_launch",
+      "version": "0.3.0",
+      "verified": true,
+      "archive": "roplat_launch-0.3.0.crate",
+      "archive_bytes": 20639,
+      "archive_sha256": "7ccbafd6e237fa09f4e7af7a0bcf21fd8a6315de798d3f0fce69026de3a4dc4f",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": []
+    },
+    {
+      "name": "roplat_system",
+      "version": "0.3.0",
+      "verified": true,
+      "archive": "roplat_system-0.3.0.crate",
+      "archive_bytes": 103409,
+      "archive_sha256": "4ad8588791936e3b408abe80935bd1b798384ec6655729f95e41b5ea3f5d4d07",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "roplat_launch",
+          "spec": {
+            "version": "0.3.0",
+            "features": [
+              "codegen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "roplat_macros",
+      "version": "0.3.0",
+      "verified": true,
+      "archive": "roplat_macros-0.3.0.crate",
+      "archive_bytes": 34755,
+      "archive_sha256": "6dbbf73f47e463533e6cdccca8f169c5a422a7f4ff20947eb7a830a02cb2956f",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "roplat_launch",
+          "spec": {
+            "version": "0.3.0",
+            "features": [
+              "codegen"
+            ]
+          }
+        },
+        {
+          "table": "dependencies",
+          "alias": "roplat_system",
+          "spec": {
+            "version": "0.3.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "roplat",
+      "version": "0.3.0",
+      "verified": true,
+      "archive": "roplat-0.3.0.crate",
+      "archive_bytes": 152378,
+      "archive_sha256": "a5edc013fabb1e34dd8358ce621e87eba286b0f4b5dd53545cf0a2c44cb9135e",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "roplat_launch",
+          "spec": {
+            "version": "0.3.0"
+          }
+        },
+        {
+          "table": "dependencies",
+          "alias": "roplat_macros",
+          "spec": {
+            "version": "0.3.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "roplat_build",
+      "version": "0.3.0",
+      "verified": true,
+      "archive": "roplat_build-0.3.0.crate",
+      "archive_bytes": 30984,
+      "archive_sha256": "bc5587b8e5aae7879331374d0d98629b09e6a550bd0964e76896590b2c9731a9",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": []
+    },
+    {
+      "name": "roplat_cpp",
+      "version": "0.3.0",
+      "verified": true,
+      "archive": "roplat_cpp-0.3.0.crate",
+      "archive_bytes": 15505,
+      "archive_sha256": "50aad2280d15374d5354349db19f33b95adf0774331650ac29bf9c7aedf8d1e6",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": []
+    },
+    {
+      "name": "roplat_cpp_msg",
+      "version": "0.3.0",
+      "verified": true,
+      "archive": "roplat_cpp_msg-0.3.0.crate",
+      "archive_bytes": 11282,
+      "archive_sha256": "521491641f7c870a4715286a1041ffce8e7af78948810a8aa3e6960de728a6ff",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": []
+    },
+    {
+      "name": "roplat_py",
+      "version": "0.3.0",
+      "verified": true,
+      "archive": "roplat_py-0.3.0.crate",
+      "archive_bytes": 22458,
+      "archive_sha256": "397a208477636f6f4a6ed2deb88e1a7101599d8d3ecd2cadabf2312658010513",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "roplat",
+          "spec": {
+            "version": "0.3.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "cargo-roplat",
+      "version": "0.3.0",
+      "verified": true,
+      "archive": "cargo-roplat-0.3.0.crate",
+      "archive_bytes": 17599,
+      "archive_sha256": "37de29a8e2dce85d8d69e656cd28860bd8191c882e7722a64de828dd1d1d8e25",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "roplat",
+          "spec": {
+            "version": "0.3.0"
+          }
+        },
+        {
+          "table": "dependencies",
+          "alias": "roplat_launch",
+          "spec": {
+            "version": "0.3.0",
+            "features": [
+              "codegen"
+            ]
+          }
+        },
+        {
+          "table": "dependencies",
+          "alias": "roplat_system",
+          "spec": {
+            "version": "0.3.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "robot_behavior",
+      "version": "0.6.0",
+      "verified": true,
+      "archive": "robot_behavior-0.6.0.crate",
+      "archive_bytes": 117085,
+      "archive_sha256": "f6865d8ba645a20598218a8ae13f6c2135c442c402a3530eb83835c59248a4fa",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "roplat",
+          "spec": {
+            "version": "0.3.0",
+            "optional": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "franka_rust",
+      "version": "0.2.0",
+      "verified": true,
+      "archive": "franka_rust-0.2.0.crate",
+      "archive_bytes": 3161035,
+      "archive_sha256": "d1fc2af80f3b6836c135167850fa937e30bf3c2ec959827930d2e7f1d83520ac",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "robot_behavior",
+          "spec": {
+            "version": "0.6.0"
+          }
+        },
+        {
+          "table": "dev-dependencies",
+          "alias": "robot_behavior",
+          "spec": {
+            "version": "0.6.0",
+            "features": [
+              "roplat"
+            ]
+          }
+        },
+        {
+          "table": "dev-dependencies",
+          "alias": "roplat",
+          "spec": {
+            "version": "0.3.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "libaubo",
+      "version": "0.2.0",
+      "verified": true,
+      "archive": "libaubo-0.2.0.crate",
+      "archive_bytes": 21714,
+      "archive_sha256": "2da4ed711e4076472b2d210c65e7f07f25f5e0cb81a85df47477eb1418f37c64",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "robot_behavior",
+          "spec": {
+            "version": "0.6.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "libhans",
+      "version": "0.2.0",
+      "verified": true,
+      "archive": "libhans-0.2.0.crate",
+      "archive_bytes": 42630,
+      "archive_sha256": "57718458f7db198d42ebe0c1056113e38bfa51c1f1238681d59c2a49eb325520",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "libhans_derive",
+          "spec": {
+            "version": "0.1.3"
+          }
+        },
+        {
+          "table": "dependencies",
+          "alias": "robot_behavior",
+          "spec": {
+            "version": "0.6.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "libhans_derive",
+      "version": "0.1.3",
+      "verified": true,
+      "archive": "libhans_derive-0.1.3.crate",
+      "archive_bytes": 6329,
+      "archive_sha256": "626449e178aae15efe2e45a7f32d117f5178199b636bf1337dd557ad4cecbbc2",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": []
+    },
+    {
+      "name": "libjaka",
+      "version": "0.2.0",
+      "verified": true,
+      "archive": "libjaka-0.2.0.crate",
+      "archive_bytes": 56387,
+      "archive_sha256": "f773b0697402af1df5e9f89aa918a251af9c8d2cbaf7a2b01a95e49864fa51c4",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "robot_behavior",
+          "spec": {
+            "version": "0.6.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "libk1",
+      "version": "0.1.0",
+      "verified": true,
+      "archive": "libk1-0.1.0.crate",
+      "archive_bytes": 18105,
+      "archive_sha256": "d7adabe67ff58efb9550fb9a03e21edf3d8daebad9473701ca7722515c3730ba",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": []
+    },
+    {
+      "name": "libgo2",
+      "version": "0.1.0",
+      "verified": true,
+      "archive": "libgo2-0.1.0.crate",
+      "archive_bytes": 29930754,
+      "archive_sha256": "d0e50073ceb96fe800a6a9cc4c94b113e61c82af3710464f896e54700d8339dd",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "roplat",
+          "spec": {
+            "version": "0.3.0",
+            "optional": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "roplat_exrobot",
+      "version": "0.2.0",
+      "verified": true,
+      "archive": "roplat_exrobot-0.2.0.crate",
+      "archive_bytes": 25100,
+      "archive_sha256": "3531c42b34e412f94c3d4715728d6376c10cab983fc6ca3b2361609a6713e860",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "robot_behavior",
+          "spec": {
+            "version": "0.6.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "roplat_rerun",
+      "version": "0.2.0",
+      "verified": true,
+      "archive": "roplat_rerun-0.2.0.crate",
+      "archive_bytes": 75512,
+      "archive_sha256": "08ca4bd4aa0324058ca2438950657b078faf131b0eaff780cc0e15dacd6bdad7",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "rerun_urdf",
+          "spec": {
+            "version": "0.1.1"
+          }
+        },
+        {
+          "table": "dependencies",
+          "alias": "robot_behavior",
+          "spec": {
+            "version": "0.6.0"
+          }
+        },
+        {
+          "table": "dependencies",
+          "alias": "rsbullet",
+          "spec": {
+            "version": "0.4.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "rsbullet",
+      "version": "0.4.0",
+      "verified": true,
+      "archive": "rsbullet-0.4.0.crate",
+      "archive_bytes": 505219,
+      "archive_sha256": "d0fddc028580efe168bed350e7117535b31f2bc70f00ebdb9bcf69bc261b65cd",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "robot_behavior",
+          "spec": {
+            "version": "0.6.0"
+          }
+        },
+        {
+          "table": "dependencies",
+          "alias": "roplat",
+          "spec": {
+            "version": "0.3.0",
+            "optional": true
+          }
+        },
+        {
+          "table": "dependencies",
+          "alias": "rsbullet-core",
+          "spec": {
+            "version": "0.4.0"
+          }
+        },
+        {
+          "table": "dependencies",
+          "alias": "rsbullet_sys",
+          "spec": {
+            "version": "0.3.2"
+          }
+        }
+      ]
+    },
+    {
+      "name": "rsbullet-core",
+      "version": "0.4.0",
+      "verified": true,
+      "archive": "rsbullet-core-0.4.0.crate",
+      "archive_bytes": 60572,
+      "archive_sha256": "a993b3a5207f3a490d0120db4524ce8ebfb9b6cf0188e3e45a00acc1b894b1b6",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": [
+        {
+          "table": "dependencies",
+          "alias": "robot_behavior",
+          "spec": {
+            "version": "0.6.0"
+          }
+        },
+        {
+          "table": "dependencies",
+          "alias": "rsbullet_sys",
+          "spec": {
+            "version": "0.3.2"
+          }
+        }
+      ]
+    },
+    {
+      "name": "rsbullet_sys",
+      "version": "0.3.2",
+      "verified": true,
+      "archive": "rsbullet_sys-0.3.2.crate",
+      "archive_bytes": 7525698,
+      "archive_sha256": "a9b99271880855ed5e5f72223b3d093852455d66833c566133873ded97255666",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": []
+    },
+    {
+      "name": "rerun_urdf",
+      "version": "0.1.1",
+      "verified": true,
+      "archive": "rerun_urdf-0.1.1.crate",
+      "archive_bytes": 77307,
+      "archive_sha256": "9b6e2ba6381d260a42df9b706e394698fac3cd42e52d395c3e8686db349ce838",
+      "unexpected_non_registry_dependencies": [],
+      "has_patch_table": false,
+      "internal_dependencies": []
+    }
+  ],
+  "standalone_sys_result": {
+    "command": [
+      "cargo",
+      "package",
+      "--offline"
+    ],
+    "cwd": "/tmp/roplat-version-release-20260927/sys-standalone/rsbullet-sys",
+    "exit": 0,
+    "timeout": false,
+    "seconds": 195.3,
+    "log": "/tmp/roplat-version-release-20260927/sys-package.log",
+    "archive": {
+      "filename": "rsbullet_sys-0.3.2.crate",
+      "bytes": 7525687,
+      "sha256": "05652590759dc19b3cd0fe0409d55218d32b64aa0b1ec67944c29afd520a2f3f",
+      "file_count": 2330
+    },
+    "version": "0.3.2"
+  },
+  "standalone_sys_provenance": {
+    "source": "/Users/yanjizhou/yixing/drives/rsbullet/rsbullet-sys",
+    "snapshot": "/tmp/roplat-version-release-20260927/sys-standalone/rsbullet-sys",
+    "version": "0.3.2",
+    "source_files_checked": 7606,
+    "source_head": "ed8dcd86d80426f0cc0e425e310e57be8194d43d",
+    "source_manifest_sha256": "0031f1cf894a4e1143d0f7ef5166e6c7c502ea0e356db48dc3bb1c4c1702ab94",
+    "lock_seed": "previous independently packaged sys snapshot Cargo.lock"
+  },
+  "scope_limits": [
+    "No actual registry upload, ownership/permissions check, or server acceptance tested.",
+    "Temporary batch binds first-party Git dependencies to path+version; final .crate manifests must contain registry-only dependencies.",
+    "Dependency resolution seeded from existing lockfile; no full fresh unlocked resolution.",
+    "Host package compilation covers listed features, not Linux SDK features, hardware, runtime behavior, or all language linker modes.",
+    "Go2 SDK packaging unchanged and archive remains oversized."
+  ]
+}
