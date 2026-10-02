@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-21",
+  "target_dir": "/tmp/drives-platform-audit-target",
+  "rustc": "rustc 1.100.0-nightly (67eda617e 2026-09-10)",
+  "core_sha": "c595393df441056a25b2af8bedfcbd0f598b3fec",
+  "cargo_lock_sha256_before": "af981eeb6f1bc9e316ea7e109508264706014655707944ba9776a9815d9ab1db",
+  "cargo_lock_sha256_after": "af981eeb6f1bc9e316ea7e109508264706014655707944ba9776a9815d9ab1db",
+  "cargo_lock_unchanged": true,
+  "results": [
+    {
+      "command": "cargo test -p libk1 --test safety --locked --offline",
+      "exit_code": 0,
+      "passed": 12
+    },
+    {
+      "command": "cargo test -p libgo2 --test command_routing --locked --offline",
+      "exit_code": 0,
+      "passed": 32,
+      "feature_gated_not_compiled": 1
+    },
+    {
+      "command": "cargo clippy -p libk1 --test safety --locked --offline -- -D warnings",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo clippy -p libgo2 --test command_routing --locked --offline -- -D warnings",
+      "exit_code": 101,
+      "diagnostics": [
+        "unitree-go2-rs/src/types/messages.rs:652 clippy::chunks_exact_to_as_chunks",
+        "unitree-go2-rs/src/types/messages.rs:657 clippy::chunks_exact_to_as_chunks"
+      ]
+    }
+  ],
+  "scope": "Default features only; no device, no fastdds/cyclonedds/real-robot, no workspace/all-targets build, source unchanged. Go2 roplat feature incompatibility established by source audit, not recompiled in this run.",
+  "post_fix": {
+    "branch": "codex/core-alignment-audit",
+    "file": "unitree-go2-rs/src/types/messages.rs",
+    "change": "Replace two chunks_exact calls with one chunks(4) loop copying each chunk into a zero-filled [u8;4], preserving little-endian word packing and final zero padding; no as_chunks/MSRV increase and no API changes.",
+    "tests_passed": 32,
+    "clippy_exit_code": 0,
+    "git_diff_check_exit_code": 0,
+    "cargo_lock_sha256": "af981eeb6f1bc9e316ea7e109508264706014655707944ba9776a9815d9ab1db",
+    "cargo_lock_unchanged": true,
+    "commit_push": false
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "purpose": "Follow-up validation of minimal macOS link metadata fix after the successful pre-fix 23-package archive verification.",
+  "pre_fix_batch_summary": "rehearsal.json",
+  "fixed_sys_package": {
+    "command": [
+      "cargo",
+      "package",
+      "--offline"
+    ],
+    "exit": 0,
+    "timeout": false,
+    "seconds": 170.73,
+    "formal_source_build_rs_sha256": "b555facbbf2ae0f93a43a8467af17b02c9aa978a50a65d30f23b99917095cde2",
+    "scope": "Complete cargo package archive extraction and compile verification after macOS framework metadata fix; independent of pre-fix 23-package rehearsal.",
+    "archive": {
+      "bytes": 7525608,
+      "sha256": "94959ef131aec7205d65be59465bdd5787582c5a56d6992bd3f2657fdcc4e0ff"
+    }
+  },
+  "fixed_sys_archive_source_files_verified": 2328,
+  "fixed_sys_archive_source_mismatches": [],
+  "consumer_build": {
+    "command": [
+      "cargo",
+      "build",
+      "--offline"
+    ],
+    "exit": 0,
+    "timeout": false,
+    "seconds": 277.49,
+    "binary_executed": false,
+    "manual_framework_flags": false,
+    "environment_rustflags": {
+      "RUSTFLAGS": null,
+      "CARGO_ENCODED_RUSTFLAGS": null,
+      "CARGO_TARGET_AARCH64_APPLE_DARWIN_RUSTFLAGS": null
+    },
+    "scope": "Final binary consumer using real fixed sys archive and unchanged other 22 batch archives through a new local registry identity; no patch/path dependency.",
+    "consumer_lock_sha256": "b9441d570c1a705dfeb412ee9914728655a2900cc689e0fb8ed061a89abb6f90"
+  },
+  "consumer_lock_generated_by": [
+    "cargo",
+    "generate-lockfile",
+    "--offline"
+  ],
+  "consumer_lock_scope": "Previously staged local registry versions only; not fresh crates.io resolution.",
+  "consumer_lock_packages": 182,
+  "consumer_lock_version_changes": [],
+  "consumer_lock_checksum_changes": [
+    {
+      "name": "rsbullet_sys",
+      "version": "0.3.1",
+      "before": "a506c49d9ec4e828b4523559470ee91ebc4f0283de77986947b7e36a68591c27",
+      "after": "94959ef131aec7205d65be59465bdd5787582c5a56d6992bd3f2657fdcc4e0ff"
+    }
+  ],
+  "changed_registry_archives": [
+    "rsbullet_sys-0.3.1.crate"
+  ],
+  "manual_framework_parameters": false,
+  "uses_patch_or_path_dependencies": false,
+  "binary_executed": false,
+  "binary": {
+    "bytes": 5692120,
+    "sha256": "24a3e3f7bdc2b73a343d3cde8bf9651bd843b8bff9ed7570b69091c8777a9ea4"
+  },
+  "linked_libraries": [
+    "\t/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 2100.43.0)",
+    "\t/System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa (compatibility version 1.0.0, current version 24.0.0)",
+    "\t/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL (compatibility version 1.0.0, current version 1.0.0)",
+    "\t/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation (compatibility version 150.0.0, current version 5026.5.4)",
+    "\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1356.0.0)",
+    "\t/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit (compatibility version 45.0.0, current version 2685.60.104)",
+    "\t/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics (compatibility version 64.0.0, current version 1965.5.1)",
+    "\t/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation (compatibility version 300.0.0, current version 5026.5.4)",
+    "\t/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)"
+  ],
+  "original_link_failure": {
+    "command": [
+      "cargo",
+      "build",
+      "--offline"
+    ],
+    "exit": 101,
+    "timeout": false,
+    "seconds": 205.69,
+    "binary_executed": false,
+    "source": "Final batch .crate archives plus checked official cached locked dependencies; local registry source replacement, no patch/path dependency."
+  },
+  "original_framework_control": {
+    "command": [
+      "cargo",
+      "rustc",
+      "--offline",
+      "--bin",
+      "rsbullet-publish-link-smoke",
+      "--",
+      "-l",
+      "framework=Cocoa",
+      "-l",
+      "framework=OpenGL"
+    ],
+    "exit": 0,
+    "seconds": 0.24,
+    "binary_executed": false,
+    "scope": "Final binary only receives Cocoa/OpenGL link flags; library source/artifacts unchanged."
+  },
+  "limits": [
+    "Only aarch64-apple-darwin was verified.",
+    "No actual crates.io upload or same-version replacement is claimed.",
+    "Other 22 archives were unchanged, not repackaged for the follow-up.",
+    "Go2 remains unchanged and oversized."
+  ],
+  "date": "2026-09-27",
+  "changed_source": "rsbullet/rsbullet-sys/build.rs",
+  "preparation_script_validation": {
+    "packages": 23,
+    "temporary_manifest_identity_changes": 15,
+    "rust_files_byte_verified": 458,
+    "bullet_source_files_byte_verified": 2328,
+    "stale_native_source_rejected": true,
+    "actual_pre_fix_build_script_rejected": true
+  }
+}

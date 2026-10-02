@@ -1,0 +1,261 @@
+{
+  "checked_at_utc": "2026-09-27T09:14:50.672127+00:00",
+  "scope": "23 candidate package versions; read-only official crates.io API checks",
+  "note": "An absent version does not reserve it or demonstrate upload ownership, package-size acceptance, or publishability. Yanked versions count as occupied.",
+  "all_candidate_versions_unoccupied": true,
+  "packages": [
+    {
+      "name": "roplat_launch",
+      "candidate_version": "0.3.0",
+      "api_url": "https://crates.io/api/v1/crates/roplat_launch",
+      "checked_at_utc": "2026-09-27T09:14:45.487317+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.2.2",
+      "candidate_yanked": null
+    },
+    {
+      "name": "roplat_system",
+      "candidate_version": "0.3.0",
+      "api_url": "https://crates.io/api/v1/crates/roplat_system",
+      "checked_at_utc": "2026-09-27T09:14:45.487602+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.2.2",
+      "candidate_yanked": null
+    },
+    {
+      "name": "roplat_macros",
+      "candidate_version": "0.3.0",
+      "api_url": "https://crates.io/api/v1/crates/roplat_macros",
+      "checked_at_utc": "2026-09-27T09:14:45.487687+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.2.2",
+      "candidate_yanked": null
+    },
+    {
+      "name": "roplat",
+      "candidate_version": "0.3.0",
+      "api_url": "https://crates.io/api/v1/crates/roplat",
+      "checked_at_utc": "2026-09-27T09:14:45.487744+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.2.2",
+      "candidate_yanked": null
+    },
+    {
+      "name": "roplat_build",
+      "candidate_version": "0.3.0",
+      "api_url": "https://crates.io/api/v1/crates/roplat_build",
+      "checked_at_utc": "2026-09-27T09:14:46.043541+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.2.2",
+      "candidate_yanked": null
+    },
+    {
+      "name": "roplat_cpp",
+      "candidate_version": "0.3.0",
+      "api_url": "https://crates.io/api/v1/crates/roplat_cpp",
+      "checked_at_utc": "2026-09-27T09:14:46.077770+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.2.2",
+      "candidate_yanked": null
+    },
+    {
+      "name": "roplat_cpp_msg",
+      "candidate_version": "0.3.0",
+      "api_url": "https://crates.io/api/v1/crates/roplat_cpp_msg",
+      "checked_at_utc": "2026-09-27T09:14:46.084009+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.2.2",
+      "candidate_yanked": null
+    },
+    {
+      "name": "roplat_py",
+      "candidate_version": "0.3.0",
+      "api_url": "https://crates.io/api/v1/crates/roplat_py",
+      "checked_at_utc": "2026-09-27T09:14:46.527076+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.2.2",
+      "candidate_yanked": null
+    },
+    {
+      "name": "cargo-roplat",
+      "candidate_version": "0.3.0",
+      "api_url": "https://crates.io/api/v1/crates/cargo-roplat",
+      "checked_at_utc": "2026-09-27T09:14:47.085330+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.2.2",
+      "candidate_yanked": null
+    },
+    {
+      "name": "robot_behavior",
+      "candidate_version": "0.6.0",
+      "api_url": "https://crates.io/api/v1/crates/robot_behavior",
+      "checked_at_utc": "2026-09-27T09:14:47.085610+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.5.4",
+      "candidate_yanked": null
+    },
+    {
+      "name": "franka_rust",
+      "candidate_version": "0.2.0",
+      "api_url": "https://crates.io/api/v1/crates/franka_rust",
+      "checked_at_utc": "2026-09-27T09:14:47.100359+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.1.15",
+      "candidate_yanked": null
+    },
+    {
+      "name": "libjaka",
+      "candidate_version": "0.2.0",
+      "api_url": "https://crates.io/api/v1/crates/libjaka",
+      "checked_at_utc": "2026-09-27T09:14:47.115728+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.1.16",
+      "candidate_yanked": null
+    },
+    {
+      "name": "libk1",
+      "candidate_version": "0.1.0",
+      "api_url": "https://crates.io/api/v1/crates/libk1",
+      "checked_at_utc": "2026-09-27T09:14:47.680277+00:00",
+      "http_status": 404,
+      "crate_exists": false,
+      "candidate_occupied": false,
+      "latest_version": null,
+      "candidate_yanked": null
+    },
+    {
+      "name": "libgo2",
+      "candidate_version": "0.1.0",
+      "api_url": "https://crates.io/api/v1/crates/libgo2",
+      "checked_at_utc": "2026-09-27T09:14:47.929234+00:00",
+      "http_status": 404,
+      "crate_exists": false,
+      "candidate_occupied": false,
+      "latest_version": null,
+      "candidate_yanked": null
+    },
+    {
+      "name": "libhans",
+      "candidate_version": "0.2.0",
+      "api_url": "https://crates.io/api/v1/crates/libhans",
+      "checked_at_utc": "2026-09-27T09:14:48.132803+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.1.11",
+      "candidate_yanked": null
+    },
+    {
+      "name": "libaubo",
+      "candidate_version": "0.2.0",
+      "api_url": "https://crates.io/api/v1/crates/libaubo",
+      "checked_at_utc": "2026-09-27T09:14:48.436786+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.1.1",
+      "candidate_yanked": null
+    },
+    {
+      "name": "roplat_exrobot",
+      "candidate_version": "0.2.0",
+      "api_url": "https://crates.io/api/v1/crates/roplat_exrobot",
+      "checked_at_utc": "2026-09-27T09:14:48.672982+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.1.2",
+      "candidate_yanked": null
+    },
+    {
+      "name": "rsbullet-core",
+      "candidate_version": "0.4.0",
+      "api_url": "https://crates.io/api/v1/crates/rsbullet-core",
+      "checked_at_utc": "2026-09-27T09:14:48.977533+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.3.4",
+      "candidate_yanked": null
+    },
+    {
+      "name": "rsbullet",
+      "candidate_version": "0.4.0",
+      "api_url": "https://crates.io/api/v1/crates/rsbullet",
+      "checked_at_utc": "2026-09-27T09:14:49.237809+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.3.11",
+      "candidate_yanked": null
+    },
+    {
+      "name": "rsbullet_sys",
+      "candidate_version": "0.3.2",
+      "api_url": "https://crates.io/api/v1/crates/rsbullet_sys",
+      "checked_at_utc": "2026-09-27T09:14:49.450894+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.3.1",
+      "candidate_yanked": null
+    },
+    {
+      "name": "roplat_rerun",
+      "candidate_version": "0.2.0",
+      "api_url": "https://crates.io/api/v1/crates/roplat_rerun",
+      "checked_at_utc": "2026-09-27T09:14:49.580845+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.1.2",
+      "candidate_yanked": null
+    },
+    {
+      "name": "rerun_urdf",
+      "candidate_version": "0.1.1",
+      "api_url": "https://crates.io/api/v1/crates/rerun_urdf",
+      "checked_at_utc": "2026-09-27T09:14:49.796739+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.1.0",
+      "candidate_yanked": null
+    },
+    {
+      "name": "libhans_derive",
+      "candidate_version": "0.1.3",
+      "api_url": "https://crates.io/api/v1/crates/libhans_derive",
+      "checked_at_utc": "2026-09-27T09:14:50.096899+00:00",
+      "http_status": 200,
+      "crate_exists": true,
+      "candidate_occupied": false,
+      "latest_version": "0.1.2",
+      "candidate_yanked": null
+    }
+  ]
+}

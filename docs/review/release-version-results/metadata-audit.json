@@ -1,0 +1,113 @@
+{
+  "checked_at_utc": "2026-09-27T09:25:56.217170+00:00",
+  "method": "Read-only TOML/Git inspection; no Cargo, build, device, or network command in this audit.",
+  "candidate_manifests": {
+    "packages_checked": 23,
+    "version_matrix_matches": true,
+    "internal_minimum_versions_match": true
+  },
+  "git_dependency_pins": {
+    "declarations_checked": 16,
+    "all_match": true,
+    "expected_revisions": {
+      "roplat": "9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be",
+      "robot_behavior": "781245ca4d662a693cfb24955328a5a610859591",
+      "rsbullet": "ed8dcd86d80426f0cc0e425e310e57be8194d43d",
+      "rerun_urdf": "016e0964f9dd2463025b4140460af84259cad199"
+    }
+  },
+  "independent_library_manifests": {
+    "outside_repository_path_dependencies": 0,
+    "parent_workspace_dependency_inheritance": 0,
+    "integration_examples_excluded_from_independence_requirement": true
+  },
+  "lock_comparison_key": [
+    "name",
+    "version",
+    "source",
+    "checksum"
+  ],
+  "root_registry_package_sets": [
+    {
+      "repository": "roplat",
+      "comparison_revision": "b47f7b6aa54a230417331e4b85cefcc8eff9e128",
+      "previous_count": 160,
+      "current_count": 160,
+      "added": 0,
+      "removed": 0
+    },
+    {
+      "repository": "drives",
+      "comparison_revision": "20c74db85edc6e931e44ea0ce74e5866407ba854",
+      "previous_count": 1039,
+      "current_count": 1039,
+      "added": 0,
+      "removed": 0
+    }
+  ],
+  "independent_lockfiles": [
+    {
+      "repository": "robot_behavior",
+      "comparison_revision": "79a3820af143a3ab75dfd3b308469482aac534c0",
+      "current_third_party_registry_packages": 211,
+      "outside_original_drives_seed": 0,
+      "names_with_changed_version_sets_vs_old_independent_lock": 40
+    },
+    {
+      "repository": "franka-rust",
+      "comparison_revision": "c198cba427ad90734d51bca1f6aab7711afa6025",
+      "current_third_party_registry_packages": 232,
+      "outside_original_drives_seed": 0,
+      "names_with_changed_version_sets_vs_old_independent_lock": 50
+    },
+    {
+      "repository": "unitree-go2-rs",
+      "comparison_revision": "22a2d462e16c41bf46770d0efeba74e1469de319",
+      "current_third_party_registry_packages": 37,
+      "outside_original_drives_seed": 0,
+      "names_with_changed_version_sets_vs_old_independent_lock": 15
+    },
+    {
+      "repository": "rsbullet",
+      "comparison_revision": "804518bacad7fec80e065e5f95e1c34524cf8fdc",
+      "current_third_party_registry_packages": 187,
+      "outside_original_drives_seed": 0,
+      "names_with_changed_version_sets_vs_old_independent_lock": 53
+    },
+    {
+      "repository": "libk1",
+      "current_third_party_registry_packages": 0,
+      "outside_original_drives_seed": 0,
+      "lockfile_unchanged": true
+    }
+  ],
+  "first_party_lock_identities": {
+    "all_declared_new_versions_and_revisions_match": true,
+    "duplicate_core_or_behavior_identities": 0
+  },
+  "root_windows_dependency_edge_changes": {
+    "count": 8,
+    "versions_already_present_in_original_lock": true,
+    "windows_build_verified": false,
+    "selected_windows_sys_version": {
+      "arboard": "0.60.2",
+      "quinn-udp": "0.60.2",
+      "winapi-util": "0.61.2",
+      "errno": "0.61.2",
+      "rustix": "0.61.2",
+      "dirs-sys": "0.61.2",
+      "tempfile": "0.61.2",
+      "jiff": "0.61.2"
+    },
+    "note": "Cargo reselected existing windows-sys packages; root registry package identity/checksum set did not change."
+  },
+  "active_version_references": {
+    "stale_current_install_or_dependency_references_found": 0,
+    "historical_evidence_and_unrelated_dependency_versions_preserved": true
+  },
+  "limitations": [
+    "Static metadata consistency does not prove compilation, package verification, or upload acceptance.",
+    "Independent locks were synchronized to the existing drives integration set, not preserved byte-for-byte from their old repository locks.",
+    "Windows dependency edges were inspected only; no Windows compilation was performed."
+  ]
+}

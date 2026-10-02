@@ -1,0 +1,4 @@
+command_bytes,blocking_median_batch_ns_per_cycle,native_median_batch_ns_per_cycle,delta_percent
+48,8.917,5.086,-42.96287989234047
+56,9.289,5.478,-41.02702120788029
+1024,26.645,16.914,-36.52092325014073

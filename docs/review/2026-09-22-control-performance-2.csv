@@ -1,0 +1,10 @@
+path,command_bytes,cycles,samples,old_median_ns_per_cycle,new_median_ns_per_cycle,old_max_sample_ns_per_cycle,new_max_sample_ns_per_cycle,median_delta_percent
+sync_tuple_vs_flow,48,1000000,21,1.090,1.090,1.384,1.295,-0.02
+async_tuple_vs_flow,48,1000000,21,3.003,5.748,3.138,5.825,91.43
+legacy_rhythm_vs_execution,48,1000000,21,7.077,8.952,7.416,9.044,26.49
+sync_tuple_vs_flow,56,1000000,21,1.341,1.336,1.414,1.417,-0.39
+async_tuple_vs_flow,56,1000000,21,3.028,6.490,3.165,6.638,114.35
+legacy_rhythm_vs_execution,56,1000000,21,7.466,9.482,7.630,9.851,26.99
+sync_tuple_vs_flow,1024,1000000,21,11.114,11.099,11.319,11.261,-0.13
+async_tuple_vs_flow,1024,1000000,21,26.859,26.691,27.440,27.026,-0.63
+legacy_rhythm_vs_execution,1024,1000000,21,24.198,26.600,24.325,26.712,9.93

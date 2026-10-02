@@ -1,0 +1,265 @@
+{
+  "command": "cargo metadata --no-deps --format-version 1 --locked --offline",
+  "exit_code": 0,
+  "drives_commit": "9248354fa4ae6c718c7885b8ef2f1e10a269d222",
+  "core_commit": "c595393df441056a25b2af8bedfcbd0f598b3fec",
+  "members_count": 16,
+  "members": [
+    {
+      "name": "jaka_dual",
+      "version": "0.1.0",
+      "features": {}
+    },
+    {
+      "name": "franka_rust",
+      "version": "0.2.0",
+      "features": {
+        "conservative_constraint": [],
+        "cxx": [
+          "dep:cxx"
+        ],
+        "debug": [],
+        "default": [],
+        "fci_v8": [],
+        "ffi": [],
+        "pyo3": [
+          "dep:pyo3"
+        ],
+        "to_cxx": [
+          "cxx",
+          "ffi",
+          "robot_behavior/to_cxx"
+        ],
+        "to_py": [
+          "pyo3",
+          "ffi",
+          "robot_behavior/to_py"
+        ]
+      }
+    },
+    {
+      "name": "libjaka",
+      "version": "0.2.0",
+      "features": {
+        "cxx": [
+          "dep:cxx"
+        ],
+        "debug": [],
+        "default": [],
+        "ffi": [],
+        "pyo3": [
+          "dep:pyo3"
+        ],
+        "to_cxx": [
+          "cxx",
+          "ffi",
+          "robot_behavior/to_cxx"
+        ],
+        "to_py": [
+          "pyo3",
+          "ffi",
+          "robot_behavior/to_py"
+        ]
+      }
+    },
+    {
+      "name": "roplat_rerun",
+      "version": "0.1.2",
+      "features": {}
+    },
+    {
+      "name": "rerun_urdf",
+      "version": "0.1.0",
+      "features": {
+        "default": [],
+        "fk": [
+          "k",
+          "na30"
+        ],
+        "k": [
+          "dep:k"
+        ],
+        "na30": [
+          "dep:na30"
+        ]
+      }
+    },
+    {
+      "name": "rsbullet",
+      "version": "0.3.11",
+      "features": {
+        "clsocket": [
+          "rsbullet-core/clsocket"
+        ],
+        "dart": [
+          "rsbullet-core/dart"
+        ],
+        "default": [],
+        "enet": [
+          "rsbullet-core/enet"
+        ],
+        "grpc": [
+          "rsbullet-core/grpc"
+        ],
+        "mujoco": [
+          "rsbullet-core/mujoco"
+        ],
+        "physx": [
+          "rsbullet-core/physx"
+        ]
+      }
+    },
+    {
+      "name": "rsbullet-core",
+      "version": "0.3.4",
+      "features": {
+        "clsocket": [],
+        "dart": [],
+        "default": [],
+        "enet": [],
+        "grpc": [],
+        "mujoco": [],
+        "physx": []
+      }
+    },
+    {
+      "name": "rsbullet_sys",
+      "version": "0.3.1",
+      "features": {}
+    },
+    {
+      "name": "jaka_roplat_multilang",
+      "version": "0.1.0",
+      "features": {}
+    },
+    {
+      "name": "robot_behavior",
+      "version": "0.6.0",
+      "features": {
+        "cxx": [
+          "dep:cxx"
+        ],
+        "default": [],
+        "ffi": [],
+        "pyo3": [
+          "dep:pyo3"
+        ],
+        "to_c": [
+          "ffi"
+        ],
+        "to_cxx": [
+          "ffi",
+          "cxx"
+        ],
+        "to_py": [
+          "ffi",
+          "pyo3"
+        ]
+      }
+    },
+    {
+      "name": "libaubo",
+      "version": "0.1.1",
+      "features": {
+        "cxx": [
+          "dep:cxx"
+        ],
+        "default": [],
+        "ffi": [],
+        "pyo3": [
+          "dep:pyo3"
+        ],
+        "to_c": [],
+        "to_cxx": [
+          "cxx",
+          "ffi",
+          "robot_behavior/to_cxx"
+        ],
+        "to_py": [
+          "pyo3",
+          "robot_behavior/to_py",
+          "ffi"
+        ]
+      }
+    },
+    {
+      "name": "libhans",
+      "version": "0.1.11",
+      "features": {
+        "cxx": [
+          "dep:cxx"
+        ],
+        "default": [],
+        "ffi": [],
+        "no_robot": [],
+        "pyo3": [
+          "dep:pyo3"
+        ],
+        "to_c": [],
+        "to_cxx": [
+          "cxx",
+          "ffi",
+          "robot_behavior/to_cxx"
+        ],
+        "to_py": [
+          "pyo3",
+          "robot_behavior/to_py",
+          "ffi"
+        ]
+      }
+    },
+    {
+      "name": "libhans_derive",
+      "version": "0.1.2",
+      "features": {}
+    },
+    {
+      "name": "libk1",
+      "version": "0.1.0",
+      "features": {
+        "default": [],
+        "fastdds": [],
+        "real-robot": [
+          "fastdds"
+        ]
+      }
+    },
+    {
+      "name": "libgo2",
+      "version": "0.1.0",
+      "features": {
+        "cyclonedds": [],
+        "default": [],
+        "roplat": [
+          "dep:roplat",
+          "dep:tokio"
+        ]
+      }
+    },
+    {
+      "name": "roplat_exrobot",
+      "version": "0.1.2",
+      "features": {
+        "cxx": [
+          "dep:cxx"
+        ],
+        "default": [],
+        "ffi": [],
+        "pyo3": [
+          "dep:pyo3"
+        ],
+        "to_cxx": [
+          "cxx",
+          "ffi",
+          "robot_behavior/to_cxx"
+        ],
+        "to_py": [
+          "pyo3",
+          "ffi",
+          "robot_behavior/to_py"
+        ]
+      }
+    }
+  ],
+  "scope": "Member discovery only; dependency resolution and compilation are separate."
+}

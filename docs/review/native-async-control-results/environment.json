@@ -1,0 +1,67 @@
+{
+  "host": {
+    "cpu": "Apple M5",
+    "logical_cpus": 10,
+    "memory_bytes": 25769803776,
+    "os": "macOS 26.6.2 (25G83)",
+    "target": "aarch64-apple-darwin"
+  },
+  "toolchain": {
+    "rustc": "1.100.0-nightly (67eda617e 2026-09-10)",
+    "cargo": "1.100.0-nightly (3c0b53475 2026-09-04)",
+    "llvm": "23.1.1"
+  },
+  "profile": "release, default Cargo optimization; no explicit target-cpu tuning",
+  "parameters": {
+    "outer_repeats": 3,
+    "cpu_cycles_per_batch": 1000000,
+    "cpu_pairs_per_repeat": 21,
+    "loopback_rounds_per_repeat": 11,
+    "loopback_cycles": [
+      1,
+      1000
+    ]
+  },
+  "dependencies": {
+    "tokio": "1.48.0",
+    "nalgebra": "0.34.1",
+    "futures": "0.3.32",
+    "serde": "1.0.228"
+  },
+  "franka_feature_audit": {
+    "compiled_target_feature_multisets_equal": true,
+    "compiled_units_per_binary": 149,
+    "registry_packages_checked_against_seed": 122,
+    "method": "Follow each exact test executable Cargo fingerprint dependency graph; compare target name and feature multiset; audit registry versions separately."
+  },
+  "baseline": {
+    "behavior": "38094b239f9d03a9b0977ed98e2d2969ed60808b",
+    "franka": "70e0e022f9d85ce02021d672501ff8d0bf309560",
+    "core": "b47f7b6aa54a230417331e4b85cefcc8eff9e128"
+  },
+  "binaries": {
+    "behavior_before": {
+      "bytes": 937168,
+      "sha256": "f564b60ed5efd5763d6b8306f47e15d8f6a705871c3b8bece1f134bd2825bfba"
+    },
+    "behavior_after": {
+      "bytes": 937168,
+      "sha256": "f564b60ed5efd5763d6b8306f47e15d8f6a705871c3b8bece1f134bd2825bfba"
+    },
+    "behavior_native": {
+      "bytes": 938608,
+      "sha256": "b167fd449bed022350876c46cc3bba6574225a3bd504edbaac5acff4a30b816a"
+    },
+    "franka_before": {
+      "bytes": 1883840,
+      "sha256": "652266f03a620eae5667626f995601bde72bc42d1db4148f2dca56fe12ef3dee"
+    },
+    "franka_after": {
+      "bytes": 2636688,
+      "sha256": "537adf36b68ba67263c14714633b5e13eede75f2b9f7ad5c1dc01daddd44ba46"
+    }
+  },
+  "scope": "CPU-only batch means and unpaced local TCP/UDP protocol loopback; no hardware or scheduler isolation.",
+  "statistics": "CPU: median of three invocation medians. Loopback: median session time and median of per-session p50/p99 estimates over 33 sessions; not a pooled p99. One-cycle p99 omitted.",
+  "discarded": "Empty-test filter attempt and feature-unmatched loopback comparison discarded; final Franka baseline adds only test dependencies to align features, retaining old production source."
+}

@@ -1,0 +1,190 @@
+{
+  "checked_date": "2026-09-27",
+  "scope": "Observed crates.io versions; not proof of upload authorization or name reservation.",
+  "packages": [
+    {
+      "name": "cargo-roplat",
+      "version": "0.2.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.2.2",
+      "source": "https://crates.io/api/v1/crates/cargo-roplat"
+    },
+    {
+      "name": "franka_rust",
+      "version": "0.2.0",
+      "version_exists": false,
+      "crate_exists": true,
+      "registry_latest": "0.1.15",
+      "source": "https://crates.io/api/v1/crates/franka_rust"
+    },
+    {
+      "name": "libaubo",
+      "version": "0.1.1",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.1.1",
+      "source": "https://crates.io/api/v1/crates/libaubo"
+    },
+    {
+      "name": "libgo2",
+      "version": "0.1.0",
+      "version_exists": false,
+      "crate_exists": false,
+      "registry_latest": null,
+      "source": "https://crates.io/api/v1/crates/libgo2"
+    },
+    {
+      "name": "libhans",
+      "version": "0.1.11",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.1.11",
+      "source": "https://crates.io/api/v1/crates/libhans"
+    },
+    {
+      "name": "libhans_derive",
+      "version": "0.1.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.1.2",
+      "source": "https://crates.io/api/v1/crates/libhans_derive"
+    },
+    {
+      "name": "libjaka",
+      "version": "0.2.0",
+      "version_exists": false,
+      "crate_exists": true,
+      "registry_latest": "0.1.16",
+      "source": "https://crates.io/api/v1/crates/libjaka"
+    },
+    {
+      "name": "libk1",
+      "version": "0.1.0",
+      "version_exists": false,
+      "crate_exists": false,
+      "registry_latest": null,
+      "source": "https://crates.io/api/v1/crates/libk1"
+    },
+    {
+      "name": "rerun_urdf",
+      "version": "0.1.0",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.1.0",
+      "source": "https://crates.io/api/v1/crates/rerun_urdf"
+    },
+    {
+      "name": "robot_behavior",
+      "version": "0.6.0",
+      "version_exists": false,
+      "crate_exists": true,
+      "registry_latest": "0.5.4",
+      "source": "https://crates.io/api/v1/crates/robot_behavior"
+    },
+    {
+      "name": "roplat",
+      "version": "0.2.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.2.2",
+      "source": "https://crates.io/api/v1/crates/roplat"
+    },
+    {
+      "name": "roplat_build",
+      "version": "0.2.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.2.2",
+      "source": "https://crates.io/api/v1/crates/roplat_build"
+    },
+    {
+      "name": "roplat_cpp",
+      "version": "0.2.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.2.2",
+      "source": "https://crates.io/api/v1/crates/roplat_cpp"
+    },
+    {
+      "name": "roplat_cpp_msg",
+      "version": "0.2.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.2.2",
+      "source": "https://crates.io/api/v1/crates/roplat_cpp_msg"
+    },
+    {
+      "name": "roplat_exrobot",
+      "version": "0.1.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.1.2",
+      "source": "https://crates.io/api/v1/crates/roplat_exrobot"
+    },
+    {
+      "name": "roplat_launch",
+      "version": "0.2.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.2.2",
+      "source": "https://crates.io/api/v1/crates/roplat_launch"
+    },
+    {
+      "name": "roplat_macros",
+      "version": "0.2.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.2.2",
+      "source": "https://crates.io/api/v1/crates/roplat_macros"
+    },
+    {
+      "name": "roplat_py",
+      "version": "0.2.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.2.2",
+      "source": "https://crates.io/api/v1/crates/roplat_py"
+    },
+    {
+      "name": "roplat_rerun",
+      "version": "0.1.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.1.2",
+      "source": "https://crates.io/api/v1/crates/roplat_rerun"
+    },
+    {
+      "name": "roplat_system",
+      "version": "0.2.2",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.2.2",
+      "source": "https://crates.io/api/v1/crates/roplat_system"
+    },
+    {
+      "name": "rsbullet",
+      "version": "0.3.11",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.3.11",
+      "source": "https://crates.io/api/v1/crates/rsbullet"
+    },
+    {
+      "name": "rsbullet-core",
+      "version": "0.3.4",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.3.4",
+      "source": "https://crates.io/api/v1/crates/rsbullet-core"
+    },
+    {
+      "name": "rsbullet_sys",
+      "version": "0.3.1",
+      "version_exists": true,
+      "crate_exists": true,
+      "registry_latest": "0.3.1",
+      "source": "https://crates.io/api/v1/crates/rsbullet_sys"
+    }
+  ]
+}
