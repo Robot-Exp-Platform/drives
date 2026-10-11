@@ -7,23 +7,29 @@ paths; `examples/jaka_roplat_multilang` is one such example.
 
 ## Source policy for this release preparation
 
-The prepared core version is `roplat` 0.3.0; `robot_behavior` remains at the
-previously selected, unpublished 0.6.0. Neither has been uploaded to crates.io.
-The published core 0.2.2 lacks the current Execution / Lifecycle API, and the
-published behavior line ends at 0.5.4 as of the 2026-09-27 registry check. Current
-Git sources are therefore still necessary for independent driver builds.
+The prepared core version is `roplat` 0.4.0 (DSL revision: `.input.N`, `&value`,
+`&mut` resource lending, `Rhythm::reclaim_input`); `robot_behavior` is 0.7.0, whose
+control rhythms take the robot as Input and return it through `reclaim_input` when a
+drive does not complete, and whose `MotionNode` returns `(R, RobotResult<()>)`.
+Neither has been uploaded to crates.io. The published core 0.2.2 lacks the current
+Execution / Lifecycle API, and the published behavior line ends at 0.6.1. Current
+Git sources are therefore still necessary for independent driver builds. The
+revisions below live on the `copilot/*` branches named in each repository until
+they are merged.
 
 The manifests retain full commit pins and declare the corresponding version
 requirement. The confirmed upstream revisions for this update are:
 
 | Source | Prepared package version | Git revision |
 | --- | --- | --- |
-| `ssh://git@github.com/Robot-Exp-Platform/roplat.git` | 0.3.0 | `9bbdc7d235f5a1b07fc8b9eb0eba016fe2d001be` |
-| `ssh://git@github.com/Robot-Exp-Platform/robot_behavior.git` | 0.6.0 | `781245ca4d662a693cfb24955328a5a610859591` |
-| `ssh://git@github.com/Robot-Exp-Platform/rsbullet.git` | rsbullet / rsbullet-core 0.4.0; rsbullet_sys 0.3.2 | `ed8dcd86d80426f0cc0e425e310e57be8194d43d` |
+| `ssh://git@github.com/Robot-Exp-Platform/roplat.git` | 0.4.0 | `5d4393abdcad47a0b1849e9ad1e6c3fd0d561c66` |
+| `ssh://git@github.com/Robot-Exp-Platform/robot_behavior.git` | 0.7.0 | `13fa7c4ba79573bfd8822eb13b40802253baed15` |
+| `ssh://git@github.com/Robot-Exp-Platform/rsbullet.git` | rsbullet / rsbullet-core 0.5.0; rsbullet_sys 0.3.2 | `b8e41640015cc1f64ac0827b919e6d4b79e1887e` |
 | `ssh://git@github.com/Robot-Exp-Platform/rerun_urdf.git` | 0.1.1 | `016e0964f9dd2463025b4140460af84259cad199` |
 
-`roplat_rerun` requires the prepared RsBullet 0.4.0 at the revision above. Its
+Driver versions moved with them: franka_rust, libjaka, libaubo, libhans,
+roplat_exrobot and roplat_rerun 0.3.0; libgo2 0.2.0. `roplat_rerun` requires
+RsBullet 0.5.0 at the revision above. Its
 direct `rerun_urdf` dependency now uses a Git pin as well: a registry-only requirement
 for unpublished 0.1.1 would otherwise break the independent checkout. Rerun 0.26
 and nalgebra 0.34 remain unchanged.

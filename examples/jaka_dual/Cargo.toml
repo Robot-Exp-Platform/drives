@@ -5,7 +5,7 @@ edition = "2024"
 publish = false
 
 [dependencies]
-robot_behavior = { version = "0.6.0", git = "ssh://git@github.com/Robot-Exp-Platform/robot_behavior.git", rev = "781245ca4d662a693cfb24955328a5a610859591" }
+robot_behavior = { version = "0.7.0", git = "ssh://git@github.com/Robot-Exp-Platform/robot_behavior.git", rev = "13fa7c4ba79573bfd8822eb13b40802253baed15" }
 libjaka = { path = "../../libjaka-rs" }
 # libunitree = { path = "../../libunitree-rs" }
 rsbullet = { path = "../../rsbullet/rsbullet" }
