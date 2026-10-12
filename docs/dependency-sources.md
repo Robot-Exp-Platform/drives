@@ -14,17 +14,17 @@ drive does not complete, and whose `MotionNode` returns `(R, RobotResult<()>)`.
 Neither has been uploaded to crates.io. The published core 0.2.2 lacks the current
 Execution / Lifecycle API, and the published behavior line ends at 0.6.1. Current
 Git sources are therefore still necessary for independent driver builds. The
-revisions below live on the `copilot/*` branches named in each repository until
-they are merged.
+revisions below were prepared on the `copilot/*` branches named in each repository
+and are merged into each repository's `main`.
 
 The manifests retain full commit pins and declare the corresponding version
 requirement. The confirmed upstream revisions for this update are:
 
 | Source | Prepared package version | Git revision |
 | --- | --- | --- |
-| `ssh://git@github.com/Robot-Exp-Platform/roplat.git` | 0.4.0 | `5d4393abdcad47a0b1849e9ad1e6c3fd0d561c66` |
-| `ssh://git@github.com/Robot-Exp-Platform/robot_behavior.git` | 0.7.0 | `13fa7c4ba79573bfd8822eb13b40802253baed15` |
-| `ssh://git@github.com/Robot-Exp-Platform/rsbullet.git` | rsbullet / rsbullet-core 0.5.0; rsbullet_sys 0.3.2 | `b8e41640015cc1f64ac0827b919e6d4b79e1887e` |
+| `ssh://git@github.com/Robot-Exp-Platform/roplat.git` | 0.4.0 | `1a4214906fbbc2159ec1147a2dcd069dd811630a` |
+| `ssh://git@github.com/Robot-Exp-Platform/robot_behavior.git` | 0.7.0 | `e6455314b67e2a749e0a0606e1f7ade8f03d7871` |
+| `ssh://git@github.com/Robot-Exp-Platform/rsbullet.git` | rsbullet / rsbullet-core 0.5.0; rsbullet_sys 0.3.2 | `bfb62478eb5e27a59dda94cc5855eeb59675db6a` |
 | `ssh://git@github.com/Robot-Exp-Platform/rerun_urdf.git` | 0.1.1 | `016e0964f9dd2463025b4140460af84259cad199` |
 
 Driver versions moved with them: franka_rust, libjaka, libaubo, libhans,

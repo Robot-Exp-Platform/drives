@@ -6,6 +6,13 @@ This workspace uses Git submodules for several external projects. Most submodule
 GIT_LFS_SKIP_SMUDGE=1 git submodule update --init --recursive
 ```
 
+## `.github/skills/robot_behavior-skills` (superseded)
+
+The robot_behavior skill now lives in
+[roplat-skills](https://github.com/Robot-Exp-Platform/roplat-skills) as
+`skills/robot-behavior`, updated for robot_behavior 0.7.0 and roplat 0.4.0. This
+submodule is kept for history and is no longer maintained; do not edit it.
+
 ## `unitree-go2-rs` and the official Go2 model
 
 `unitree-go2-rs/` is the managed Rust driver submodule. Its SDK2 reference
