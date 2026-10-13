@@ -5,7 +5,7 @@
 ## 设计与迁移范围
 
 - Node / Rhythm 的业务 Input 和 Output 与 Resources 分离。Resources 是本体类型元组，调用得到对应的可变引用元组；引用与一次 process / drive 的调用生命周期一致。
-- `MotionNode<R, Target>` 声明 Resources `(R,)`、Input `Target`、Output `RobotResult<()>`。失败不需要输出设备本体。
+- `MotionNode<R, S>` 声明 Resources `(R,)`、Input `S::Target`、Output `RobotResult<()>`。失败不需要输出设备本体。
 - `ControlRhythm` / `AsyncControlRhythm` 声明 Resources `(R,)`，Input / Output `()`，删除持有/归还输入的旧状态。内部逻辑保留阻塞控制会话与原生异步会话的区别。
 - System 仅用显式 `.resources.N` 端口绑定资源，删除旧归还边。创建层 Lifecycle、普通 Result 的业务语义、合作式 Execution / N 归还规则不变。允许替换本体，不要求身份不变。
 - Go2 和 Bullet 已内置持有的设备或引擎仍保持内部所有权，Resources `()`。外语节点也声明 Resources `()`；未引入跨进程借用 ABI。
