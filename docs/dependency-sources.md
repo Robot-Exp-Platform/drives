@@ -45,6 +45,11 @@ DAGs that cannot keep exclusive borrows within the current execution-unit layout
 are diagnosed explicitly and deferred by author decision. This release adds no
 implicit lock, clone or fallback scheduling policy for those graphs.
 
+A pending roplat change (branch `claude/resource-order-by-data`, not yet pinned
+here) orders same-resource users only by data and `.trigger` dependencies and
+rejects users without one. The `robot_behavior` tests declare that dependency
+explicitly, so they hold under both the pinned and the pending rule.
+
 This is Git release preparation, not a crates.io upload. The `version` key on a
 Git dependency checks the package version and becomes the registry requirement
 when packaging; the full `rev` identifies the actual source. Until matching
