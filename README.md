@@ -86,7 +86,7 @@ fn main() -> RobotResult<()> {
 
 **async 回调和异步会话不同。** `control_with_async` 是阻塞会话中的 async 回调；`control_native_async` 才返回整个会话的 Future，而且只适用于实现了该能力的后端。运行时选择与周期要求见驱动说明。
 
-需要把这些操作组织成 Roplat 应用图时，再阅读[核心 README](https://github.com/Robot-Exp-Platform/roplat)与 [robot_behavior 的可选适配](https://github.com/Robot-Exp-Platform/robot_behavior#features-and-roplat-integration)。核心当前准备版本为 `0.4.0`（Git 来源，尚未上传 crates.io），配套 robot_behavior `0.7.0`；行为接口的默认构建不要求启用 Roplat。
+需要把这些操作组织成 Roplat 应用图时，再阅读[核心 README](https://github.com/Robot-Exp-Platform/roplat)与 [robot_behavior 的可选适配](https://github.com/Robot-Exp-Platform/robot_behavior#features-and-roplat-integration)。核心当前准备版本为 `0.5.0`（Git 来源，尚未上传 crates.io），配套 robot_behavior `0.8.0`；行为接口的默认构建不要求启用 Roplat。新资源通道将业务数据与调用期间的可变借用分开：`&mut arm >> motion.resources.0`；失败和停止不再通过 Output 或回收钩子归还本体。
 
 ## 开发整个工作区
 

@@ -4,8 +4,8 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 export ROPLAT_SKIP_ASSET_EXPORT=1
 export BULLET_SKIP_ASSET_EXPORT=1
+export CARGO_NET_GIT_FETCH_WITH_CLI=true
 cargo metadata --no-deps --format-version 1 --locked >/dev/null
-cargo check --workspace --all-targets --locked
 cargo check -p robot_behavior --no-default-features --lib --locked
 cargo test -p robot_behavior --features roplat --lib --tests --locked
 cargo clippy -p robot_behavior --all-features --all-targets --locked -- -D warnings
@@ -18,3 +18,6 @@ cargo test -p libk1 --test safety --locked
 if [[ "${ROPLAT_TEST_MULTILANG:-0}" == "1" ]]; then
     cargo test -p jaka_roplat_multilang --lib --locked
 fi
+
+# Broaden compilation only after the finite device-free suites pass.
+cargo check --workspace --all-targets --locked
