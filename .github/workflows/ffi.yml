@@ -3,40 +3,74 @@ name: ffi
 on:
   pull_request:
   push:
-    branches:
-      - main
-      - master
+    branches: [main, master]
+
+permissions:
+  contents: read
 
 jobs:
   check:
     runs-on: windows-latest
+    env:
+      BULLET_SKIP_ASSET_EXPORT: "1"
+      ROPLAT_SKIP_ASSET_EXPORT: "1"
+      GIT_LFS_SKIP_SMUDGE: "1"
+    defaults:
+      run:
+        working-directory: drives
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: recursive
+          path: drives
+          submodules: false
+          token: ${{ secrets.ROPLAT_READ_TOKEN || github.token }}
+
+      - name: Read pinned integration sources
+        id: sources
+        shell: python
+        run: |
+          import json, os, re
+          from pathlib import Path
+          sources = json.loads(Path('.github/integration-sources.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              for key in ('core', 'behavior'):
+                  sha = sources[key]
+                  assert re.fullmatch(r'[0-9a-f]{40}', sha), key
+                  print(f'{key}={sha}', file=output)
+
+      - uses: actions/checkout@v4
+        with:
+          repository: Robot-Exp-Platform/roplat
+          ref: ${{ steps.sources.outputs.core }}
+          path: roplat
+          token: ${{ secrets.ROPLAT_READ_TOKEN || github.token }}
+
+      - uses: actions/checkout@v4
+        with:
+          repository: Robot-Exp-Platform/roplat_behavior
+          ref: ${{ steps.sources.outputs.behavior }}
+          path: roplat_behavior
+          token: ${{ secrets.ROPLAT_READ_TOKEN || github.token }}
+
+      - name: Fetch Cargo submodules
+        run: python scripts/prepare-ci-submodules.py
 
       - uses: dtolnay/rust-toolchain@nightly
 
       - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: drives
 
       - name: Check workspace
-        run: cargo check --workspace
-
-      - name: Check robot_behavior FFI features
-        run: |
-          cargo check --manifest-path robot_behavior/Cargo.toml --features to_c
-          cargo check --manifest-path robot_behavior/Cargo.toml --features to_py
-          cargo check --manifest-path robot_behavior/Cargo.toml --features to_cxx
+        run: cargo check --workspace --all-targets --locked
 
       - name: Check downstream Python FFI
-        run: |
-          cargo check -p franka_rust --features to_py
-          cargo check -p libjaka --features to_py
-          cargo check -p libhans --features to_py
-          cargo check -p roplat_exrobot --features to_py
+        run: >-
+          cargo check -p franka_rust -p libjaka -p libhans -p libaubo -p roplat_exrobot
+          --features franka_rust/to_py,libjaka/to_py,libhans/to_py,libaubo/to_py,roplat_exrobot/to_py
+          --locked
 
       - name: Check downstream CXX FFI
-        run: |
-          cargo check -p franka_rust --features to_cxx
-          cargo check -p libjaka --features to_cxx
-          cargo check -p roplat_exrobot --features to_cxx
+        run: >-
+          cargo check -p franka_rust -p libjaka -p roplat_exrobot
+          --features franka_rust/to_cxx,libjaka/to_cxx,roplat_exrobot/to_cxx --locked

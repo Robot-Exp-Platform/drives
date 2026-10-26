@@ -68,9 +68,11 @@ if (Test-Path $lfsObjects) { Remove-Item -Recurse -Force "$lfsObjects\*" }
 
 ## Current inventory and local housekeeping
 
-There are 18 direct registered submodules and three nested declarations:
-Bullet3, libfranka/common and robot_behavior_page/mkdocs-material. The latter
-two were not initialized for this no-device code review. `examples/franka_letters`
+There are 16 direct registered submodules and two nested declarations:
+Bullet3 and libfranka/common. The latter was not initialized for this no-device
+code review. Since 2026-10-26 `robot_behavior` (renamed `roplat_behavior`) and
+`robot_behavior_page` are no longer submodules; `roplat_behavior` is a sibling
+repository of `drives`. `examples/franka_letters`
 was an obsolete `.gitmodules` declaration without an indexed gitlink; it has
 been removed rather than inventing an unpinned checkout.
 

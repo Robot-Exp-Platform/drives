@@ -10,7 +10,6 @@ import argparse
 import json
 import os
 from pathlib import Path
-import re
 import shutil
 import signal
 import subprocess
@@ -19,7 +18,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = {
-    "robot_behavior": ("robot_behavior", ("", "roplat")),
+    "roplat_behavior": ("../roplat_behavior", ("", "roplat")),
     "libgo2": ("unitree-go2-rs", ("", "roplat")),
     "rsbullet": ("rsbullet/rsbullet", ("", "roplat")),
     "franka_rust": ("franka-rust", ("",)),
@@ -31,18 +30,21 @@ PACKAGES = {
     "roplat_rerun": ("roplat_rerun", ("",)),
 }
 CORE_NAMES = {
-    "robot_behavior", "roplat", "roplat_macros", "roplat_system",
+    "roplat_behavior", "roplat_kinematics", "roplat_control", "roplat_trajectory",
+    "roplat_native", "roplat_msgs", "roplat", "roplat_macros", "roplat_system",
     "roplat_launch", "roplat_py", "roplat_build", "rsbullet", "rsbullet-core",
     "rsbullet_sys", "rerun_urdf",
 }
-PINNED_NAMES = {"roplat", "robot_behavior"}
+REGISTRY_NAMES = {"roplat", "roplat_behavior", "roplat_msgs"}
+BEHAVIOR_NAMES = {"roplat_behavior", "roplat_kinematics", "roplat_control", "roplat_trajectory"}
+CRATES_IO = "registry+https://github.com/rust-lang/crates.io-index"
 SOURCE_FILES = {"Cargo.toml", "build.rs", "rust-toolchain", "rust-toolchain.toml"}
 SOURCE_DIRS = {"src", "tests", "examples", "benches", "cpp", "include", "libhans_derive"}
 
 
 def command(args, cwd, env, capture=False):
     print("+", " ".join(str(arg) for arg in args), "[in", cwd, "]", flush=True)
-    with subprocess.Popen(args, cwd=cwd, env=env, text=True,
+    with subprocess.Popen(args, cwd=cwd, env=env, text=True, encoding="utf-8",
                           stdout=subprocess.PIPE if capture else None,
                           start_new_session=os.name == "posix") as process:
         try:
@@ -83,35 +85,31 @@ def assert_unique(metadata):
             raise RuntimeError("multiple copies of %s: %s" % (name, sorted(ids)))
 
 
-def assert_git_checkouts(metadata, env):
-    cache = Path(env.get("CARGO_HOME", str(Path.home() / ".cargo"))).resolve() / "git" / "checkouts"
+def assert_no_git_sources(metadata):
     for package in metadata["packages"]:
-        if package["name"] not in CORE_NAMES or not (package.get("source") or "").startswith("git+"):
-            continue
-        location = Path(package["manifest_path"]).resolve()
-        if cache not in location.parents:
-            raise RuntimeError("Git package resolved outside Cargo checkout cache: " + str(location))
+        if package["name"] in CORE_NAMES and (package.get("source") or "").startswith("git+"):
+            raise RuntimeError("%s resolved from Git instead of crates.io or a local patch: %s"
+                               % (package["name"], package["source"]))
 
 
-def assert_explicit_sources(metadata):
+def assert_registry_sources(metadata):
     member_ids = set(metadata["workspace_members"])
-    pins = {name: set() for name in PINNED_NAMES}
     for package in metadata["packages"]:
         if package["id"] not in member_ids or package["name"] == "jaka_roplat_multilang":
             continue  # The multilingual demo deliberately belongs to drives.
         for dep in package["dependencies"]:
-            if dep["name"] not in PINNED_NAMES:
+            if dep["name"] not in REGISTRY_NAMES:
                 continue
-            source = dep.get("source") or ""
-            if not source.startswith("git+ssh://git@github.com/Robot-Exp-Platform/"):
-                raise RuntimeError("%s must use an independently accessible pinned %s source: %s"
-                                   % (package["name"], dep["name"], source or dep.get("path")))
-            if not re.search(r"[?&]rev=[0-9a-f]{40}(?:&|$)", source):
-                raise RuntimeError("dependency revision must be a full commit hash: " + source)
-            pins[dep["name"]].add(source)
-    for name, sources in pins.items():
-        if len(sources) > 1:
-            raise RuntimeError("inconsistent %s pins: %s" % (name, sorted(sources)))
+            if (package["name"] in BEHAVIOR_NAMES and dep["name"] in BEHAVIOR_NAMES
+                    and Path(metadata["workspace_root"]).resolve() == (ROOT / "../roplat_behavior").resolve()
+                    and dep.get("path")
+                    and Path(dep["path"]).resolve() == (Path(metadata["workspace_root"]) / dep["name"]).resolve()):
+                continue  # The four crates share their own workspace and use internal paths.
+            if dep.get("source") != CRATES_IO:
+                raise RuntimeError("%s must declare a crates.io dependency on %s: %s"
+                                   % (package["name"], dep["name"], dep.get("source") or dep.get("path")))
+    # Compatible requirements such as ^0.5.0 and ^0.5.1 can resolve to the
+    # same package. assert_unique above verifies the actual type identities.
 
 
 def snapshot(repo, destination):
@@ -148,8 +146,8 @@ def check_package(package, cwd, features, env, offline, skip_build, locked):
             args += ["--locked"]
         metadata = json.loads(command(args, cwd, env, capture=True))
         assert_unique(metadata)
-        assert_git_checkouts(metadata, env)
-        assert_explicit_sources(metadata)
+        assert_no_git_sources(metadata)
+        assert_registry_sources(metadata)
         tree = cargo_args("tree", package, selected_feature, offline)
         tree += ["--edges", "normal", "--prefix", "none", "--format", "{p}", "--locked"]
         names = {line.split()[0] for line in command(tree, cwd, env, capture=True).splitlines() if line}
@@ -177,12 +175,14 @@ def main():
         parser.error("--command-timeout must be positive")
     if args.seed_lockfile and (not args.independent or not args.seed_lockfile.is_file()):
         parser.error("--seed-lockfile requires --independent and an existing file")
-    default = ["robot_behavior", "libgo2", "roplat_exrobot"] if args.independent else ["robot_behavior", "libgo2", "rsbullet"]
+    default = ["libgo2", "roplat_exrobot"] if args.independent else ["roplat_behavior", "libgo2", "rsbullet"]
     packages = args.package or default
     if args.independent and "rsbullet" in packages:
         parser.error("RsBullet is a nested workspace with Bullet vendor submodules; run its independent checkout directly using docs/dependency-sources.md")
+    if args.independent and "roplat_behavior" in packages:
+        parser.error("roplat_behavior is a four-crate sibling workspace; validate its own checkout directly")
     env = os.environ.copy()
-    env.update(BULLET_SKIP_ASSET_EXPORT="1", ROPLAT_SKIP_ASSET_EXPORT="1", CARGO_NET_GIT_FETCH_WITH_CLI="true",
+    env.update(BULLET_SKIP_ASSET_EXPORT="1", ROPLAT_SKIP_ASSET_EXPORT="1",
                DRIVES_CHECK_COMMAND_TIMEOUT=str(args.command_timeout))
     if args.offline:
         env["CARGO_NET_OFFLINE"] = "true"
@@ -202,7 +202,8 @@ def main():
         else:
             # Explicit root is essential for nested workspaces such as RsBullet.
             # Qualified features select only this package's roplat adapter.
-            check_package(package, ROOT, features, env, args.offline, args.skip_build, True)
+            cwd = (ROOT / relative).resolve() if package == "roplat_behavior" else ROOT
+            check_package(package, cwd, features, env, args.offline, args.skip_build, True)
 
 
 if __name__ == "__main__":

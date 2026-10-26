@@ -2,7 +2,7 @@ use nalgebra::{self as na, Vector3};
 use std::{f64::consts::FRAC_PI_2, time::Duration};
 
 use libjaka::JakaMini2;
-use robot_behavior::{Entity, behavior::*};
+use roplat_behavior::{Entity, behavior::*};
 use rsbullet::RsBullet;
 
 fn main() -> anyhow::Result<()> {

@@ -1,6 +1,6 @@
 ﻿use anyhow::Result;
 use franka_rust::FrankaEmika;
-use robot_behavior::behavior::*;
+use roplat_behavior::behavior::*;
 use rsbullet::{Mode, RsBullet};
 use std::{thread::sleep, time::Duration};
 

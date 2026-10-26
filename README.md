@@ -1,5 +1,7 @@
 # drives
 
+本轮主线整合与同级仓/CI 准备见 [2026-10-26 集成记录](docs/review/2026-10-26-mainline-integration.md)。旧版本报告保留其原适用范围。
+
 `drives` 汇集 Robot Experimentation Platform 的 Rust 机器人驱动、通用行为接口、物理仿真与可视化库。你可以在自己的项目里单独依赖一个 crate，也可以克隆这个工作区，一起开发多个后端。
 
 第一次使用时，先根据设备或任务选库，再跟随对应 README 完成最小示例。安装某个已发布驱动不需要先构建整个工作区。
@@ -8,7 +10,7 @@
 
 机器人应用通常同时涉及三件事：计算目标或控制量、与设备交换数据、组织任务运行。这里把它们分成可以组合的层：
 
-1. **行为契约**：`robot_behavior` 用明确的运动空间、控制通道和状态类型描述能力。不同后端可以实现相同接口，应用按所需能力编写。
+1. **行为契约**：`roplat_behavior`（原 `robot_behavior`，0.9 起改名并拆出 `roplat_kinematics`、`roplat_control`、`roplat_trajectory`）用明确的运动空间、控制通道和状态类型描述能力；位姿与采样类型来自核心的 `roplat_msgs`。不同后端可以实现相同接口，应用按所需能力编写。
 2. **具体后端**：真机驱动处理设备协议与会话；RsBullet 提供物理仿真；参考机器人帮助理解接口。统一接口保留各后端的限位、状态和周期差异。
 3. **运行与展示**：需要任务图时接入独立的 [roplat](https://github.com/Robot-Exp-Platform/roplat)；需要观察运动时接入 Rerun。普通驱动调用不必先学习任务图。
 
@@ -18,7 +20,7 @@
 
 | 任务 / 设备 | 仓库与 crate | 建议先了解的内容 |
 |---|---|---|
-| 理解共同接口、编写通用控制代码 | [robot_behavior](https://github.com/Robot-Exp-Platform/robot_behavior) · `robot_behavior 0.6.1` | 类型化运动与控制，状态视图，阻塞和原生异步会话。 |
+| 理解共同接口、编写通用控制代码 | [roplat_behavior](https://github.com/Robot-Exp-Platform/roplat_behavior) · `roplat_behavior 0.9.0`（尚未发布 crates.io） | 类型化运动与控制，状态视图，阻塞和原生异步会话。 |
 | 不连接设备，练习接口 | [roplat_exrobot](https://github.com/Robot-Exp-Platform/roplat_exrobot) · `0.2.0` | 打印指令和合成状态的参考实现，不是物理仿真。 |
 | Franka | [franka-rust](https://github.com/Robot-Exp-Platform/franka-rust) · `franka_rust 0.2.0` | FCI 协议、设备模式，以及同步与原生异步控制。 |
 | JAKA | [libjaka-rs](https://github.com/Robot-Exp-Platform/libjaka-rs) · `libjaka 0.2.0` | TCP 状态查询与 servo；选择正确的状态读取入口。 |
@@ -46,14 +48,14 @@ cd robot-demo
 
 ```toml
 [dependencies]
-robot_behavior = "0.6.1"
-roplat_exrobot = "0.2.0"
+roplat_behavior = "0.9.0"
+roplat_exrobot = "0.5.0"
 ```
 
 将 `src/main.rs` 替换为：
 
 ```rust
-use robot_behavior::{
+use roplat_behavior::{
     Control, JointPositionControl, JointSpace, Motion, Robot, RobotResult,
 };
 use roplat_exrobot::ExRobot;
@@ -86,7 +88,7 @@ fn main() -> RobotResult<()> {
 
 **async 回调和异步会话不同。** `control_with_async` 是阻塞会话中的 async 回调；`control_native_async` 才返回整个会话的 Future，而且只适用于实现了该能力的后端。运行时选择与周期要求见驱动说明。
 
-需要把这些操作组织成 Roplat 应用图时，再阅读[核心 README](https://github.com/Robot-Exp-Platform/roplat)与 [robot_behavior 的可选适配](https://github.com/Robot-Exp-Platform/robot_behavior#features-and-roplat-integration)。核心当前准备版本为 `0.5.0`（Git 来源，尚未上传 crates.io），配套 robot_behavior `0.8.0`；行为接口的默认构建不要求启用 Roplat。新资源通道将业务数据与调用期间的可变借用分开：`&mut arm >> motion.resources.0`；失败和停止不再通过 Output 或回收钩子归还本体。
+需要把这些操作组织成 Roplat 应用图时，再阅读[核心 README](https://github.com/Robot-Exp-Platform/roplat)与 [roplat_behavior 的可选适配](https://github.com/Robot-Exp-Platform/roplat_behavior#features-and-roplat-integration)。roplat_behavior 0.9 依赖核心的 `roplat_msgs`，两者都尚未上传 crates.io，发布前请按下文从源码开发；从 robot_behavior 0.8 迁移见[迁移说明](https://github.com/Robot-Exp-Platform/roplat_behavior/blob/main/MIGRATION_zh.md)。行为接口的默认构建不要求启用 Roplat。新资源通道将业务数据与调用期间的可变借用分开：`&mut arm >> motion.resources.0`；失败和停止不再通过 Output 或回收钩子归还本体。
 
 ## 开发整个工作区
 
@@ -95,8 +97,8 @@ fn main() -> RobotResult<()> {
 ```text
 Robot-Exp-Platform/
 ├── roplat/
+├── roplat_behavior/
 └── drives/
-    ├── robot_behavior/
     ├── franka-rust/
     ├── rsbullet/
     └── ...
@@ -106,19 +108,20 @@ Robot-Exp-Platform/
 
 ```sh
 git clone https://github.com/Robot-Exp-Platform/roplat.git
+git clone https://github.com/Robot-Exp-Platform/roplat_behavior.git
 git clone https://github.com/Robot-Exp-Platform/drives.git
 cd drives
 GIT_LFS_SKIP_SMUDGE=1 git submodule update --init --recursive
 ```
 
-需要对相关 GitHub 仓库有访问权限。部分子模块和 Cargo 源依赖使用 SSH 地址，因此还需配置 Git 的 SSH 访问；能克隆外层仓库不代表所有依赖都已获取。
+需要对相关 GitHub 仓库有访问权限。部分子模块使用 SSH 地址，因此还需配置 Git 的 SSH 访问；能克隆外层仓库不代表所有子模块都已获取。各驱动的 Cargo 依赖均来自 crates.io，不需要额外的 Git 源访问。
 
-根 `Cargo.toml` 将 crates.io 和固定 Git 来源的部分依赖替换为本地子目录，并通过 `../roplat/roplat` 接入核心。这让修改本地公共接口能够直接用于集成验证。子模块固定到父仓记录的提交；更新某个子仓的 `main` 不会让其他检出自动跟随它。
+根 `Cargo.toml` 将部分 crates.io 依赖替换为本地子目录，并通过 `../roplat` 与 `../roplat_behavior` 接入核心和行为契约（`roplat_behavior` 不再是 drives 的子模块）。这让修改本地公共接口能够直接用于集成验证。子模块固定到父仓记录的提交；更新某个子仓的 `main` 不会让其他检出自动跟随它。
 
 先选择要开发的包进行编译，例如：
 
 ```sh
-ROPLAT_SKIP_ASSET_EXPORT=1 BULLET_SKIP_ASSET_EXPORT=1   cargo +nightly check -p robot_behavior --lib
+ROPLAT_SKIP_ASSET_EXPORT=1 BULLET_SKIP_ASSET_EXPORT=1   cargo +nightly check -p roplat_exrobot --lib
 ```
 
 这两个环境变量关闭构建期间的模型资源导出。若需要模型文件，再按对应库 README 明确准备；构建成功不等于模型或设备已经配置好。RsBullet 还需要 C++、CMake 和平台图形开发库，即使应用使用 DIRECT 模式，当前原生构建仍包含图形支撑组件。K1 与 Go2 的厂商 SDK 条件各不相同，应按各自 feature 说明配置。

@@ -1,9 +1,11 @@
 # 当前工作入口（2026-10-13）
 
+本轮主线整合与同级仓/CI 准备见 [2026-10-26 集成记录](docs/review/2026-10-26-mainline-integration.md)。旧版本报告保留其原适用范围。
+
 先阅读 [README](README.md)、[资源借用更新记录](docs/review/2026-10-13-resource-borrow.md)、[依赖说明](docs/dependency-sources.md)、[版本更新记录](docs/review/2026-09-27-release-versions.md)、[原生异步控制记录](docs/review/2026-09-23-native-async-control.md) 与 [前轮接口对齐记录](docs/review/2026-09-21-control-flow-alignment.md)。此前[审阅快照](docs/review/2026-09-21-core-alignment.md)记录修改前状态，不能继续作为已修问题的当前结论。
 
-- 当前核心为待发布 0.5.0（独立 Resources 调用借用通道），固定提交见[依赖说明](docs/dependency-sources.md)。尚未上传 crates.io，不能把 registry 0.2.2 当作当前核心。应用用 `#[roplat::system]`，不要用手写 process 链绕过生命周期与合作退出。
-- `robot_behavior` 0.8.0 默认不依赖 roplat，显式 feature `roplat` 启用 Node / ControlRhythm / AsyncControlRhythm。机器人通过 `Resources=(R,)` 声明，图用 `&mut robot >> user.resources.0` 借给节律或 `MotionNode`；控制节律 Input/Output=()，MotionNode Input=Target、Output=RobotResult<()>。调用结束即结束借用，失败不需要返回本体；允许替换资源本体。已内置设备的 Go2/Bullet 节律保留内部所有权，Resources=()。节点/节律/资源由创建层启用与关闭；传入子域不重置状态。
+- 当前核心为 crates.io 上的 roplat 0.5.0（独立 Resources 调用借用通道，2026-10-22 发布）；各驱动按版本依赖已发布包，见[依赖说明](docs/dependency-sources.md)。更早的 registry 版本不提供当前接口。应用用 `#[roplat::system]`，不要用手写 process 链绕过生命周期与合作退出。
+- `roplat_behavior` 0.9（2026-10-26 由 `robot_behavior` 0.8 改名并拆分，同级仓库 `../roplat_behavior`，不再是本仓子模块；运动学、控制器、轨迹分别在 `roplat_kinematics`、`roplat_control`、`roplat_trajectory`，位姿与采样类型来自核心 `roplat_msgs`，迁移见该仓 MIGRATION_zh.md；0.9 与 roplat_msgs 尚未发布 crates.io）默认不依赖 roplat，显式 feature `roplat` 启用 Node / ControlRhythm / AsyncControlRhythm。机器人通过 `Resources=(R,)` 声明，图用 `&mut robot >> user.resources.0` 借给节律或 `MotionNode`；控制节律 Input/Output=()，MotionNode Input=Target、Output=RobotResult<()>。调用结束即结束借用，失败不需要返回本体；允许替换资源本体。已内置设备的 Go2/Bullet 节律保留内部所有权，Resources=()。节点/节律/资源由创建层启用与关闭；传入子域不重置状态。
 - `control_with_async` 延续 0.6 的**阻塞设备会话 + async 周期闭包**；不要擅自改为异步会话、spawn 或跨线程调度。规范入口 `control_with_flow` / `control_with_flow_async` 返回 `ControlFlow<(), (Command, bool)>`：Continue 发送有效命令，done 后正常结束；Break 不发送本周期算法命令，执行设备协议收尾。收尾不是对象 on_shutdown，更不是统一零命令或急停。
 - 原生异步控制通过独立 AsyncControlWith / AsyncControlRhythm 接入，不改变同步 move_to 或旧 control_with_async。跨 runtime 限制仍适用于旧阻塞包装器；异步 System 使用原生路径。状态有效性/新鲜度与仿真语义仍有边界，参见本轮记录。不要因编译或 mock 通过就宣称真机验证通过。仿真器另行校订，以实物机器人为优先设计语义。
 - 构建/测试设置 `BULLET_SKIP_ASSET_EXPORT=1` 和 `ROPLAT_SKIP_ASSET_EXPORT=1` 避免模型资源写入；不要无人值守运行 GUI 或连接设备的测试。先按包有限验证，再 check workspace；不要直接运行整个 workspace 的全部测试。
@@ -29,7 +31,8 @@
   ```toml
   [patch.crates-io]
   roplat = { path = "../roplat/roplat" }
-  robot_behavior = { path = "./robot_behavior" }
+  roplat_msgs = { path = "../roplat/roplat_msgs" }
+  roplat_behavior = { path = "../roplat_behavior/roplat_behavior" }  # 及 roplat_kinematics / roplat_control / roplat_trajectory
   ```
 
   这意味着 **修改 [`roplat/`](../roplat) 的公共 API 会立即影响本仓所有 crate**。
@@ -58,7 +61,7 @@
 | `examples/jaka_dual/` | 示例 | 双 JAKA 协作 |
 | `examples/cxx_exrobot/` | 示例 | C++ 调用 roplat_exrobot（被 workspace `exclude`，独立构建） |
 
-实际成员以 `cargo metadata --no-deps` 为准（目前 16 个），包括 `robot_behavior`、`libhans_derive` 和 `rsbullet_sys`。根 manifest 的部分 exclude 名称没有指向实际子目录，不能据此宣称这些包被排除。`utils/topp` 和 `utils/copp` 是独立工具仓。
+实际成员以 `cargo metadata --no-deps` 为准（目前 15 个），包括 `libhans_derive` 和 `rsbullet_sys`；`roplat_behavior` 是同级仓库，只作 patch 目标。根 manifest 的部分 exclude 名称没有指向实际子目录，不能据此宣称这些包被排除。`utils/topp` 和 `utils/copp` 是独立工具仓。
 
 ---
 
@@ -145,7 +148,7 @@ bring-up 顺序开启 `fastdds` 与 `real-robot` feature。
   # roplat-exp/Cargo.toml
   [patch.crates-io]
   roplat = { path = "../roplat/roplat" }
-  robot_behavior = { path = "../drives/robot_behavior" }
+  robot_behavior = { path = "../drives/robot_behavior" }  # roplat-exp 尚未迁移；drives 移除该子模块后此路径失效，迁移时改指 ../roplat_behavior
   rsbullet = { path = "../drives/rsbullet/rsbullet" }
   franka_rust = { path = "../drives/franka-rust" }
   ```
@@ -196,11 +199,11 @@ cargo clippy --workspace --all-targets
 
 ### 8.1 本地依赖与 feature
 
-独立子仓保留完整依赖声明，不继承 drives 的 workspace.dependencies。内部基线固定 Git 来源和提交；集成根通过对应 source patch 指向本地实现。当前声明 roplat 0.5.0、robot_behavior 0.8.0，并固定包含当前 API 的 Git 提交；已发 registry 0.2.2 不兼容。待上游实际发布前，保留 Git 来源，版本号不能代替提交和来源校验。集成示例仍可依赖 drives 目录布局；各驱动独立构建须单独验证。`robot_behavior` 的 roplat 适配是可选 feature；直接使用行为接口不应启用它。
+独立子仓保留完整依赖声明，不继承 drives 的 workspace.dependencies。内部基线依赖 crates.io 已发布版本（roplat 0.5、roplat_behavior 0.9 等，后者与 roplat_msgs 尚未发布，发布前依赖集成根的 patch）；集成根通过 `[patch.crates-io]` 指向本地实现。更早的 registry 版本不兼容当前 API。已发布的包不再用 Git 提交固定；需要新接口时先发布上游，再提升版本要求。集成示例仍可依赖 drives 目录布局；各驱动独立构建须单独验证。`roplat_behavior` 的 roplat 适配是可选 feature；直接使用行为接口不应启用它。
 
 ### 8.2 Workspace 成员与 patch 是不同概念
 
-`robot_behavior` 同时是显式 workspace 成员和 patch 目标，不会因此被编译两份。sys/derive 包也在实际成员列表中。默认检查含原生依赖；先选择有限包/feature，不用错误的 exclude 描述推断构建边界。
+`roplat_behavior` 系列是同级仓库中的 patch 目标，不是本仓 workspace 成员。sys/derive 包也在实际成员列表中。默认检查含原生依赖；先选择有限包/feature，不用错误的 exclude 描述推断构建边界。
 
 ### 8.3 真机驱动的安全 / Safety
 
@@ -225,6 +228,6 @@ cargo clippy --workspace --all-targets
 1. **改 `Node` / `Rhythm` 公共 API 时**：先在 [`roplat/`](../roplat) 跑测试，再 `cd ../drives ; cargo check --workspace` 验证下游不破。
 2. **新增驱动**：放新文件夹（如 `libxxx-rs/`）→ 加到根 `Cargo.toml::members` → 在 `roplat_exrobot/` 加适配。
 3. **不要 commit 大型二进制资产**（标定数据、轨迹日志）—— 走 `.gitignore` + 外部存储。
-4. **`robot_behavior/` 是独立子仓**（Robot-Exp-Platform/robot_behavior）。先提交子仓，再更新父 gitlink；推送/PR 遵守当轮用户授权，不能把未推送引用声称为其他设备已可获取。
+4. **`roplat_behavior` 是同级独立仓库**（Robot-Exp-Platform/roplat_behavior，原 robot_behavior），不再以子模块方式纳入本仓；驱动子仓仍按先提交子仓、再更新父 gitlink 的顺序处理；推送/PR 遵守当轮用户授权，不能把未推送引用声称为其他设备已可获取。
 5. **PyBullet 版本敏感** —— `rsbullet-sys` 锁定特定 PyBullet 版本，升级要重新跑 `bindgen` 并测试 ABI。
 6. **`visualShapeBench.json_0.json`**（仓库根有一份）是 PyBullet 的运行时副产物，可以删但不该 commit。

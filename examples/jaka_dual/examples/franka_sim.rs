@@ -1,6 +1,6 @@
 use anyhow::Result;
 use libjaka::JakaMini2;
-use robot_behavior::behavior::*;
+use roplat_behavior::behavior::*;
 use rsbullet::{Mode, RsBullet, RsBulletRobot};
 use std::{thread::sleep, time::Duration};
 
