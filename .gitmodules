@@ -22,9 +22,6 @@
 [submodule "rerun_urdf"]
 	path = utils/rerun_urdf
 	url = git@github.com:Robot-Exp-Platform/rerun_urdf.git
-[submodule "robot_behavior-skills"]
-	path = .github/skills/robot_behavior-skills
-	url = git@github.com:Robot-Exp-Platform/robot_behavior-skills.git
 [submodule "utils/copp"]
 	path = utils/copp
 	url = git@github.com:TOPP-THU/copp.git

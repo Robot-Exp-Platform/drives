@@ -6,12 +6,13 @@ This workspace uses Git submodules for several external projects. Most submodule
 GIT_LFS_SKIP_SMUDGE=1 git submodule update --init --recursive
 ```
 
-## `.github/skills/robot_behavior-skills` (superseded)
+## `.github/skills/robot_behavior-skills` (removed)
 
-The robot_behavior skill now lives in
+The robot_behavior skill lives in
 [roplat-skills](https://github.com/Robot-Exp-Platform/roplat-skills) as
-`skills/robot-behavior`, updated for robot_behavior 0.7.0 and roplat 0.4.0. This
-submodule is kept for history and is no longer maintained; do not edit it.
+`skills/robot-behavior`. The unmaintained submodule was removed on 2026-10-27;
+its last pinned commit was `bcf3cba55377171b24b94ba1a3b0bfa78c33e430`, and older
+review records under `docs/review/` still refer to it by that path.
 
 ## `unitree-go2-rs` and the official Go2 model
 
