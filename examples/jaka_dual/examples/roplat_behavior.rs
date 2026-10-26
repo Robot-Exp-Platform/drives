@@ -7,7 +7,7 @@ fn main() {
 mod tests {
     use std::fs;
 
-    use robot_behavior::behavior::{FlangeSpace, JointSpace, Joints, MotionSpace, Pose};
+    use roplat_behavior::behavior::{FlangeSpace, JointSpace, Joints, MotionSpace, Pose};
 
     struct DemoRobot;
 

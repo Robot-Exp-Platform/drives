@@ -1,7 +1,7 @@
 use anyhow::Result;
 use franka_rust::FrankaEmika;
 use libjaka::JakaMini2;
-use robot_behavior::behavior::*;
+use roplat_behavior::behavior::*;
 use rsbullet::{Mode, RsBullet, RsBulletRobot};
 use std::{f64::consts::FRAC_PI_4, thread::sleep, time::Duration};
 

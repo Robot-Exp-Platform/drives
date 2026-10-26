@@ -8,7 +8,7 @@ mod tests {
         JakaA5,
         types::{EndMoveData, MoveLData},
     };
-    use robot_behavior::{Coord, Pose, behavior::*};
+    use roplat_behavior::{Coord, Pose, behavior::*};
 
     #[test]
     fn init() -> anyhow::Result<()> {
@@ -48,7 +48,7 @@ mod tests {
         let mut robot = JakaA5::new("10.5.5.100");
 
         robot.with_coord(Coord::Relative);
-        robot.move_to::<FlangeSpace>(Pose::Position([0., 0., 0.05]))?;
+        robot.move_to::<FlangeSpace>(Pose::from_position([0., 0., 0.05]))?;
 
         Ok(())
     }
@@ -62,7 +62,7 @@ mod tests {
             .with_cartesian_velocity(0.02)
             .with_coord(Coord::Relative);
         robot
-            .move_to::<FlangeSpace>(Pose::Euler([0., 0., 1.], [0.; 3]))
+            .move_to::<FlangeSpace>(Pose::from_euler([0., 0., 1.], [0.; 3]))
             .unwrap();
 
         Ok(())

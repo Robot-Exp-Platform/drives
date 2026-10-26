@@ -5,7 +5,7 @@
 
 use franka_rust::FrankaEmika;
 use nalgebra as na;
-use robot_behavior::{Pose, behavior::*};
+use roplat_behavior::{Pose, behavior::*};
 use roplat_rerun::RerunHost;
 use rsbullet::RsBullet;
 
@@ -47,7 +47,7 @@ fn main() -> anyhow::Result<()> {
     let rotation = na::UnitQuaternion::from_euler_angles(PI, 0.0, 0.0);
     let target_pose = na::Isometry3::from_parts(translation, rotation);
 
-    robot.move_to::<FlangeSpace>(Pose::Quat(target_pose))?;
+    robot.move_to::<FlangeSpace>(Pose::from_isometry(target_pose))?;
     // robot.move_to::<JointSpace<6>>([FRAC_PI_2; 6])?;
 
     for _ in 0..300 {
@@ -59,7 +59,7 @@ fn main() -> anyhow::Result<()> {
     //     na::Translation3::new(0.4, 0.1, 0.2),
     //     rotation,
     // );
-    // robot.move_to::<FlangeSpace>(Pose::Quat(line_end_pose))?;
+    // robot.move_to::<FlangeSpace>(Pose::from_isometry(line_end_pose))?;
 
     loop {
         physics_engine.step()?;
