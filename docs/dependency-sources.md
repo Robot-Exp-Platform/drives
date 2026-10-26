@@ -71,8 +71,8 @@ helper/sys packages and application versions remain unchanged. See the
 validation and scope. Historical reports preserve their original versions,
 commit pins and measurements.
 
-The current libraries require a Rust nightly toolchain (`generic_const_exprs` /
-`adt_const_params`); these checks use the caller's selected toolchain and do not
+The current libraries require a Rust nightly toolchain (`adt_const_params`,
+`async_trait_bounds`; `generic_const_exprs` was removed on 2026-10-27); these checks use the caller's selected toolchain and do not
 claim stable-Rust support. Builds and checks skip optional asset export with:
 
 ```sh
