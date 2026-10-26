@@ -1,5 +1,7 @@
 # drives
 
+本轮主线整合与同级仓/CI 准备见 [2026-10-26 集成记录](docs/review/2026-10-26-mainline-integration.md)。旧版本报告保留其原适用范围。
+
 `drives` 汇集 Robot Experimentation Platform 的 Rust 机器人驱动、通用行为接口、物理仿真与可视化库。你可以在自己的项目里单独依赖一个 crate，也可以克隆这个工作区，一起开发多个后端。
 
 第一次使用时，先根据设备或任务选库，再跟随对应 README 完成最小示例。安装某个已发布驱动不需要先构建整个工作区。

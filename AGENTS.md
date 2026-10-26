@@ -1,5 +1,7 @@
 # 当前工作入口（2026-10-13）
 
+本轮主线整合与同级仓/CI 准备见 [2026-10-26 集成记录](docs/review/2026-10-26-mainline-integration.md)。旧版本报告保留其原适用范围。
+
 先阅读 [README](README.md)、[资源借用更新记录](docs/review/2026-10-13-resource-borrow.md)、[依赖说明](docs/dependency-sources.md)、[版本更新记录](docs/review/2026-09-27-release-versions.md)、[原生异步控制记录](docs/review/2026-09-23-native-async-control.md) 与 [前轮接口对齐记录](docs/review/2026-09-21-control-flow-alignment.md)。此前[审阅快照](docs/review/2026-09-21-core-alignment.md)记录修改前状态，不能继续作为已修问题的当前结论。
 
 - 当前核心为 crates.io 上的 roplat 0.5.0（独立 Resources 调用借用通道，2026-10-22 发布）；各驱动按版本依赖已发布包，见[依赖说明](docs/dependency-sources.md)。更早的 registry 版本不提供当前接口。应用用 `#[roplat::system]`，不要用手写 process 链绕过生命周期与合作退出。

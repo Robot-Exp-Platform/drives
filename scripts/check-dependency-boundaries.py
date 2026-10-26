@@ -18,7 +18,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = {
-    "robot_behavior": ("robot_behavior", ("", "roplat")),
+    "roplat_behavior": ("../roplat_behavior", ("", "roplat")),
     "libgo2": ("unitree-go2-rs", ("", "roplat")),
     "rsbullet": ("rsbullet/rsbullet", ("", "roplat")),
     "franka_rust": ("franka-rust", ("",)),
@@ -30,11 +30,13 @@ PACKAGES = {
     "roplat_rerun": ("roplat_rerun", ("",)),
 }
 CORE_NAMES = {
-    "robot_behavior", "roplat", "roplat_macros", "roplat_system",
+    "roplat_behavior", "roplat_kinematics", "roplat_control", "roplat_trajectory",
+    "roplat_native", "roplat_msgs", "roplat", "roplat_macros", "roplat_system",
     "roplat_launch", "roplat_py", "roplat_build", "rsbullet", "rsbullet-core",
     "rsbullet_sys", "rerun_urdf",
 }
-PUBLISHED_NAMES = {"roplat", "robot_behavior"}
+REGISTRY_NAMES = {"roplat", "roplat_behavior", "roplat_msgs"}
+BEHAVIOR_NAMES = {"roplat_behavior", "roplat_kinematics", "roplat_control", "roplat_trajectory"}
 CRATES_IO = "registry+https://github.com/rust-lang/crates.io-index"
 SOURCE_FILES = {"Cargo.toml", "build.rs", "rust-toolchain", "rust-toolchain.toml"}
 SOURCE_DIRS = {"src", "tests", "examples", "benches", "cpp", "include", "libhans_derive"}
@@ -42,7 +44,7 @@ SOURCE_DIRS = {"src", "tests", "examples", "benches", "cpp", "include", "libhans
 
 def command(args, cwd, env, capture=False):
     print("+", " ".join(str(arg) for arg in args), "[in", cwd, "]", flush=True)
-    with subprocess.Popen(args, cwd=cwd, env=env, text=True,
+    with subprocess.Popen(args, cwd=cwd, env=env, text=True, encoding="utf-8",
                           stdout=subprocess.PIPE if capture else None,
                           start_new_session=os.name == "posix") as process:
         try:
@@ -92,20 +94,22 @@ def assert_no_git_sources(metadata):
 
 def assert_registry_sources(metadata):
     member_ids = set(metadata["workspace_members"])
-    requirements = {name: set() for name in PUBLISHED_NAMES}
     for package in metadata["packages"]:
         if package["id"] not in member_ids or package["name"] == "jaka_roplat_multilang":
             continue  # The multilingual demo deliberately belongs to drives.
         for dep in package["dependencies"]:
-            if dep["name"] not in PUBLISHED_NAMES:
+            if dep["name"] not in REGISTRY_NAMES:
                 continue
+            if (package["name"] in BEHAVIOR_NAMES and dep["name"] in BEHAVIOR_NAMES
+                    and Path(metadata["workspace_root"]).resolve() == (ROOT / "../roplat_behavior").resolve()
+                    and dep.get("path")
+                    and Path(dep["path"]).resolve() == (Path(metadata["workspace_root"]) / dep["name"]).resolve()):
+                continue  # The four crates share their own workspace and use internal paths.
             if dep.get("source") != CRATES_IO:
-                raise RuntimeError("%s must depend on the published %s from crates.io: %s"
+                raise RuntimeError("%s must declare a crates.io dependency on %s: %s"
                                    % (package["name"], dep["name"], dep.get("source") or dep.get("path")))
-            requirements[dep["name"]].add(dep["req"])
-    for name, reqs in requirements.items():
-        if len(reqs) > 1:
-            raise RuntimeError("inconsistent %s requirements: %s" % (name, sorted(reqs)))
+    # Compatible requirements such as ^0.5.0 and ^0.5.1 can resolve to the
+    # same package. assert_unique above verifies the actual type identities.
 
 
 def snapshot(repo, destination):
@@ -171,10 +175,12 @@ def main():
         parser.error("--command-timeout must be positive")
     if args.seed_lockfile and (not args.independent or not args.seed_lockfile.is_file()):
         parser.error("--seed-lockfile requires --independent and an existing file")
-    default = ["robot_behavior", "libgo2", "roplat_exrobot"] if args.independent else ["robot_behavior", "libgo2", "rsbullet"]
+    default = ["libgo2", "roplat_exrobot"] if args.independent else ["roplat_behavior", "libgo2", "rsbullet"]
     packages = args.package or default
     if args.independent and "rsbullet" in packages:
         parser.error("RsBullet is a nested workspace with Bullet vendor submodules; run its independent checkout directly using docs/dependency-sources.md")
+    if args.independent and "roplat_behavior" in packages:
+        parser.error("roplat_behavior is a four-crate sibling workspace; validate its own checkout directly")
     env = os.environ.copy()
     env.update(BULLET_SKIP_ASSET_EXPORT="1", ROPLAT_SKIP_ASSET_EXPORT="1",
                DRIVES_CHECK_COMMAND_TIMEOUT=str(args.command_timeout))
@@ -196,7 +202,8 @@ def main():
         else:
             # Explicit root is essential for nested workspaces such as RsBullet.
             # Qualified features select only this package's roplat adapter.
-            check_package(package, ROOT, features, env, args.offline, args.skip_build, True)
+            cwd = (ROOT / relative).resolve() if package == "roplat_behavior" else ROOT
+            check_package(package, cwd, features, env, args.offline, args.skip_build, True)
 
 
 if __name__ == "__main__":
