@@ -1,6 +1,3 @@
-[submodule "robot_behavior"]
-	path = robot_behavior
-	url = git@github.com:Robot-Exp-Platform/robot_behavior.git
 [submodule "libjaka-rs"]
 	path = libjaka-rs
 	url = git@github.com:Robot-Exp-Platform/libjaka-rs.git
@@ -25,9 +22,6 @@
 [submodule "rerun_urdf"]
 	path = utils/rerun_urdf
 	url = git@github.com:Robot-Exp-Platform/rerun_urdf.git
-[submodule "robot_behavior_page"]
-	path = robot_behavior_page
-	url = git@github.com:Robot-Exp-Platform/robot_behavior_page.git
 [submodule "robot_behavior-skills"]
 	path = .github/skills/robot_behavior-skills
 	url = git@github.com:Robot-Exp-Platform/robot_behavior-skills.git

@@ -5,6 +5,20 @@ from `drives/Cargo.toml`, and cloning a driver does not require a sibling roplat
 checkout. Application examples inside drives may deliberately use integration
 paths; `examples/jaka_roplat_multilang` is one such example.
 
+## Pending: roplat_behavior 0.9 (2026-10-26, unpublished)
+
+`robot_behavior` is renamed `roplat_behavior` and split into `roplat_behavior`,
+`roplat_kinematics`, `roplat_control` and `roplat_trajectory` (all 0.9.0, a
+sibling repository instead of a drives submodule). Its pose and sample types
+come from the core's new `roplat_msgs`. On the migration branches the drivers
+require these crates (`franka_rust` / `libjaka` / `libhans` / `libaubo` /
+`roplat_exrobot` / `roplat_rerun` 0.5.0, `rsbullet` / `rsbullet-core` 0.7.0).
+None of them is on crates.io yet, so until they are released an independent
+driver checkout does not resolve from the registry; build at this integration
+root, whose `[patch.crates-io]` points at `../roplat` and `../roplat_behavior`.
+The table below remains the last published state. Migration notes:
+[MIGRATION.md](https://github.com/Robot-Exp-Platform/roplat_behavior/blob/main/MIGRATION.md).
+
 ## Published sources
 
 The drivers depend on the crates.io releases published on 2026-10-22. No driver

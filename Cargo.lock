@@ -280,7 +280,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0348a1c054491f4bfe6ab86a7b6ab1e44e45d899005de92f58b3df180b36ddaf"
 dependencies = [
  "clipboard-win",
- "image 0.25.9",
+ "image",
  "log",
  "objc2 0.6.3",
  "objc2-app-kit 0.3.2",
@@ -289,7 +289,7 @@ dependencies = [
  "objc2-foundation 0.3.2",
  "parking_lot",
  "percent-encoding",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
  "x11rb",
 ]
 
@@ -1474,7 +1474,7 @@ checksum = "fe6d2e5af09e8c8ad56c969f2157a3d4238cebc7c55f0a517728c38f7b200f81"
 dependencies = [
  "serde",
  "termcolor",
- "unicode-width 0.1.14",
+ "unicode-width 0.2.2",
 ]
 
 [[package]]
@@ -1485,7 +1485,7 @@ checksum = "af491d569909a7e4dee0ad7db7f5341fef5c614d5b8ec8cf765732aba3cff681"
 dependencies = [
  "serde",
  "termcolor",
- "unicode-width 0.1.14",
+ "unicode-width 0.2.2",
 ]
 
 [[package]]
@@ -1493,12 +1493,6 @@ name = "color-hex"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ecdffb913a326b6c642290a0d0ec8e8d6597291acdc07cc4c9cb4b3635d44cf9"
-
-[[package]]
-name = "color_quant"
-version = "1.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3d7b894f5411737b7867f4827955924d7c254fc9f4d91a6aad6b097804b1018b"
 
 [[package]]
 name = "colorchoice"
@@ -1731,18 +1725,6 @@ checksum = "3d44a101f213f6c4cdc1853d4b78aef6db6bdfa3468798cc1d9912f4735013eb"
 dependencies = [
  "bitflags 2.10.0",
  "core-foundation 0.10.1",
- "libc",
-]
-
-[[package]]
-name = "core-text"
-version = "20.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c9d2790b5c08465d49f8dc05c8bcae9fea467855947db39b0f8145c091aaced5"
-dependencies = [
- "core-foundation 0.9.4",
- "core-graphics",
- "foreign-types",
  "libc",
 ]
 
@@ -2738,15 +2720,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "dirs"
-version = "6.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c3e8aa94d75141228480295a7d0e7feb620b1a5ad9f12bc40be62411e38cce4e"
-dependencies = [
- "dirs-sys",
-]
-
-[[package]]
 name = "dirs-sys"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2755,7 +2728,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -2818,18 +2791,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d8b14ccef22fc6f5a8f4d7d768562a182c04ce9a3b3157b91390b52ddfdf1a76"
 
 [[package]]
-name = "dwrote"
-version = "0.11.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9e1b35532432acc8b19ceed096e35dfa088d3ea037fe4f3c085f1f97f33b4d02"
-dependencies = [
- "lazy_static",
- "libc",
- "winapi",
- "wio",
-]
-
-[[package]]
 name = "dyn-clone"
 version = "1.0.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2869,7 +2830,7 @@ dependencies = [
  "glutin",
  "glutin-winit",
  "home",
- "image 0.25.9",
+ "image",
  "js-sys",
  "log",
  "objc2 0.5.2",
@@ -3012,7 +2973,7 @@ dependencies = [
  "egui",
  "ehttp 0.6.0",
  "enum-map",
- "image 0.25.9",
+ "image",
  "log",
  "mime_guess2",
  "profiling",
@@ -3280,7 +3241,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -3443,12 +3404,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "float-ord"
-version = "0.3.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8ce81f49ae8a0482e4c55ea62ebbd7e5a686af544c00b9d090bba3ff9be97b3d"
-
-[[package]]
 name = "fnv"
 version = "1.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3465,31 +3420,6 @@ name = "foldhash"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "77ce24cb58228fbb8aa041425bb1050850ac19177686ea6e0f41a70416f56fdb"
-
-[[package]]
-name = "font-kit"
-version = "0.14.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2c7e611d49285d4c4b2e1727b72cf05353558885cc5252f93707b845dfcaf3d3"
-dependencies = [
- "bitflags 2.10.0",
- "byteorder",
- "core-foundation 0.9.4",
- "core-graphics",
- "core-text",
- "dirs",
- "dwrote",
- "float-ord",
- "freetype-sys",
- "lazy_static",
- "libc",
- "log",
- "pathfinder_geometry",
- "pathfinder_simd",
- "walkdir",
- "winapi",
- "yeslogic-fontconfig-sys",
-]
 
 [[package]]
 name = "foreign-types"
@@ -3535,7 +3465,7 @@ checksum = "795cbfc56d419a7ce47ccbb7504dd9a5b7c484c083c356e797de08bd988d9629"
 
 [[package]]
 name = "franka_rust"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "anyhow",
  "bincode",
@@ -3550,8 +3480,11 @@ dependencies = [
  "num-derive",
  "num-traits",
  "pyo3",
- "robot_behavior",
  "roplat",
+ "roplat_behavior",
+ "roplat_control",
+ "roplat_kinematics",
+ "roplat_trajectory",
  "serde",
  "serde-big-array",
  "serde_json",
@@ -3560,17 +3493,6 @@ dependencies = [
  "strum_macros 0.27.2",
  "thiserror 2.0.18",
  "tokio",
-]
-
-[[package]]
-name = "freetype-sys"
-version = "0.20.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0e7edc5b9669349acfda99533e9e0bcf26a51862ab43b08ee7745c55d28eb134"
-dependencies = [
- "cc",
- "libc",
- "pkg-config",
 ]
 
 [[package]]
@@ -3742,16 +3664,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gif"
-version = "0.12.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "80792593675e051cf94a4b111980da2ba60d4a83e43e0048c5693baab3977045"
-dependencies = [
- "color_quant",
- "weezl",
-]
-
-[[package]]
 name = "gimli"
 version = "0.32.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3895,7 +3807,7 @@ dependencies = [
  "base64 0.13.1",
  "byteorder",
  "gltf-json",
- "image 0.25.9",
+ "image",
  "lazy_static",
  "serde_json",
  "urlencoding",
@@ -4378,7 +4290,7 @@ dependencies = [
  "js-sys",
  "log",
  "wasm-bindgen",
- "windows-core 0.58.0",
+ "windows-core 0.62.2",
 ]
 
 [[package]]
@@ -4496,20 +4408,6 @@ checksum = "3acae9609540aa318d1bc588455225fb2085b9ed0c4f6bd0d9d5bcd86f1a0344"
 dependencies = [
  "icu_normalizer",
  "icu_properties",
-]
-
-[[package]]
-name = "image"
-version = "0.24.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5690139d2f55868e080017335e4b94cb7414274c74f1669c84fb5feba2c9f69d"
-dependencies = [
- "bytemuck",
- "byteorder",
- "color_quant",
- "jpeg-decoder",
- "num-traits",
- "png 0.17.16",
 ]
 
 [[package]]
@@ -4689,7 +4587,7 @@ dependencies = [
  "franka_rust",
  "libjaka",
  "nalgebra 0.34.1",
- "robot_behavior",
+ "roplat_behavior",
  "roplat_rerun",
  "rsbullet",
  "serde_json",
@@ -4700,8 +4598,8 @@ name = "jaka_roplat_multilang"
 version = "0.1.0"
 dependencies = [
  "libjaka",
- "robot_behavior",
  "roplat",
+ "roplat_behavior",
  "roplat_build",
  "roplat_py",
  "rsbullet",
@@ -4722,7 +4620,7 @@ dependencies = [
  "portable-atomic-util",
  "serde_core",
  "wasm-bindgen",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -4938,12 +4836,12 @@ dependencies = [
 
 [[package]]
 name = "libaubo"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "cxx",
  "nalgebra 0.34.1",
  "pyo3",
- "robot_behavior",
+ "roplat_behavior",
  "serde",
  "serde-big-array",
  "serde_json",
@@ -4968,7 +4866,7 @@ dependencies = [
 
 [[package]]
 name = "libhans"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "bincode",
  "bitflags 2.10.0",
@@ -4982,7 +4880,7 @@ dependencies = [
  "num-traits",
  "paste",
  "pyo3",
- "robot_behavior",
+ "roplat_behavior",
  "serde",
  "serde-big-array",
  "serde_json",
@@ -5001,7 +4899,7 @@ dependencies = [
 
 [[package]]
 name = "libjaka"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "bincode",
  "cxx",
@@ -5011,7 +4909,8 @@ dependencies = [
  "paste",
  "pyo3",
  "reqwest",
- "robot_behavior",
+ "roplat_behavior",
+ "roplat_kinematics",
  "rsruckig",
  "serde",
  "serde_json",
@@ -6183,7 +6082,7 @@ version = "0.25.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "36820e9051aca1014ddc75770aab4d68bc1e9e632f0f5627c4086bc216fb583b"
 dependencies = [
- "ttf-parser 0.25.1",
+ "ttf-parser",
 ]
 
 [[package]]
@@ -6260,25 +6159,6 @@ name = "pathdiff"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "df94ce210e5bc13cb6651479fa48d14f601d9858cfe0467f43ae157023b938d3"
-
-[[package]]
-name = "pathfinder_geometry"
-version = "0.5.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0b7b7e7b4ea703700ce73ebf128e1450eb69c3a8329199ffbfb9b2a0418e5ad3"
-dependencies = [
- "log",
- "pathfinder_simd",
-]
-
-[[package]]
-name = "pathfinder_simd"
-version = "0.5.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bf9027960355bf3afff9841918474a81a5f972ac6d226d518060bba758b5ad57"
-dependencies = [
- "rustc_version",
-]
 
 [[package]]
 name = "peg"
@@ -6441,52 +6321,6 @@ name = "pkg-config"
 version = "0.3.32"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7edddbd0b52d732b21ad9a5fab5c704c14cd949e5e9a1ec5929a24fded1b904c"
-
-[[package]]
-name = "plotters"
-version = "0.3.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5aeb6f403d7a4911efb1e33402027fc44f29b5bf6def3effcc22d7bb75f2b747"
-dependencies = [
- "chrono",
- "font-kit",
- "image 0.24.9",
- "lazy_static",
- "num-traits",
- "pathfinder_geometry",
- "plotters-backend",
- "plotters-bitmap",
- "plotters-svg",
- "ttf-parser 0.20.0",
- "wasm-bindgen",
- "web-sys",
-]
-
-[[package]]
-name = "plotters-backend"
-version = "0.3.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "df42e13c12958a16b3f7f4386b9ab1f3e7933914ecea48da7139435263a4172a"
-
-[[package]]
-name = "plotters-bitmap"
-version = "0.3.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "72ce181e3f6bf82d6c1dc569103ca7b1bd964c60ba03d7e6cdfbb3e3eb7f7405"
-dependencies = [
- "gif",
- "image 0.24.9",
- "plotters-backend",
-]
-
-[[package]]
-name = "plotters-svg"
-version = "0.3.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "51bae2ac328883f7acdfea3d66a7c35751187f870bc81f94563733a154d7a670"
-dependencies = [
- "plotters-backend",
-]
 
 [[package]]
 name = "ply-rs"
@@ -6668,7 +6502,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9120690fafc389a67ba3803df527d0ec9cbbc9cc45e4cc20b332996dfb672425"
 dependencies = [
  "anyhow",
- "itertools 0.10.5",
+ "itertools 0.14.0",
  "proc-macro2",
  "quote",
  "syn 2.0.111",
@@ -6890,7 +6724,7 @@ dependencies = [
  "once_cell",
  "socket2",
  "tracing",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -7318,7 +7152,7 @@ dependencies = [
  "anyhow",
  "arrow",
  "crossbeam",
- "image 0.25.9",
+ "image",
  "indexmap 2.12.1",
  "itertools 0.14.0",
  "mcap",
@@ -8209,7 +8043,7 @@ dependencies = [
  "emath",
  "glam 0.30.9",
  "half",
- "image 0.25.9",
+ "image",
  "infer",
  "itertools 0.14.0",
  "linked-hash-map",
@@ -8518,7 +8352,7 @@ dependencies = [
  "egui",
  "glam 0.30.9",
  "hexasphere",
- "image 0.25.9",
+ "image",
  "itertools 0.14.0",
  "macaw",
  "nohash-hasher",
@@ -8660,7 +8494,7 @@ dependencies = [
  "ehttp 0.5.0",
  "emath",
  "glam 0.30.9",
- "image 0.25.9",
+ "image",
  "itertools 0.14.0",
  "jiff",
  "js-sys",
@@ -8753,7 +8587,7 @@ dependencies = [
  "glam 0.30.9",
  "half",
  "home",
- "image 0.25.9",
+ "image",
  "indexmap 2.12.1",
  "itertools 0.14.0",
  "linked-hash-map",
@@ -9170,27 +9004,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "robot_behavior"
-version = "0.8.0"
-dependencies = [
- "anyhow",
- "copp",
- "cxx",
- "futures",
- "libc",
- "nalgebra 0.34.1",
- "paste",
- "plotters",
- "pyo3",
- "roplat",
- "serde",
- "serde_json",
- "thiserror 2.0.18",
- "tokio",
- "winapi",
-]
-
-[[package]]
 name = "ron"
 version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -9218,7 +9031,7 @@ dependencies = [
 
 [[package]]
 name = "roplat"
-version = "0.5.0"
+version = "0.5.1"
 dependencies = [
  "async-trait",
  "bincode",
@@ -9226,6 +9039,7 @@ dependencies = [
  "num-traits",
  "roplat_launch",
  "roplat_macros",
+ "roplat_native",
  "serde",
  "serde_json",
  "serde_yaml",
@@ -9234,8 +9048,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "roplat_behavior"
+version = "0.9.0"
+dependencies = [
+ "anyhow",
+ "cxx",
+ "futures",
+ "nalgebra 0.34.1",
+ "paste",
+ "pyo3",
+ "roplat",
+ "roplat_msgs",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+]
+
+[[package]]
 name = "roplat_build"
-version = "0.5.0"
+version = "0.5.1"
 dependencies = [
  "cc",
  "cmake",
@@ -9245,20 +9076,39 @@ dependencies = [
 ]
 
 [[package]]
+name = "roplat_control"
+version = "0.9.0"
+dependencies = [
+ "libc",
+ "nalgebra 0.34.1",
+ "roplat_behavior",
+ "roplat_trajectory",
+ "winapi",
+]
+
+[[package]]
 name = "roplat_exrobot"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "anyhow",
  "cxx",
  "cxx-build",
  "nalgebra 0.34.1",
  "pyo3",
- "robot_behavior",
+ "roplat_behavior",
+]
+
+[[package]]
+name = "roplat_kinematics"
+version = "0.9.0"
+dependencies = [
+ "nalgebra 0.34.1",
+ "roplat_behavior",
 ]
 
 [[package]]
 name = "roplat_launch"
-version = "0.5.0"
+version = "0.5.1"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -9271,7 +9121,7 @@ dependencies = [
 
 [[package]]
 name = "roplat_macros"
-version = "0.5.0"
+version = "0.5.1"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -9282,8 +9132,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "roplat_msgs"
+version = "0.5.1"
+dependencies = [
+ "nalgebra 0.34.1",
+ "roplat_native",
+ "serde",
+]
+
+[[package]]
+name = "roplat_native"
+version = "0.5.1"
+dependencies = [
+ "roplat_macros",
+]
+
+[[package]]
 name = "roplat_py"
-version = "0.5.0"
+version = "0.5.1"
 dependencies = [
  "pyo3",
  "roplat",
@@ -9291,25 +9157,34 @@ dependencies = [
 
 [[package]]
 name = "roplat_rerun"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "anyhow",
  "nalgebra 0.34.1",
  "rerun",
  "rerun_urdf",
- "robot_behavior",
+ "roplat_behavior",
  "rsbullet",
 ]
 
 [[package]]
 name = "roplat_system"
-version = "0.5.0"
+version = "0.5.1"
 dependencies = [
  "proc-macro2",
  "quote",
  "roplat_launch",
  "serde_json",
  "syn 2.0.111",
+]
+
+[[package]]
+name = "roplat_trajectory"
+version = "0.9.0"
+dependencies = [
+ "copp",
+ "nalgebra 0.34.1",
+ "roplat_behavior",
 ]
 
 [[package]]
@@ -9320,13 +9195,14 @@ checksum = "6c20b6793b5c2fa6553b250154b78d6d0db37e72700ae35fad9387a46f487c97"
 
 [[package]]
 name = "rsbullet"
-version = "0.6.0"
+version = "0.7.0"
 dependencies = [
  "anyhow",
  "futures",
  "nalgebra 0.34.1",
- "robot_behavior",
  "roplat",
+ "roplat_behavior",
+ "roplat_trajectory",
  "rsbullet-core",
  "rsbullet_sys",
  "tokio",
@@ -9334,11 +9210,11 @@ dependencies = [
 
 [[package]]
 name = "rsbullet-core"
-version = "0.6.0"
+version = "0.7.0"
 dependencies = [
  "bitflags 2.10.0",
  "nalgebra 0.34.1",
- "robot_behavior",
+ "roplat_behavior",
  "rsbullet_sys",
 ]
 
@@ -9410,7 +9286,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.11.0",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -10266,7 +10142,7 @@ dependencies = [
  "getrandom 0.3.4",
  "once_cell",
  "rustix 1.1.2",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -10773,12 +10649,6 @@ checksum = "e421abadd41a4225275504ea4d6566923418b7f05506fbc9c0fe86ba7396114b"
 
 [[package]]
 name = "ttf-parser"
-version = "0.20.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "17f77d76d837a7830fe1d4f12b7b4ba4192c1888001c7164257e4bc6d21d96b4"
-
-[[package]]
-name = "ttf-parser"
 version = "0.25.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d2df906b07856748fa3f6e0ad0cbaa047052d4a7dd609e231c4f72cee8c36f31"
@@ -11000,7 +10870,7 @@ dependencies = [
  "futures",
  "geo-types",
  "http-cache-reqwest",
- "image 0.25.9",
+ "image",
  "log",
  "lru",
  "reqwest",
@@ -11516,7 +11386,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -12099,15 +11969,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "wio"
-version = "0.2.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5d129932f4644ac2396cb456385cbf9e63b5b30c6e8dc4820bdca4eb082037a5"
-dependencies = [
- "winapi",
-]
-
-[[package]]
 name = "wit-bindgen"
 version = "0.46.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -12218,17 +12079,6 @@ name = "xxhash-rust"
 version = "0.8.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fdd20c5420375476fbd4394763288da7eb0cc0b8c11deed431a91562af7335d3"
-
-[[package]]
-name = "yeslogic-fontconfig-sys"
-version = "6.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "503a066b4c037c440169d995b869046827dbc71263f6e8f3be6d77d4f3229dbd"
-dependencies = [
- "dlib",
- "once_cell",
- "pkg-config",
-]
 
 [[package]]
 name = "yoke"

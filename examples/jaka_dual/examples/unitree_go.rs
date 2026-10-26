@@ -1,6 +1,6 @@
 use anyhow::Result;
 // // use libunitree::UnitreeGo2;
-// use robot_behavior::{behavior::*, roplat_data_dir};
+// use roplat_behavior::{behavior::*, roplat_data_dir};
 // use rsbullet::{Mode, RsBullet};
 // use std::{thread::sleep, time::Duration};
 

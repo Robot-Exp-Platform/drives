@@ -14,7 +14,6 @@ members = [
     "rsbullet/rsbullet",
     "rsbullet/rsbullet-core",
     "utils/rerun_urdf",
-    "./robot_behavior",
 ]
 exclude = [
     "libhans_derive",
@@ -27,9 +26,14 @@ exclude = [
 resolver = "3"
 
 # The drivers depend on published crates.io versions. At this integration root
-# those packages are replaced by the local checkouts.
+# those packages are replaced by the local checkouts: the core and the
+# behavior contracts are sibling repositories (../roplat, ../roplat_behavior).
 [patch.crates-io]
 roplat = { path = "../roplat/roplat" }
-robot_behavior = { path = "./robot_behavior" }
+roplat_msgs = { path = "../roplat/roplat_msgs" }
+roplat_behavior = { path = "../roplat_behavior/roplat_behavior" }
+roplat_kinematics = { path = "../roplat_behavior/roplat_kinematics" }
+roplat_control = { path = "../roplat_behavior/roplat_control" }
+roplat_trajectory = { path = "../roplat_behavior/roplat_trajectory" }
 rsbullet = { path = "rsbullet/rsbullet" }
 rerun_urdf = { path = "utils/rerun_urdf" }

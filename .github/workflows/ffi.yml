@@ -22,12 +22,6 @@ jobs:
       - name: Check workspace
         run: cargo check --workspace
 
-      - name: Check robot_behavior FFI features
-        run: |
-          cargo check --manifest-path robot_behavior/Cargo.toml --features to_c
-          cargo check --manifest-path robot_behavior/Cargo.toml --features to_py
-          cargo check --manifest-path robot_behavior/Cargo.toml --features to_cxx
-
       - name: Check downstream Python FFI
         run: |
           cargo check -p franka_rust --features to_py

@@ -2,7 +2,7 @@ use libjaka::{
     JakaMini2,
     types::{TioVout, TioVoutMode},
 };
-use robot_behavior::behavior::*;
+use roplat_behavior::behavior::*;
 fn main() {
     // let (mut robot_1, mut robot_2) = (JakaMini2::new(""), JakaMini2::new(""));
     // robot_1.enable().unwrap();

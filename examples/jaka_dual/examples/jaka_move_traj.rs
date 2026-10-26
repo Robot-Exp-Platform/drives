@@ -1,6 +1,6 @@
 use anyhow::Result;
 use libjaka::JakaMini2;
-use robot_behavior::behavior::*;
+use roplat_behavior::behavior::*;
 
 fn main() -> Result<()> {
     // let mut physics = RsBullet::new(Mode::Gui)?;
