@@ -111,9 +111,9 @@ cd drives
 GIT_LFS_SKIP_SMUDGE=1 git submodule update --init --recursive
 ```
 
-需要对相关 GitHub 仓库有访问权限。部分子模块和 Cargo 源依赖使用 SSH 地址，因此还需配置 Git 的 SSH 访问；能克隆外层仓库不代表所有依赖都已获取。
+需要对相关 GitHub 仓库有访问权限。部分子模块使用 SSH 地址，因此还需配置 Git 的 SSH 访问；能克隆外层仓库不代表所有子模块都已获取。各驱动的 Cargo 依赖均来自 crates.io，不需要额外的 Git 源访问。
 
-根 `Cargo.toml` 将 crates.io 和固定 Git 来源的部分依赖替换为本地子目录，并通过 `../roplat/roplat` 接入核心。这让修改本地公共接口能够直接用于集成验证。子模块固定到父仓记录的提交；更新某个子仓的 `main` 不会让其他检出自动跟随它。
+根 `Cargo.toml` 将部分 crates.io 依赖替换为本地子目录，并通过 `../roplat/roplat` 接入核心。这让修改本地公共接口能够直接用于集成验证。子模块固定到父仓记录的提交；更新某个子仓的 `main` 不会让其他检出自动跟随它。
 
 先选择要开发的包进行编译，例如：
 

@@ -10,7 +10,6 @@ import argparse
 import json
 import os
 from pathlib import Path
-import re
 import shutil
 import signal
 import subprocess
@@ -35,7 +34,8 @@ CORE_NAMES = {
     "roplat_launch", "roplat_py", "roplat_build", "rsbullet", "rsbullet-core",
     "rsbullet_sys", "rerun_urdf",
 }
-PINNED_NAMES = {"roplat", "robot_behavior"}
+PUBLISHED_NAMES = {"roplat", "robot_behavior"}
+CRATES_IO = "registry+https://github.com/rust-lang/crates.io-index"
 SOURCE_FILES = {"Cargo.toml", "build.rs", "rust-toolchain", "rust-toolchain.toml"}
 SOURCE_DIRS = {"src", "tests", "examples", "benches", "cpp", "include", "libhans_derive"}
 
@@ -83,35 +83,29 @@ def assert_unique(metadata):
             raise RuntimeError("multiple copies of %s: %s" % (name, sorted(ids)))
 
 
-def assert_git_checkouts(metadata, env):
-    cache = Path(env.get("CARGO_HOME", str(Path.home() / ".cargo"))).resolve() / "git" / "checkouts"
+def assert_no_git_sources(metadata):
     for package in metadata["packages"]:
-        if package["name"] not in CORE_NAMES or not (package.get("source") or "").startswith("git+"):
-            continue
-        location = Path(package["manifest_path"]).resolve()
-        if cache not in location.parents:
-            raise RuntimeError("Git package resolved outside Cargo checkout cache: " + str(location))
+        if package["name"] in CORE_NAMES and (package.get("source") or "").startswith("git+"):
+            raise RuntimeError("%s resolved from Git instead of crates.io or a local patch: %s"
+                               % (package["name"], package["source"]))
 
 
-def assert_explicit_sources(metadata):
+def assert_registry_sources(metadata):
     member_ids = set(metadata["workspace_members"])
-    pins = {name: set() for name in PINNED_NAMES}
+    requirements = {name: set() for name in PUBLISHED_NAMES}
     for package in metadata["packages"]:
         if package["id"] not in member_ids or package["name"] == "jaka_roplat_multilang":
             continue  # The multilingual demo deliberately belongs to drives.
         for dep in package["dependencies"]:
-            if dep["name"] not in PINNED_NAMES:
+            if dep["name"] not in PUBLISHED_NAMES:
                 continue
-            source = dep.get("source") or ""
-            if not source.startswith("git+ssh://git@github.com/Robot-Exp-Platform/"):
-                raise RuntimeError("%s must use an independently accessible pinned %s source: %s"
-                                   % (package["name"], dep["name"], source or dep.get("path")))
-            if not re.search(r"[?&]rev=[0-9a-f]{40}(?:&|$)", source):
-                raise RuntimeError("dependency revision must be a full commit hash: " + source)
-            pins[dep["name"]].add(source)
-    for name, sources in pins.items():
-        if len(sources) > 1:
-            raise RuntimeError("inconsistent %s pins: %s" % (name, sorted(sources)))
+            if dep.get("source") != CRATES_IO:
+                raise RuntimeError("%s must depend on the published %s from crates.io: %s"
+                                   % (package["name"], dep["name"], dep.get("source") or dep.get("path")))
+            requirements[dep["name"]].add(dep["req"])
+    for name, reqs in requirements.items():
+        if len(reqs) > 1:
+            raise RuntimeError("inconsistent %s requirements: %s" % (name, sorted(reqs)))
 
 
 def snapshot(repo, destination):
@@ -148,8 +142,8 @@ def check_package(package, cwd, features, env, offline, skip_build, locked):
             args += ["--locked"]
         metadata = json.loads(command(args, cwd, env, capture=True))
         assert_unique(metadata)
-        assert_git_checkouts(metadata, env)
-        assert_explicit_sources(metadata)
+        assert_no_git_sources(metadata)
+        assert_registry_sources(metadata)
         tree = cargo_args("tree", package, selected_feature, offline)
         tree += ["--edges", "normal", "--prefix", "none", "--format", "{p}", "--locked"]
         names = {line.split()[0] for line in command(tree, cwd, env, capture=True).splitlines() if line}
@@ -182,7 +176,7 @@ def main():
     if args.independent and "rsbullet" in packages:
         parser.error("RsBullet is a nested workspace with Bullet vendor submodules; run its independent checkout directly using docs/dependency-sources.md")
     env = os.environ.copy()
-    env.update(BULLET_SKIP_ASSET_EXPORT="1", ROPLAT_SKIP_ASSET_EXPORT="1", CARGO_NET_GIT_FETCH_WITH_CLI="true",
+    env.update(BULLET_SKIP_ASSET_EXPORT="1", ROPLAT_SKIP_ASSET_EXPORT="1",
                DRIVES_CHECK_COMMAND_TIMEOUT=str(args.command_timeout))
     if args.offline:
         env["CARGO_NET_OFFLINE"] = "true"
