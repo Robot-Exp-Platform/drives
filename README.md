@@ -21,18 +21,18 @@
 | 任务 / 设备 | 仓库与 crate | 建议先了解的内容 |
 |---|---|---|
 | 理解共同接口、编写通用控制代码 | [roplat_behavior](https://github.com/Robot-Exp-Platform/roplat_behavior) · `roplat_behavior 0.9.0`（尚未发布 crates.io） | 类型化运动与控制，状态视图，阻塞和原生异步会话。 |
-| 不连接设备，练习接口 | [roplat_exrobot](https://github.com/Robot-Exp-Platform/roplat_exrobot) · `0.2.0` | 打印指令和合成状态的参考实现，不是物理仿真。 |
-| Franka | [franka-rust](https://github.com/Robot-Exp-Platform/franka-rust) · `franka_rust 0.2.0` | FCI 协议、设备模式，以及同步与原生异步控制。 |
-| JAKA | [libjaka-rs](https://github.com/Robot-Exp-Platform/libjaka-rs) · `libjaka 0.2.0` | TCP 状态查询与 servo；选择正确的状态读取入口。 |
-| Hans | [libhans-rs](https://github.com/Robot-Exp-Platform/libhans-rs) · `libhans 0.2.0` | 已实现的状态 / 运动能力，以及构造与未实现接口的边界。 |
-| AUBO 类型与接口扩展 | [libaubo-rs](https://github.com/Robot-Exp-Platform/libaubo-rs) · `libaubo 0.2.0` | 当前是接口骨架，尚不能作为完整真机驱动使用。 |
+| 不连接设备，练习接口 | [roplat_exrobot](https://github.com/Robot-Exp-Platform/roplat_exrobot) · `0.5.0`（crates.io 最新 0.4.0） | 打印指令和合成状态的参考实现，不是物理仿真。 |
+| Franka | [franka-rust](https://github.com/Robot-Exp-Platform/franka-rust) · `franka_rust 0.5.0`（crates.io 最新 0.4.0） | FCI 协议、设备模式，以及同步与原生异步控制。 |
+| JAKA | [libjaka-rs](https://github.com/Robot-Exp-Platform/libjaka-rs) · `libjaka 0.5.0`（crates.io 最新 0.4.0） | TCP 状态查询与 servo；选择正确的状态读取入口。 |
+| Hans | [libhans-rs](https://github.com/Robot-Exp-Platform/libhans-rs) · `libhans 0.5.0`（crates.io 最新 0.4.0） | 已实现的状态 / 运动能力，以及构造与未实现接口的边界。 |
+| AUBO 类型与接口扩展 | [libaubo-rs](https://github.com/Robot-Exp-Platform/libaubo-rs) · `libaubo 0.5.0`（crates.io 最新 0.4.0） | 当前是接口骨架，尚不能作为完整真机驱动使用。 |
 | Booster K1 | [libk1](https://github.com/Robot-Exp-Platform/libk1) · `0.1.0` | 无 SDK 的离线入口、FastDDS 接入、状态与指令检查。 |
 | Unitree Go2 | [unitree-go2-rs](https://github.com/Robot-Exp-Platform/unitree-go2-rs) · `libgo2` | Git 源码安装、Linux SDK 条件、低层状态与 Sport API；尚未发布 crates.io。 |
-| 物理仿真 | [rsbullet](https://github.com/Robot-Exp-Platform/rsbullet) · `rsbullet 0.4.0` | DIRECT 最小场景、步进、模型资源与机器人适配。 |
+| 物理仿真 | [rsbullet](https://github.com/Robot-Exp-Platform/rsbullet) · `rsbullet 0.7.0`（crates.io 最新 0.6.0） | DIRECT 最小场景、步进、模型资源与机器人适配。 |
 | 把 URDF 几何显示到 Rerun | [rerun_urdf](https://github.com/Robot-Exp-Platform/rerun_urdf) · `0.1.1` | 注册几何、提供 link 位姿、保存录制或接入 Viewer。 |
-| 在仿真循环中记录机器人状态 | [roplat_rerun](https://github.com/Robot-Exp-Platform/roplat_rerun) · `0.2.0` | RsBullet 与 Rerun 的接入流程，观察回调在物理步进前读取状态。 |
+| 在仿真循环中记录机器人状态 | [roplat_rerun](https://github.com/Robot-Exp-Platform/roplat_rerun) · `0.5.0`（crates.io 最新 0.4.0） | RsBullet 与 Rerun 的接入流程，观察回调在物理步进前读取状态。 |
 
-RsBullet 的内部层为 `rsbullet-core 0.4.0` 和 `rsbullet_sys 0.3.2`；Hans 的辅助宏包为 `libhans_derive 0.1.3`。通常从上层 crate 入手即可。已发布版本与本工作区记录的 Git 子模块提交是两种不同的依赖入口，不会自动互相更新。
+RsBullet 的内部层为 `rsbullet-core 0.7.0` 和 `rsbullet_sys 0.3.3`（crates.io 最新 0.6.0 与 0.3.2）；Hans 的辅助宏包为 `libhans_derive 0.1.3`。表中版本号为本工作区源码中的版本，括号内为 2026-10-27 查询的 crates.io 最新版本。通常从上层 crate 入手即可。已发布版本与本工作区记录的 Git 子模块提交是两种不同的依赖入口，不会自动互相更新。
 
 ## 最小使用案例：先跑通共同接口
 
