@@ -9202,6 +9202,7 @@ dependencies = [
  "copp",
  "nalgebra",
  "roplat_behavior",
+ "thiserror 2.0.18",
 ]
 
 [[package]]
