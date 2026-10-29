@@ -2,6 +2,7 @@ use anyhow::Result;
 use franka_rust::FrankaEmika;
 use libjaka::JakaMini2;
 use roplat_behavior::behavior::*;
+use roplat_world::{AddRobot, AddSearchPath, EntityBuilder, PhysicsEngine};
 use rsbullet::{Mode, RsBullet, RsBulletRobot};
 use std::{f64::consts::FRAC_PI_4, thread::sleep, time::Duration};
 
@@ -23,7 +24,6 @@ fn main() -> Result<()> {
         .base_fixed(true)
         .load()?;
 
-    robot_1 = robot_1.with_joint_vel([5.; 6]).with_joint_acc([2.; 6]);
     robot_1.move_to::<JointSpace<6>>([0.; 6])?;
     robot_2.move_to::<JointSpace<7>>([FRAC_PI_4; 7])?;
 

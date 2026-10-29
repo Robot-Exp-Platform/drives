@@ -7,8 +7,7 @@ fn main() -> anyhow::Result<()> {
     robot.enable()?;
     robot.move_to::<JointSpace<6>>(JakaA5::JOINT_DEFAULT)?;
     robot.move_to::<JointSpace<6>>(JakaA5::JOINT_PACKED)?;
-    robot.set_coord(roplat_behavior::Coord::Relative);
-    robot.move_to::<FlangeSpace>(Pose::from_position([-10., 0.1, 0.]))?;
+    robot.move_to::<Relative<FlangeSpace>>(Pose::from_position([-10., 0.1, 0.]))?;
 
     // robot.disable()?;
 
