@@ -6,6 +6,7 @@
 use franka_rust::FrankaEmika;
 use nalgebra as na;
 use roplat_behavior::{Pose, behavior::*};
+use roplat_world::{AddRobot, AttachFrom, AddSearchPath, EntityBuilder, PhysicsEngine};
 use roplat_rerun::RerunHost;
 use rsbullet::RsBullet;
 

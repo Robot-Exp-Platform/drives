@@ -2,6 +2,7 @@ use std::{f64::consts::FRAC_PI_2, f64::consts::FRAC_PI_4, time::Duration};
 
 use libjaka::JakaMini2;
 use roplat_behavior::behavior::*;
+use roplat_world::{AddRobot, AttachFrom, AddSearchPath, EntityBuilder, PhysicsEngine};
 use roplat_rerun::RerunHost;
 use rsbullet::RsBullet;
 

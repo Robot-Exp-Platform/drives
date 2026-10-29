@@ -36,5 +36,8 @@ roplat_kinematics = { path = "../roplat_behavior/roplat_kinematics" }
 roplat_description = { path = "../roplat_behavior/roplat_description" }
 roplat_control = { path = "../roplat_behavior/roplat_control" }
 roplat_trajectory = { path = "../roplat_behavior/roplat_trajectory" }
+roplat_scene = { path = "../roplat_behavior/roplat_scene" }
+roplat_world = { path = "../roplat_behavior/roplat_world" }
+roplat_behavior_ffi = { path = "../roplat_behavior/roplat_behavior_ffi" }
 rsbullet = { path = "rsbullet/rsbullet" }
 rerun_urdf = { path = "utils/rerun_urdf" }

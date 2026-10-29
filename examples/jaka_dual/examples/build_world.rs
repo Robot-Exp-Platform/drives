@@ -2,7 +2,8 @@ use nalgebra::{self as na, Vector3};
 use std::{f64::consts::FRAC_PI_2, time::Duration};
 
 use libjaka::JakaMini2;
-use roplat_behavior::{Entity, behavior::*};
+use roplat_behavior::behavior::*;
+use roplat_world::{AddRobot, AddSearchPath, AddVisual, Entity, EntityBuilder, PhysicsEngine};
 use rsbullet::RsBullet;
 
 fn main() -> anyhow::Result<()> {

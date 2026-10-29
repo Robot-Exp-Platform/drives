@@ -1,6 +1,7 @@
 ﻿use anyhow::Result;
 use franka_rust::FrankaEmika;
 use roplat_behavior::behavior::*;
+use roplat_world::{AddRobot, AddSearchPath, EntityBuilder, PhysicsEngine};
 use rsbullet::{Mode, RsBullet};
 use std::{thread::sleep, time::Duration};
 
