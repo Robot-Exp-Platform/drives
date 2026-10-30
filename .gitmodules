@@ -43,3 +43,12 @@
 [submodule "ref/libfranka-rs"]
 	path = ref/libfranka-rs
 	url = git@github.com:marcbone/libfranka-rs.git
+[submodule "librobotiq-rs"]
+	path = librobotiq-rs
+	url = git@github.com:Robot-Exp-Platform/librobotiq-rs.git
+[submodule "libatift-rs"]
+	path = libatift-rs
+	url = git@github.com:Robot-Exp-Platform/libatift-rs.git
+[submodule "libwitmotion-rs"]
+	path = libwitmotion-rs
+	url = git@github.com:Robot-Exp-Platform/libwitmotion-rs.git
