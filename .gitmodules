@@ -52,3 +52,9 @@
 [submodule "libwitmotion-rs"]
 	path = libwitmotion-rs
 	url = git@github.com:Robot-Exp-Platform/libwitmotion-rs.git
+[submodule "libspacemouse-rs"]
+	path = libspacemouse-rs
+	url = git@github.com:Robot-Exp-Platform/libspacemouse-rs.git
+[submodule "libdhgripper-rs"]
+	path = libdhgripper-rs
+	url = git@github.com:Robot-Exp-Platform/libdhgripper-rs.git
