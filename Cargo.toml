@@ -4,10 +4,13 @@ members = [
     "examples/jaka_roplat_multilang",
     # "examples/franka_letters",
     "franka-rust",
+    "libatift-rs",
     "libaubo-rs",
     "libhans-rs",
     "libjaka-rs",
     "libk1",
+    "librobotiq-rs",
+    "libwitmotion-rs",
     "unitree-go2-rs",
     "roplat_exrobot",
     "roplat_rerun",
@@ -37,6 +40,7 @@ roplat_description = { path = "../roplat_behavior/roplat_description" }
 roplat_control = { path = "../roplat_behavior/roplat_control" }
 roplat_trajectory = { path = "../roplat_behavior/roplat_trajectory" }
 roplat_scene = { path = "../roplat_behavior/roplat_scene" }
+roplat_grasp = { path = "../roplat_behavior/roplat_grasp" }
 roplat_world = { path = "../roplat_behavior/roplat_world" }
 roplat_behavior_ffi = { path = "../roplat_behavior/roplat_behavior_ffi" }
 rsbullet = { path = "rsbullet/rsbullet" }
