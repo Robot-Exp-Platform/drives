@@ -1,4 +1,4 @@
-﻿use std::{
+use std::{
     f64::consts::{FRAC_PI_2, PI},
     time::Duration,
 };
@@ -6,8 +6,8 @@
 use franka_rust::FrankaEmika;
 use nalgebra as na;
 use roplat_behavior::{Pose, behavior::*};
-use roplat_world::{AddRobot, AttachFrom, AddSearchPath, EntityBuilder, PhysicsEngine};
 use roplat_rerun::RerunHost;
+use roplat_world::{AddRobot, AddSearchPath, AttachFrom, EntityBuilder, PhysicsEngine};
 use rsbullet::RsBullet;
 
 fn main() -> anyhow::Result<()> {
