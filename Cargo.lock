@@ -9143,12 +9143,10 @@ dependencies = [
 name = "roplat"
 version = "0.6.0-rc.1"
 dependencies = [
- "async-trait",
  "bincode",
  "futures",
  "libc",
  "memmap2 0.9.12",
- "num-traits",
  "roplat_launch",
  "roplat_macros",
  "roplat_native",
