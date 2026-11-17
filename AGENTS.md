@@ -50,6 +50,8 @@
 | `libhans-rs/` | 真机驱动 | Hans/翰森 机械臂 SDK 绑定（宏包 `libhans_derive` 也是实际 workspace 成员） |
 | `libjaka-rs/` | 真机驱动 | JAKA 节卡机械臂 SDK 绑定 |
 | `libk1/` | 真机驱动 | Booster K1 原生 Rust 驱动；Git submodule，crate 名为 `libk1`，通过官方 SDK FastDDS 直接接入，不依赖 ROS2 |
+| `librobstride-rs/` | 协议层 | Robstride CAN 关节电机：MIT 协议帧、型号量程表与 SocketCAN 总线；Git submodule，crate 名为 `librobstride`（集成根经 `[patch.crates-io]` 指向本地） |
+| `liblingzu-rs/` | 真机驱动 | Lingzu 7 自由度机械臂（Robstride 电机，每臂一路 CAN）；Git submodule，crate 名为 `liblingzu`，依赖 `librobstride` |
 | `unitree-go2-rs/` | 真机驱动 | Unitree Go2 原生 Rust 驱动；Git submodule，crate 名为 `libgo2`，含 SDK2 DDS / Sport API 与可选 roplat bridge |
 | `roplat_exrobot/` | 适配层 | 把上述驱动统一封装为 roplat 节点；含 Python `.pyi` |
 | `rsbullet/rsbullet/` | 仿真器 | PyBullet 的 Rust 包装（高层 API） |

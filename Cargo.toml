@@ -10,6 +10,8 @@ members = [
     "libhans-rs",
     "libjaka-rs",
     "libk1",
+    "liblingzu-rs",
+    "librobstride-rs",
     "librobotiq-rs",
     "libspacemouse-rs",
     "libwitmotion-rs",
@@ -45,5 +47,6 @@ roplat_scene = { path = "../roplat_behavior/roplat_scene" }
 roplat_grasp = { path = "../roplat_behavior/roplat_grasp" }
 roplat_world = { path = "../roplat_behavior/roplat_world" }
 roplat_behavior_ffi = { path = "../roplat_behavior/roplat_behavior_ffi" }
+librobstride = { path = "librobstride-rs" }
 rsbullet = { path = "rsbullet/rsbullet" }
 rerun_urdf = { path = "utils/rerun_urdf" }

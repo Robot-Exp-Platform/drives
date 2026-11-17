@@ -58,3 +58,9 @@
 [submodule "libdhgripper-rs"]
 	path = libdhgripper-rs
 	url = git@github.com:Robot-Exp-Platform/libdhgripper-rs.git
+[submodule "librobstride-rs"]
+	path = librobstride-rs
+	url = git@github.com:Robot-Exp-Platform/librobstride-rs.git
+[submodule "liblingzu-rs"]
+	path = liblingzu-rs
+	url = git@github.com:Robot-Exp-Platform/liblingzu-rs.git
